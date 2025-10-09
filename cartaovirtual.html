@@ -2,183 +2,233 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <metva name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monta Tech Brasil - Cartão Virtual</title>
-    <!-- Biblioteca de Ícones (Font Awesome) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MontaTech Brasil - Cartão de Visita Digital</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Ícones (Font Awesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
-        /* Importa a fonte do Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+    <!-- Favicon -->
+    <link rel="icon" href="img/favicon2.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/favicon2.png">
 
-        /* Variáveis de Cores (Paleta) */
+    <style>
+        /* --- Reset e Configurações Globais --- */
         :root {
             --azul-escuro: #0e3d71;
             --azul-medio: #045ebf;
             --dourado: #f6b401;
-            --verde-inovacao: #3BAF63;
+            --verde: #3BAF63;
             --branco: #ffffff;
-            --background: #f4f4f4;
+            --cinza-claro: #f0f2f5;
         }
-
-        /* Estilos Gerais do Corpo da Página */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--background);
-            color: var(--azul-escuro);
+            color: #333;
+            background: linear-gradient(135deg, var(--cinza-claro), #dde5f0);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
+            padding: 2rem 1rem;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Estilo do Cartão Principal */
-        .card {
+        /* --- Container Principal (O Cartão) --- */
+        .card-container {
             background-color: var(--branco);
             width: 100%;
-            max-width: 400px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px; /* Largura ideal para desktop */
+            border-radius: 24px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
             text-align: center;
-            padding: 30px;
-            box-sizing: border-box;
-            margin: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
-        /* Logo no Cabeçalho */
-        header .logo {
-            max-width: 200px;
-            margin-bottom: 20px;
+        /* --- Seção do Perfil --- */
+        .profile .logo {
+            max-width: 150px;
+            margin-bottom: 1.5rem;
         }
-
-        /* Seção do Perfil (Nome e Cargo) */
         .profile h1 {
-            font-size: 2em;
+            color: var(--azul-escuro);
+            font-size: 2.2rem;
             font-weight: 700;
-            color: var(--azul-escuro);
-            margin: 0;
         }
-
         .profile p {
-            font-size: 1.1em;
             color: var(--azul-medio);
+            font-size: 1.1rem;
             font-weight: 600;
-            margin-top: 5px;
+            margin-bottom: 2rem;
         }
 
-        /* Seção de Informações de Contato */
-        .contact-info {
-            margin: 25px 0;
-        }
-
-        /* Botão Principal (WhatsApp) */
-        .contact-button {
-            display: inline-block;
-            background-color: var(--verde-inovacao);
-            color: var(--branco);
-            padding: 15px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-        }
-
-        .contact-button:hover {
-            background-color: #2e8b57; /* Um tom de verde mais escuro */
-        }
-
-        .contact-button i {
-            margin-right: 10px;
-        }
-
-        .phone-number {
-            font-size: 0.9em;
+        /* --- Seção de Texto Introdutório --- */
+        .intro-text {
             color: #555;
-            margin-top: 10px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
         }
 
-        /* Seção de Links para Redes Sociais */
-        .social-links {
-            margin: 25px 0;
+        /* --- Botões de Ação Principais --- */
+        .action-buttons {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
         }
-
-        .social-links a {
-            color: var(--azul-medio);
-            font-size: 2em;
-            margin: 0 15px;
+        .action-buttons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 1rem;
+            border-radius: 12px;
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--branco);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-
-        .social-links a:hover {
-            color: var(--dourado);
+        .action-buttons a:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
+        .btn-whatsapp { background-color: var(--verde); }
+        .btn-site { background-color: var(--azul-medio); }
+        .btn-magalu { background-color: var(--dourado); color: var(--azul-escuro); }
 
-        /* Área de Atendimento */
-        .service-area {
-            background-color: #eef7ff;
-            padding: 15px;
-            border-radius: 10px;
+        /* --- Links de Redes Sociais --- */
+        .social-links p {
             font-weight: 600;
             color: var(--azul-escuro);
-            margin-top: 20px;
+            margin-bottom: 1rem;
         }
-        
-        /* Rodapé com QR Code */
-        .qr-code {
-            margin-top: 25px;
+        .social-icons a {
+            color: var(--azul-medio);
+            font-size: 2.5rem;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: var(--dourado);
+            transform: scale(1.1);
         }
 
-        .qr-code img {
-            border: 5px solid var(--background);
-            border-radius: 10px;
+        /* --- Divisor --- */
+        .divider {
+            border: 0;
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 2.5rem 0;
         }
 
-        .qr-code p {
-            font-size: 0.9em;
-            color: #777;
-            margin-top: 10px;
+        /* --- Seção do QR Code --- */
+        .qr-code-section img {
+            max-width: 250px;
+            border-radius: 16px;
+            border: 5px solid var(--cinza-claro);
+        }
+        .qr-code-section p {
+            font-weight: 600;
+            color: var(--azul-medio);
+            margin-top: 1rem;
+        }
+
+        /* --- Responsividade para Celular --- */
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+            .card-container {
+                padding: 2rem 1.5rem;
+            }
+            .profile h1 {
+                font-size: 1.8rem;
+            }
+            .profile p {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <header>
-            <!-- Lembre-se de criar a pasta 'img' e colocar a logo nela -->
-            <img src="img/logo.png" alt="Logo Monta Tech Brasil" class="logo">
+    <div class="card-container">
+        
+        <!-- SEÇÃO DO PERFIL -->
+        <header class="profile">
+            <img src="img/logo.png" alt="Logo MontaTech Brasil" class="logo">
+            <h1>Ricardo Alexandre</h1>
+            <p>Montagem de Móveis Profissional</p>
         </header>
 
-        <section class="profile">
-            <h1>Ricardo Alexandre</h1>
-            <p>Montagem de Móveis</p>
+        <!-- TEXTO INTRODUTÓRIO -->
+        <section class="intro-text">
+            <p>
+                💙 Montagem de Móveis Profissional ⚒️<br>
+                ✅ Residenciais e comerciais<br>
+                ✅ Valparaíso de Goiás, Brasília DF e regiões<br>
+            </p>
         </section>
-
-        <section class="contact-info">
-            <a href="https://wa.me/5561998865417" target="_blank" class="contact-button whatsapp">
-                <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+        
+        <!-- BOTÕES DE AÇÃO -->
+        <section class="action-buttons">
+            <a href="https://wa.me/5561998865417" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp"></i> Agende pelo WhatsApp
             </a>
-            <p class="phone-number">(61) 9 9886-5417</p>
+            <a href="http://montatechbrasil.com.br/" class="btn-site" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-globe"></i> Visite Nosso Site
+            </a>
+            <a href="https://www.magazinevoce.com.br/magazinemontatechbrasil/busca/moveis/" class="btn-magalu" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-store"></i> Visite nossa lojinha da Magalu
+            </a>
         </section>
 
+        <!-- LINKS DE REDES SOCIAIS -->
         <section class="social-links">
-            <!-- SUBSTITUA 'SEU_USUARIO' E 'SEU_SITE' PELOS SEUS LINKS -->
-            <a href="https://instagram.com/SEU_USUARIO" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://facebook.com/SEU_USUARIO" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://SEU_SITE.com" target="_blank" title="Nosso Site"><i class="fas fa-globe"></i></a>
+            <p>Siga-nos nas redes sociais, curta e compartilhe:</p>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/montatechbrasil.montagens/" target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/montatechbrasil.montagens" target="_blank" rel="noopener noreferrer" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
         </section>
 
-        <section class="service-area">
-            <p>✅ Atendemos Valparaíso de Goiás, DF e Regiões.</p>
-        </section>
+        <hr class="divider">
 
-        <footer class="qr-code">
-             <!-- SUBSTITUA 'URL_DO_SEU_CARTAO' PELO LINK DO SEU CARTÃO ONLINE -->
-            <img src="img/qrcode.png" alt="QR Code para contato Monta Tech Brasil">
+        <!-- SEÇÃO DO QR CODE -->
+        <section class="qr-code-section">
+            <img src="img/qrcode.png" alt="QR Code para Contato">
             <p>Aponte a câmera e salve meu contato!</p>
-        </footer>
+        </section>
+
     </div>
 
 </body>
