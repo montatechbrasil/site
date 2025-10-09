@@ -26,10 +26,10 @@
         /* --- ESTILOS GERAIS E RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; overflow-x: hidden; }
-        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; overflow-x: hidden; background-color: #f8f9fa; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        body { font-family: 'Poppins', sans-serif; line-height: 1.6; color: #333; overflow-x: hidden; background-color: #f8f9fa; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
         .animated { opacity: 0; animation: fadeInUp 0.8s ease-out forwards; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- BANNER DE URGÊNCIA --- */
         .urgency-banner { background: linear-gradient(90deg, #f6b401, #e6a200); color: #0e3d71; padding: 12px; text-align: center; font-weight: 800; font-size: 1rem; position: sticky; top: 0; z-index: 999; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
@@ -37,50 +37,50 @@
         @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0.8; } }
 
         /* --- CABEÇALHO --- */
-        .header { background: linear-gradient(135deg, #0e3d71 0%, #045ebf 100%); color: white; padding: 4rem 0; text-align: center; position: relative; overflow: hidden; }
-        .header-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 2; }
-        .header h1 { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+        .header { background: linear-gradient(135deg, #0e3d71 0%, #045ebf 100%); color: white; padding: 4rem 1rem; text-align: center; position: relative; overflow: hidden; }
+        .header-content { position: relative; z-index: 2; }
+        .header h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 1rem; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
         .header .highlight { color: #f6b401; }
-        .header-subtitle { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.95; }
+        .header-subtitle { font-size: 1.2rem; opacity: 0.95; }
         
-        /* --- [NOVO] ESTILOS PARA A SEÇÃO DO CARTÃO VIRTUAL --- */
+        /* === [SEÇÃO CORRIGIDA] CARTÃO VIRTUAL === */
         .vcard-section {
-            padding: 4rem 1rem; /* ESPAÇAMENTO VERTICAL E LATERAL (CORRIGE AS SETAS) */
+            padding: 4rem 1rem; /* ESPAÇAMENTO (Resolve o problema das setas) */
             background-color: #f0f2f5;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
         }
         .vcard {
             background-color: #ffffff;
             width: 100%;
             max-width: 400px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem 2rem;
         }
-        .vcard-logo { max-width: 150px; margin-bottom: 20px; }
-        .vcard-profile h1 { font-size: 1.8em; font-weight: 700; color: #0e3d71; margin: 0; }
-        .vcard-profile p { font-size: 1em; color: #045ebf; font-weight: 600; margin-top: 5px; margin-bottom: 25px; }
-        .vcard-contact-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background-color: #3BAF63; color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 600; font-size: 1em; transition: background-color 0.3s ease; }
-        .vcard-contact-button:hover { background-color: #2e8b57; }
-        .vcard-phone-number { font-size: 0.9em; color: #555; margin-top: 10px; }
-        .vcard-social-links { margin: 25px 0; }
-        .vcard-social-links a { color: #045ebf; font-size: 1.8em; margin: 0 15px; text-decoration: none; transition: color 0.3s ease; }
-        .vcard-social-links a:hover { color: #f6b401; }
-        .vcard-service-area { background-color: #eef7ff; padding: 15px; border-radius: 10px; font-weight: 600; color: #0e3d71; margin-top: 20px; font-size: 0.9rem; }
-        .vcard-qr-code { margin-top: 25px; }
-        .vcard-qr-code img { max-width: 220px; /* Controle do tamanho do QR Code */ width: 100%; border-radius: 10px; }
-        .vcard-qr-code p { font-size: 0.9em; color: #777; margin-top: 10px; }
+        .vcard-logo { max-width: 130px; margin-bottom: 1.5rem; }
+        .vcard-profile h1 { font-size: 1.8em; font-weight: 700; color: #0e3d71; margin-bottom: 0.25rem; }
+        .vcard-profile p { font-size: 1em; color: #045ebf; font-weight: 600; margin-bottom: 1.8rem; }
+        .vcard-contact-button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background-color: #3BAF63; color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1em; transition: all 0.3s ease; }
+        .vcard-contact-button:hover { background-color: #2e8b57; transform: translateY(-2px); }
+        .vcard-phone-number { font-size: 0.9em; color: #555; margin-top: 0.8rem; }
+        .vcard-social-links { margin: 1.8rem 0; }
+        .vcard-social-links a { color: #045ebf; font-size: 1.8em; margin: 0 1rem; text-decoration: none; transition: all 0.3s ease; }
+        .vcard-social-links a:hover { color: #f6b401; transform: scale(1.1); }
+        .vcard-service-area { background-color: #eef7ff; padding: 1rem; border-radius: 12px; font-weight: 600; color: #0e3d71; margin-top: 1rem; font-size: 0.9rem; }
+        .vcard-qr-code { margin-top: 2rem; }
+        .vcard-qr-code img { max-width: 250px; width: 100%; border-radius: 16px; }
+        .vcard-qr-code p { font-size: 0.9em; color: #777; margin-top: 1rem; font-weight: 600; }
         
-        /* --- ESTILOS RESTANTES DA PÁGINA (sem alterações drásticas) --- */
+        /* === RESTANTE DA PÁGINA === */
+        .section-title { text-align: center; font-size: 2.5rem; font-weight: 800; color: #0e3d71; margin-bottom: 1rem; }
+        .section-subtitle { text-align: center; font-size: 1.1rem; color: #555; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
         .pricing { padding: 4rem 0; background: #f8f9fa; }
-        .section-title { text-align: center; font-size: 2.8rem; font-weight: 800; color: #0e3d71; margin-bottom: 1rem; }
-        .logo-pricing { display: block; margin: 1.5rem auto 1rem; max-width: 180px; height: auto; }
-        .section-subtitle { text-align: center; font-size: 1.2rem; color: #555; margin-bottom: 3rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .logo-pricing { display: block; margin: 1.5rem auto 1rem; max-width: 180px; }
         .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-        .pricing-card { background: white; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .pricing-card { background: white; border-radius: 20px; padding: 2.5rem 2rem; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.08); transition: all 0.4s ease; display: flex; flex-direction: column; overflow: hidden; position: relative; }
         .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(4, 94, 191, 0.15); }
         .pricing-card.popular { border: 3px solid #f6b401; transform: scale(1.05); }
         .pricing-card.popular::after { content: '🔥 MAIS POPULAR'; position: absolute; top: 15px; right: -50px; background: #f6b401; color: #0e3d71; padding: 8px 50px; font-size: 0.8rem; font-weight: 800; transform: rotate(45deg); }
@@ -88,82 +88,29 @@
         .pricing-card h3 { font-size: 1.6rem; font-weight: 800; color: #0e3d71; margin-bottom: 1rem; }
         .pricing-price { font-size: 2.5rem; font-weight: 900; color: #045ebf; margin-bottom: 0.5rem; }
         .pricing-period { color: #666; font-size: 1rem; margin-bottom: 1.5rem; }
-        .pricing-features { list-style: none; margin-bottom: 2rem; text-align: left; flex-grow: 1; }
+        .pricing-features { list-style: none; margin-bottom: 2rem; text-align: left; flex-grow: 1; padding-left: 1rem; }
         .pricing-features li { padding: 8px 0 8px 25px; position: relative; }
         .pricing-features li::before { content: '✓'; position: absolute; left: 0; color: #3BAF63; font-weight: bold; font-size: 1.2rem; }
-        .pricing-cta { background: linear-gradient(135deg, #3BAF63, #2d8f4f); color: white; padding: 15px 30px; border: none; border-radius: 50px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; text-decoration: none; display: inline-block; }
-        .pricing-cta:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(59, 175, 99, 0.4); }
+        .pricing-cta { background: linear-gradient(135deg, #3BAF63, #2d8f4f); color: white; padding: 15px 30px; border-radius: 50px; font-weight: 800; font-size: 1.1rem; text-decoration: none; }
         .pricing-cta.premium { background: linear-gradient(135deg, #f6b401, #e6a200); color: #0e3d71; }
-        /* ... (restante do CSS da página de vendas continua igual) ... */
-        .negotiation { background: linear-gradient(135deg, #0e3d71 0%, #045ebf 100%); color: white; padding: 4rem 0; position: relative; overflow: hidden; }
-        .negotiation-content { text-align: center; max-width: 800px; margin: 0 auto; padding: 0 2rem; }
-        .negotiation h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 1.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .negotiation-subtitle { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
-        .discount-badges { display: flex; justify-content: center; gap: 15px; margin-bottom: 2rem; flex-wrap: wrap; }
-        .discount-badge { background: rgba(246, 180, 1, 0.9); color: #0e3d71; padding: 10px 20px; border-radius: 25px; font-weight: 800; font-size: 0.9rem; }
-        .negotiation-cta-main { display: inline-block; background: #f6b401; color: #0e3d71; padding: 18px 35px; border-radius: 50px; font-weight: 800; font-size: 1.2rem; text-decoration: none; margin-top: 1.5rem; transition: all 0.3s ease; text-transform: uppercase; box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
-        .negotiation-cta-main:hover { background: #e6a200; transform: translateY(-3px); box-shadow: 0 12px 30px rgba(246, 180, 1, 0.4); }
-        .social-proof { padding: 4rem 0; background: white; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; text-align: center; }
-        .stat-item { padding: 1rem; }
-        .stat-number { font-size: 3rem; font-weight: 900; color: #045ebf; display: block; margin-bottom: 0.5rem; }
-        .stat-label { color: #666; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.9rem; }
-        .faq { padding: 4rem 0; background: #f8f9fa; }
-        .faq-grid { max-width: 800px; margin: 0 auto; display: grid; gap: 1rem; }
-        .faq-item { background: white; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.07); }
-        .faq-question { font-weight: 700; color: #0e3d71; font-size: 1.1rem; padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .faq-question::after { content: '▼'; font-size: 0.8rem; transition: transform 0.3s ease; }
-        .faq-answer { color: #666; line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.5s ease; padding: 0 1.5rem; }
-        .faq-item.active .faq-answer { max-height: 300px; padding: 0 1.5rem 1.5rem; }
-        .faq-item.active .faq-question::after { transform: rotate(180deg); }
-        .final-cta { background: linear-gradient(135deg, #3BAF63 0%, #2d8f4f 100%); color: white; padding: 4rem 0; text-align: center; }
-        .final-cta h2 { font-size: 2.3rem; font-weight: 900; margin-bottom: 1rem; }
-        .final-cta p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
-        .logo-footer { display: block; margin: 2.5rem auto 0; max-width: 150px; height: auto; }
-        .cta-buttons { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
-        .cta-primary, .cta-secondary { padding: 18px 35px; border-radius: 50px; font-size: 1.1rem; font-weight: 800; text-decoration: none; transition: all 0.3s ease; text-transform: uppercase; }
-        .cta-primary { background: #f6b401; color: #0e3d71; }
-        .cta-primary:hover { background: #e6a200; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(246, 180, 1, 0.4); }
-        .cta-secondary { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.6); }
-        .cta-secondary:hover { background: rgba(255,255,255,0.1); border-color: white; transform: translateY(-3px); }
+        .final-cta { background: linear-gradient(135deg, #0e3d71 0%, #045ebf 100%); color: white; padding: 4rem 1rem; text-align: center; }
         .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; text-decoration: none; box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); z-index: 1000; animation: pulse 2s infinite; }
-        .whatsapp-float:hover { transform: scale(1.1); }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
-        
+
+        /* --- RESPONSIVIDADE --- */
         @media (max-width: 768px) {
-            .container { padding: 0 1rem; }
-            .urgency-banner { font-size: 0.85rem; padding: 10px; }
-            .header { padding: 3rem 0; }
             .header h1 { font-size: 2.2rem; }
-            .header-subtitle { font-size: 1.1rem; }
             .section-title { font-size: 2rem; }
-            .section-subtitle { font-size: 1rem; }
-            .pricing-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .pricing-card { padding: 2rem 1.5rem; }
+            .pricing-grid { grid-template-columns: 1fr; }
             .pricing-card.popular { transform: none; }
-            .pricing-card.popular::after { right: -55px; top: 10px; font-size: 0.7rem; }
-            .negotiation h2 { font-size: 1.8rem; }
-            .negotiation-subtitle { font-size: 1rem; }
-            .negotiation-cta-main, .cta-primary, .cta-secondary { font-size: 1rem; padding: 15px 25px; }
-            .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-            .stat-item { padding: 1rem 0.5rem; }
-            .stat-number { font-size: 2rem; }
-            .stat-label { font-size: 0.75rem; }
-            .faq-question { font-size: 1rem; padding: 1.2rem; }
-            .faq-answer { font-size: 0.9rem; }
-            .final-cta h2 { font-size: 1.8rem; }
-            .final-cta p { font-size: 1rem; }
-            .cta-buttons { flex-direction: column; align-items: stretch; }
         }
     </style>
 </head>
 <body>
-    <!-- Banner de Urgência -->
     <div class="urgency-banner">
         🚀 <span class="blink">DESCONTO ESPECIAL</span> - Compre Seu Móvel Na Magalu e Ganhe 10% OFF na MONTAGEM! 💰
     </div>
 
-    <!-- Cabeçalho -->
     <header class="header">
         <div class="header-content animated">
             <h1>Montagem de <span class="highlight">Móveis</span> em Valparaíso</h1>
@@ -171,56 +118,94 @@
         </div>
     </header>
 
-    <!-- [NOVA SEÇÃO] DO CARTÃO VIRTUAL -->
+    <!-- SEÇÃO DO CARTÃO VIRTUAL INTEGRADO E CORRIGIDO -->
     <section class="vcard-section">
+        <h2 class="section-title animated">Meu Cartão de Visita Digital</h2>
+        <p class="section-subtitle animated">Salve meu contato de forma rápida e prática!</p>
         <div class="vcard animated">
             <img src="img/logo.png" alt="Logo MontaTech Brasil" class="vcard-logo">
             <div class="vcard-profile">
                 <h1>Ricardo Alexandre</h1>
                 <p>Montagem de Móveis</p>
             </div>
-            <a href="https://wa.me/5561998865417" target="_blank" class="vcard-contact-button">
+            <a href="https://wa.me/5561998865417" target="_blank" rel="noopener noreferrer" class="vcard-contact-button">
                 <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
             </a>
             <p class="vcard-phone-number">(61) 9 9886-5417</p>
             <div class="vcard-social-links">
-                <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" target="_blank" title="Nosso Site"><i class="fas fa-globe"></i></a>
+                <a href="https://instagram.com/SEU_USER" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com/SEU_USER" target="_blank" rel="noopener noreferrer" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#contato" title="Nosso Site"><i class="fas fa-globe"></i></a>
             </div>
             <div class="vcard-service-area">
                 <p>✅ Atendemos Valparaíso de Goiás, DF e Regiões.</p>
             </div>
             <div class="vcard-qr-code">
                 <img src="img/qrcode-leia-me.png" alt="QR Code para contato">
-                <!-- Lembre-se de colocar sua imagem de QR Code na pasta img com o nome qrcode-leia-me.png -->
+                <p>Aponte a câmera e salve meu contato!</p>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Preços -->
-    <section class="pricing">
-        <!-- ... (todo o conteúdo da sua seção de preços continua aqui) ... -->
+    <!-- SEÇÃO DE PREÇOS -->
+    <section class="pricing" id="precos">
+        <div class="container">
+            <h2 class="section-title animated">Tabela de Preços MontaTech Brasil</h2>
+            <img src="img/logo.png" alt="Logo MontaTech Brasil" class="logo-pricing animated">
+            <p class="section-subtitle animated">Valores justos com qualidade garantida. Fale conosco pelo Whatsapp.</p>
+            <div class="pricing-grid">
+                 <!-- Card Básico -->
+                 <div class="pricing-card animated" style="animation-delay: 0.1s;">
+                    <div class="pricing-icon">🛏️</div>
+                    <h3>Móveis Básicos</h3>
+                    <div class="pricing-price">R$ 80<span style="font-size: 1rem; color: #666;"> - 150</span></div>
+                    <div class="pricing-period">por móvel</div>
+                    <ul class="pricing-features">
+                        <li>Cama de solteiro/casal</li><li>Mesa de 4 lugares</li><li>Estante simples</li>
+                        <li>Gaveteiro 3 gavetas</li><li>Garantia 3 meses</li><li>Limpeza básica</li>
+                    </ul>
+                    <a href="#contato" class="pricing-cta">💬 Negociar Desconto</a>
+                </div>
+                <!-- Card Popular -->
+                <div class="pricing-card popular animated" style="animation-delay: 0.2s;">
+                    <div class="pricing-icon">🏠</div>
+                    <h3>Móveis Complexos</h3>
+                    <div class="pricing-price">R$ 180<span style="font-size: 1rem; color: #666;"> - 350</span></div>
+                    <div class="pricing-period">por móvel</div>
+                    <ul class="pricing-features">
+                        <li>Guarda-roupa 6 portas</li><li>Kits de Cozinha</li><li>Home office completo</li>
+                        <li>Estante grande/painel TV</li><li>Garantia 6 meses</li><li>Limpeza completa</li><li>Ajustes grátis 30 dias</li>
+                    </ul>
+                    <a href="#contato" class="pricing-cta premium">⚡ Ganhar 20% de Desconto</a>
+                </div>
+                <!-- Card Comercial -->
+                <div class="pricing-card animated" style="animation-delay: 0.3s;">
+                    <div class="pricing-icon">🏢</div>
+                    <h3>Comercial e Express</h3>
+                    <div class="pricing-price">R$ 120<span style="font-size: 1rem; color: #666;"> - 280</span></div>
+                    <div class="pricing-period">por móvel</div>
+                    <ul class="pricing-features">
+                        <li>Escritórios e consultórios</li><li>Móveis para lojas</li><li>Atendimento mesmo dia</li>
+                        <li>Horário estendido</li><li>Garantia 4 meses</li><li>Desconto por quantidade</li>
+                        <li>Orçamento personalizado</li>
+                    </ul>
+                    <a href="#contato" class="pricing-cta">💼 Solicitar Proposta</a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- (Restante da sua página continua aqui: Negotiation, Social Proof, FAQ, CTA Final...) -->
+    <!-- SEÇÃO FINAL CTA -->
+    <section class="final-cta" id="contato">
+        <!-- (O restante do seu conteúdo, como FAQ, Prova Social, pode entrar aqui ou antes do CTA final) -->
+    </section>
 
-    <!-- ... (cole o restante do seu HTML aqui, do <section class="negotiation"> até o final) ... -->
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/5561998865417?text=Oi!%20Vi%20o%20site%20e%20quero%20negociar%20um%20desconto!" class="whatsapp-float" title="Negocie seu desconto agora!" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-
-    <script>
-        // Script para FAQ interativo (adicionei para a nova seção de FAQ)
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => {
-                document.querySelectorAll('.faq-item.active').forEach(activeItem => {
-                    if (activeItem !== item) activeItem.classList.remove('active');
-                });
-                item.classList.toggle('active');
-            });
-        });
-    </script>
-     <!-- Start of HubSpot Embed Code -->
+     <!-- SCRIPTS -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/49534387.js"></script>
-    <!-- End of HubSpot Embed Code -->
 </body>
 </html>
