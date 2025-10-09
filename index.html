@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MontaTech Brasil</title>
+    <title>MontaTech Brasil | Venda e Montagens de Móveis em Valparaíso de Goiás, DF e entorno</title>
     <meta name="description" content="Confira nossos preços de montagem de móveis em valparaíso de goiás, Brasília DF e cidades do entorno. Fale conosco e garanta desconto especial! Atendimento personalizado.">
- 
+
+   <!-- FAVICON ADICIONADO AQUI -->
+    <link rel="icon" href="img/favicon2.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/favicon2.png">
+    
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-71WQ023PX4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-71WQ023PX4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-  gtag('config', 'G-71WQ023PX4');
-</script>
-
+      gtag('config', 'G-71WQ023PX4');
+    </script>
 
     
     <style>
@@ -23,6 +26,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
         
         body {
@@ -170,6 +178,13 @@
             color: #0e3d71;
             margin-bottom: 1rem;
         }
+
+        .logo-pricing {
+            display: block;
+            margin: 1.5rem auto 1rem;
+            max-width: 200px;
+            height: auto;
+        }
         
         .section-subtitle {
             text-align: center;
@@ -197,6 +212,8 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         
         .pricing-card::before {
@@ -269,6 +286,7 @@
             padding: 0;
             margin-bottom: 2rem;
             text-align: left;
+            flex-grow: 1;
         }
         
         .pricing-features li {
@@ -299,6 +317,8 @@
             width: 100%;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            text-decoration: none;
+            display: inline-block;
         }
         
         .pricing-cta:hover {
@@ -342,6 +362,7 @@
             text-align: center;
             max-width: 800px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
         
         .negotiation h2 {
@@ -382,29 +403,26 @@
             60% { transform: translateY(-5px); }
         }
         
-        .negotiation-cta {
-            background: #25D366;
-            color: white;
-            padding: 20px 40px;
-            border: none;
+        .negotiation-cta-main {
+            display: inline-block;
+            background: #f6b401;
+            color: #0e3d71;
+            padding: 18px 35px;
             border-radius: 50px;
-            font-size: 1.3rem;
             font-weight: 800;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
+            font-size: 1.2rem;
             text-decoration: none;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
-        
-        .negotiation-cta:hover {
-            background: #20b358;
+
+        .negotiation-cta-main:hover {
+            background: #e6a200;
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.5);
+            box-shadow: 0 12px 30px rgba(246, 180, 1, 0.4);
         }
         
         .negotiation-cta .icon {
@@ -509,6 +527,13 @@
             margin-bottom: 2rem;
             opacity: 0.9;
         }
+
+        .logo-footer {
+            display: block;
+            margin: 2.5rem auto 0;
+            max-width: 180px;
+            height: auto;
+        }
         
         .cta-buttons {
             display: flex;
@@ -591,6 +616,11 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            /* AJUSTE FINAL PARA O OVERFLOW */
+            .stat-item {
+                padding: 1.5rem 1rem;
+            }
         }
         
         /* Loading Animation */
@@ -613,7 +643,7 @@
 <body>
     <!-- Urgency Banner -->
     <div class="urgency-banner">
-        🚀 <span class="blink">DESCONTO ESPECIAL</span> - Compre Online No Parceiro Magalu e Ganhe 10% OFF! 💰
+        🚀 <span class="blink">DESCONTO ESPECIAL</span> - Compre Seu Móvel Na Magalu e Ganhe 10% OFF na MONTAGEM! 💰
     </div>
 
     <!-- Header -->
@@ -628,6 +658,7 @@
     <section class="pricing">
         <div class="container">
             <h2 class="section-title animated">Tabela de Preços MontaTech Brasil</h2>
+            <img src="img/logo.png" alt="Logo MontaTech Brasil" class="logo-pricing animated">
             <p class="section-subtitle animated">Valores justos com qualidade garantida. Fale conosco pelo Whatsapp.</p>
             
             <div class="pricing-grid">
@@ -644,9 +675,9 @@
                         <li>Garantia 3 meses</li>
                         <li>Limpeza básica</li>
                     </ul>
-                    <button class="pricing-cta" onclick="openWhatsApp('básico')">
+                    <a href="#contato" class="pricing-cta">
                         💬 Negociar Desconto
-                    </button>
+                    </a>
                 </div>
                 
                 <div class="pricing-card popular animated">
@@ -663,9 +694,9 @@
                         <li>Limpeza completa</li>
                         <li>Ajustes grátis 30 dias</li>
                     </ul>
-                    <button class="pricing-cta premium" onclick="openWhatsApp('planejado')">
+                    <a href="#contato" class="pricing-cta premium">
                         ⚡ Ganhar 20% de Desconto
-                    </button>
+                    </a>
                 </div>
                 
                 <div class="pricing-card animated">
@@ -682,9 +713,9 @@
                         <li>Desconto por quantidade</li>
                         <li>Orçamento personalizado</li>
                     </ul>
-                    <button class="pricing-cta" onclick="openWhatsApp('comercial')">
+                    <a href="#contato" class="pricing-cta">
                         💼 Solicitar Proposta
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -694,9 +725,9 @@
     <section class="negotiation">
         <div class="container">
             <div class="negotiation-content animated">
-                <h2>Precisando de um móvel novo? 🤔</h2>
+                <h2>Precisando de Móveis Novos? 🤔</h2>
                 <p class="negotiation-subtitle">
-                   Na loja parceira da MontaTech Brasil você encontra os melhores produtos com entrega rápida e garantia Magalu. 👉 Escolha, compre e já agende sua montagem com a gente!
+                   Na loja parceira da MontaTech Brasil você encontra os melhores produtos com entrega rápida e garantia Magalu. <p></p>👉 Escolha, compre e já agende sua montagem com a gente!
                 </p>
                 
                 <div class="discount-badges">
@@ -705,12 +736,11 @@
                     <div class="discount-badge">⚡ ENTREGA RÁPIDA</div>
                 </div>
                 
-                <a href="https://www.magazinevoce.com.br/magazinemontatechbrasil/busca/moveis">
-                    <span class="icon">🚀 </span>
-                    VER PRODUTOS RECOMENDADOS
+                <a href="https://www.magazinevoce.com.br/magazinemontatechbrasil/busca/moveis" class="negotiation-cta-main" target="_blank" rel="noopener noreferrer">
+                    <span class="icon">🚀</span> VER PRODUTOS RECOMENDADOS
                 </a>
-            
-        
+            </div>
+        </div>
     </section>
 
     <!-- Social Proof -->
@@ -785,44 +815,36 @@
     </section>
 
     <!-- Final CTA -->
-    <section class="final-cta">
+    <section class="final-cta" id="contato">
         <div class="container animated">
-            <h2>⏰ Não Perca Esta Oportunidade!</h2>
+            <h2>🛠 Montagem de Móveis Profissional</h2>
             <p>Garanta um montador de móveis em valparaíso de goiás e regiões do entorno agora mesmo!.</p>
             
             <div class="cta-buttons">
-                <a href="https://wa.me/5561998865417?text=Quero%20garantir%20meu%20desconto%20AGORA!%20Preciso%20montar%20móveis%20em%20Brasília." class="cta-primary">
+                <a href="https://wa.me/5561998865417?text=Quero%20garantir%20meu%20desconto%20AGORA!%20Preciso%20montar%20móveis." class="cta-primary" target="_blank" rel="noopener noreferrer">
                     🗣 ENVIAR MENSAGEM
                 </a>
                 <a href="tel:+5561998865417" class="cta-secondary">
                     📞 LIGAR DIRETO
                 </a>
             </div>
+
+            <img src="img/logo.png" alt="Logo MontaTech Brasil" class="logo-footer">
         </div>
     </section>
 
     <!-- Floating WhatsApp -->
-    <a href="https://wa.me/5561998865417?text=Oi!%20Vi%20os%20preços%20no%20site%20e%20quero%20negociar%20um%20desconto!" class="whatsapp-float" title="Negocie seu desconto agora!">
+    <a href="https://wa.me/5561998865417?text=Oi!%20Vi%20os%20preços%20no%20site%20e%20quero%20negociar%20um%20desconto!" class="whatsapp-float" title="Negocie seu desconto agora!" target="_blank" rel="noopener noreferrer">
         💬
     </a>
 
     <script>
-        // WhatsApp integration
-        function openWhatsApp(tipo) {
-            const messages = {
-                'básico': 'Oi! Vi a tabela de preços e tenho interesse nos móveis básicos. Qual desconto vocês podem me oferecer?',
-                'planejado': 'Olá! Preciso montar móveis planejados e vi que têm 20% OFF. Como faço para garantir?',
-                'comercial': 'Oi! Preciso de montagem comercial/express. Podem me fazer uma proposta especial?'
-            };
-            
-            const message = encodeURIComponent(messages[tipo] || 'Oi! Vi os preços no site e quero negociar um desconto!');
-            window.open(`https://wa.me/5561998865417?text=${message}`, '_blank');
-        }
-        
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const
+        // O Javascript não precisa de alterações
+    </script>
+
+     <!-- Start of HubSpot Embed Code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/49534387.js"></script>
+<!-- End of HubSpot Embed Code -->
+  
+</body>
+</html>
