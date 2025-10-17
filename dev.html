@@ -1,988 +1,368 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" style="scroll-behavior: smooth;">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MontaTech Brasil | Venda e Montagens de Móveis em Valparaíso de Goiás, DF e entorno</title>
-    <meta name="description" content="Confira nossos preços de montagem de móveis em valparaíso de goiás, Brasília DF e cidades do entorno. Fale conosco e garanta desconto especial! Atendimento personalizado.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>MontaTech Brasil | Montagem de Móveis Profissional em Valparaíso e DF</title>
+    <meta name="description" content="Montagem de Móveis Profissional e com garantia em Valparaíso de Goiás, Brasília DF e Regiões. Agendamento via sistema online ou WhatsApp. Serviços Residenciais e Comerciais.">
+    <meta name="keywords" content="montagem de móveis df, montador de móveis valparaíso, montador profissional, montagem de guarda-roupa, montagem de cozinha, montador de móveis brasilia, montatech brasil">
+    <meta name="author" content="MontaTech Brasil">
+    
+    <link rel="icon" type="image/png" href="img/favicon.png">
 
-    <link rel="icon" href="img/favicon2.png" type="image/png">
-    <link rel="apple-touch-icon" href="img/favicon2.png">
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-71WQ023PX4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
 
-      gtag('config', 'G-71WQ023PX4');
-    </script>
+    <style>
+        /* Paleta de Cores MontaTech Brasil */
+        .color-primary { color: #0e3d71; } /* Azul Escuro */
+        .bg-primary { background-color: #0e3d71; }
+        .border-primary { border-color: #0e3d71; }
+        .color-secondary { color: #045ebf; } /* Azul Médio */
+        .bg-secondary { background-color: #045ebf; }
+        .border-secondary { border-color: #045ebf; }
+        .color-accent { color: #f6b401; } /* Dourado */
+        .bg-accent { background-color: #f6b401; }
+        .border-accent { border-color: #f6b401; }
+        .color-inovacao { color: #3BAF63; } /* Verde Inovação */
+        .bg-inovacao { background-color: #3BAF63; }
+        .border-inovacao { border-color: #3BAF63; }
 
-    
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17641071678"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        html { scroll-padding-top: 100px; }
+        .glow-button { 
+            box-shadow: 0 0 30px rgba(246, 180, 1, 0.4); 
+            transition: all 0.3s ease-in-out;
+        }
+        .glow-button:hover { 
+            box-shadow: 0 0 50px rgba(246, 180, 1, 0.6); 
+            transform: translateY(-3px) scale(1.05);
+        }
+        
+        /* Estilo para o menu mobile - Hamburguer */
+        .hamburger-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #0e3d71; /* Cor do hamburguer */
+            margin-bottom: 5px;
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+        .hamburger-menu.open span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+            background-color: white; /* Cor do X */
+        }
+        .hamburger-menu.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger-menu.open span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+            background-color: white; /* Cor do X */
+        }
 
-  gtag('config', 'AW-17641071678');
-</script>
-
-
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-        
-        /* Floating WhatsApp */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: #25D366;
-            color: white;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            text-decoration: none;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
-            animation: pulse 2s infinite;
-            transition: all 0.3s ease;
-        }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.6);
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-        
-        /* Navigation (NOVO) */
-        .nav-bar {
-            background-color: #0e3d71;
-            padding: 10px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: flex-end; /* Alinha os itens à direita */
-            align-items: center;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-link a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
-        .nav-link a:hover {
-            color: #f6b401;
-        }
-
-        /* Novo estilo para o botão Agendamento Online no menu */
-        .nav-cta a {
-            background-color: #045ebf; /* Azul da marca */
-            color: white !important;
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-weight: 800;
-            transition: background-color 0.3s, transform 0.3s;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .nav-cta a:hover {
-            background-color: #0e3d71;
-            transform: translateY(-2px);
-            color: white !important;
-        }
-        
-        /* Header (HERO) */
-        .header {
-            background: linear-gradient(135deg, #0e3d71 0%, #045ebf 100%);
-            color: white;
-            padding: 4rem 0 6rem; /* Aumentei o padding vertical para dar mais espaço */
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            /* Efeito de brilho/faixa */
-            background: linear-gradient(45deg, transparent, rgba(246,180,1,0.15), transparent);
-            transform: rotate(45deg);
-            animation: shine 4s linear infinite;
-        }
-        
-        @keyframes shine {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-        
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 2;
-            /* Garante que o texto se destaque no fundo */
-            background-color: rgba(14, 61, 113, 0.1); /* Um leve background para o texto */
-            padding: 20px;
-            border-radius: 10px;
-        }
-        
-        .header h1 {
-            font-size: 3.5rem; /* Aumentei o tamanho */
-            font-weight: 900;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.5); /* Sombra mais forte */
-        }
-        
-        .header .highlight {
-            color: #f6b401;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-        }
-        
-        .header-subtitle {
-            font-size: 1.5rem; /* Aumentei o tamanho */
-            margin-bottom: 3rem; /* Mais espaçamento para os botões */
-            opacity: 1;
-            font-weight: 500;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-        }
-
-        /* Estilo para os botões dentro da Hero */
-        .header-cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .header-cta-buttons a {
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            text-transform: uppercase;
-        }
-
-        .cta-whatsapp {
-            background: #3BAF63; /* Verde WhatsApp */
-            color: white;
-        }
-
-        .cta-whatsapp:hover {
-            background: #2d8f4f;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(59, 175, 99, 0.4);
-        }
-
-        /* Mantive o estilo do botão do menu para o agendamento na Hero */
-        .cta-agendamento-online {
-            background: #045ebf; /* Azul da marca */
-            color: white;
-        }
-
-        .cta-agendamento-online:hover {
-            background: #0e3d71;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(4, 94, 191, 0.4);
-        }
-        
-        .urgency-banner {
-            background: linear-gradient(90deg, #f6b401, #e6a200);
-            color: #0e3d71;
-            padding: 15px;
-            text-align: center;
-            font-weight: 800;
-            font-size: 1.1rem;
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            animation: fadeInDown 0.5s ease-out;
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .urgency-banner .blink {
-            animation: blink 1.5s infinite;
-        }
-        
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.7; }
-        }
-        
-        /* Pricing Section */
-        .pricing {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: #0e3d71;
-            margin-bottom: 1rem;
-        }
-
-        .logo-pricing {
-            display: block;
-            margin: 1.5rem auto 1rem;
-            max-width: 200px;
-            height: auto;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        
-        .pricing-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, #045ebf, #3BAF63, #f6b401);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-        
-        .pricing-card:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(4, 94, 191, 0.2);
-        }
-        
-        .pricing-card.popular {
-            border: 3px solid #f6b401;
-            transform: scale(1.05);
-            position: relative;
-        }
-        
-        .pricing-card.popular::after {
-            content: '🔥 MAIS POPULAR';
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            background: #f6b401;
-            color: #0e3d71;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 800;
-        }
-        
-        .pricing-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .pricing-card h3 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #0e3d71;
-            margin-bottom: 1rem;
-        }
-        
-        .pricing-price {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: #045ebf;
-            margin-bottom: 0.5rem;
-        }
-        
-        .pricing-period {
-            color: #666;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .pricing-features {
-            list-style: none;
-            padding: 0;
-            margin-bottom: 2rem;
-            text-align: left;
-            flex-grow: 1;
-        }
-        
-        .pricing-features li {
-            padding: 8px 0;
-            position: relative;
-            padding-left: 25px;
-        }
-        
-        .pricing-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: #3BAF63;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        .pricing-cta {
-            background: linear-gradient(135deg, #3BAF63, #2d8f4f);
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .pricing-cta:hover {
-            background: linear-gradient(135deg, #2d8f4f, #3BAF63);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(59, 175, 99, 0.4);
-        }
-        
-        .pricing-cta.premium {
-            background: linear-gradient(135deg, #f6b401, #e6a200);
-            color: #0e3d71;
-        }
-        
-        .pricing-cta.premium:hover {
-            background: linear-gradient(135deg, #e6a200, #f6b401);
-        }
-        
-        /* Negotiation Section */
-        .negotiation {
-            background: linear-gradient(135deg, #0e3d71 0%, #045ebf 100%);
-            color: white;
-            padding: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .negotiation::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
-        
-        .negotiation-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .negotiation h2 {
-            font-size: 2.5rem;
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .negotiation-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-        
-        .discount-badges {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .discount-badge {
-            background: rgba(246, 180, 1, 0.9);
-            color: #0e3d71;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 800;
-            font-size: 1rem;
-            backdrop-filter: blur(10px);
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        
-        .negotiation-cta-main {
-            display: inline-block;
-            background: #f6b401;
-            color: #0e3d71;
-            padding: 18px 35px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 1.2rem;
-            text-decoration: none;
-            margin-top: 1.5rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-
-        .negotiation-cta-main:hover {
-            background: #e6a200;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(246, 180, 1, 0.4);
-        }
-        
-        .negotiation-cta .icon {
-            font-size: 1.5rem;
-            animation: shake 1s infinite;
-        }
-        
-        @keyframes shake {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-5deg); }
-            75% { transform: rotate(5deg); }
-        }
-        
-        /* Social Proof */
-        .social-proof {
-            padding: 3rem 0;
-            background: white;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-        
-        .stat-item {
-            padding: 2rem;
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
-            color: #045ebf;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            color: #666;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        /* FAQ */
-        .faq {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        }
-        
-        .faq-grid {
-            display: grid;
-            gap: 1rem;
-        }
-        
-        .faq-item {
-            background: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .faq-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-        }
-        
-        .faq-question {
-            font-weight: 700;
-            color: #0e3d71;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .faq-answer {
-            color: #666;
-            line-height: 1.6;
-        }
-        
-        /* Final CTA */
-        .final-cta {
-            background: linear-gradient(135deg, #3BAF63 0%, #2d8f4f 100%);
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-        
-        .final-cta h2 {
-            font-size: 2.3rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-        }
-        
-        .final-cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .logo-footer {
-            display: block;
-            margin: 2.5rem auto 0;
-            max-width: 180px;
-            height: auto;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .cta-primary {
-            background: #f6b401;
-            color: #0e3d71;
-            padding: 18px 35px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 800;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-        }
-        
-        .cta-primary:hover {
-            background: #e6a200;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(246, 180, 1, 0.4);
-        }
-        
-        .cta-secondary {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            padding: 18px 35px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 800;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        .cta-secondary:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.6);
-            transform: translateY(-3px);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .header-subtitle {
-                font-size: 1.3rem;
-            }
-
-            .header-cta-buttons {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .nav-container {
-                justify-content: center;
-            }
-
-            .nav-links {
-                gap: 10px;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .pricing-card.popular {
-                transform: none;
-            }
-            
-            .discount-badges {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            /* AJUSTE FINAL PARA O OVERFLOW */
-            .stat-item {
-                padding: 1.5rem 1rem;
-            }
-        }
-        
-        /* Loading Animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animated {
-            animation: fadeInUp 0.6s ease-out forwards;
-        }
-    </style>
+        /* NOVO: Estilo do gradiente para Hero - inspirado no bloco de contato */
+        .hero-gradient {
+            background-image: linear-gradient(to bottom right, #0e3d71, #045ebf); /* gradiente de primary para secondary */
+        }
+    </style>
 </head>
-<body>
-    <div class="urgency-banner">
-        🚀 <span class="blink">DESCONTO ESPECIAL</span> - Compre Seu Móvel Na Magalu e Ganhe 10% OFF na MONTAGEM! 💰
-    </div>
+<body class="text-gray-800" x-data="{ openMenu: false, currentSlide: 0, reviews: 3 }" :class="{'overflow-hidden': openMenu}">
 
-    <nav class="nav-bar">
-        <div class="nav-container">
-            <ul class="nav-links">
-                <li class="nav-link"><a href="#servicos">Serviços</a></li>
-                <li class="nav-link"><a href="#provas-sociais">Clientes</a></li>
-                <li class="nav-link"><a href="#contato">Contato</a></li>
-                <li class="nav-cta"><a href="#contato">Agendamento Online</a></li>
-            </ul>
-        </div>
-    </nav>
+<header class="bg-white/90 backdrop-blur-md fixed top-0 w-full z-50 shadow-md">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-3">
+            <a href="#"><img src="img/logo.png" alt="MontaTech Brasil Logo" class="h-12"></a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#sobre" class="text-gray-600 hover:text-color-secondary font-semibold transition-colors">Sobre</a>
+                <a href="#provas-sociais" class="text-gray-600 hover:text-color-secondary font-semibold transition-colors">Clientes</a>                 <a href="#contato" class="text-gray-600 hover:text-color-secondary font-semibold transition-colors">Contato</a>
+                <a href="#faq" class="text-gray-600 hover:text-color-secondary font-semibold transition-colors">FAQ</a>
+            </div>
+            <a href="#agendamento" class="hidden md:inline-block bg-primary text-white font-bold px-6 py-2 rounded-lg hover:opacity-90 transition-opacity">
+                📅 AGENDAMENTO ONLINE             </a>
 
-    <header class="header">
-        <div class="header-content animated">
-            <h1>Montagem de <span class="highlight">Móveis</span> em Valparaíso</h1>
-            <p class="header-subtitle">Atendemos em Valparaíso de Goiás, DF e cidades de entorno</p>
-            
-            <div class="header-cta-buttons">
-                <a href="#contato" class="cta-agendamento-online">
-                    📅 AGENDAMENTO ONLINE
-                </a>
-                <a href="https://wa.me/5561998865417?text=Quero%20garantir%20meu%20desconto%20AGORA!%20Preciso%20montar%20móveis." class="cta-whatsapp" target="_blank" rel="noopener noreferrer">
-                    📲 AGENDAR PELO WHATSAPP
-                </a>
-            </div>
-        </div>
-    </header>
+            <button @click="openMenu = !openMenu" class="md:hidden p-2 rounded-md focus:outline-none z-50" :class="{'hamburger-menu open': openMenu, 'hamburger-menu': !openMenu}">
+                <span :class="{'bg-white': openMenu}"></span>
+                <span :class="{'bg-white': openMenu}"></span>
+                <span :class="{'bg-white': openMenu}"></span>
+            </button>
+        </div>
+    </nav>
+</header>
+<div x-show="openMenu" 
+     x-transition:enter="transition ease-out duration-300"
+     x-transition:enter-start="opacity-0 translate-x-full"
+     x-transition:enter-end="opacity-100 translate-x-0"
+     x-transition:leave="transition ease-in duration-200"
+     x-transition:leave-start="opacity-100 translate-x-0"
+     x-transition:leave-end="opacity-0 translate-x-full"
+     class="md:hidden fixed inset-0 bg-primary z-[9999] flex flex-col text-xl font-bold text-white">
+    
+    <div class="bg-primary flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 shadow-md">
+        <span class="text-white text-lg font-semibold">MontaTech Brasil</span>
+        <button @click="openMenu = false" class="text-white text-3xl leading-none">&times;</button>
+    </div>
 
-    <section class="pricing" id="servicos">
-        <div class="container">
-            <h2 class="section-title animated">Tabela de Preços MontaTech Brasil</h2>
-            <img src="img/logo.png" alt="Logo MontaTech Brasil" class="logo-pricing animated">
-            <p class="section-subtitle animated">Valores justos com qualidade garantida. Fale conosco pelo Whatsapp.</p>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card animated">
-                    <div class="pricing-icon">🛏️</div>
-                    <h3>Móveis Básicos</h3>
-                    <div class="pricing-price">R$ 80<span style="font-size: 1rem; color: #666;"> - 150</span></div>
-                    <div class="pricing-period">por móvel</div>
-                    <ul class="pricing-features">
-                        <li>Cama de solteiro/casal</li>
-                        <li>Mesa de 4 lugares</li>
-                        <li>Estante simples</li>
-                        <li>Gaveteiro 3 gavetas</li>
-                        <li>Garantia 3 meses</li>
-                        <li>Limpeza básica</li>
-                    </ul>
-                    <a href="#contato" class="pricing-cta">
-                        💬 Negociar Desconto
-                    </a>
-                </div>
-                
-                <div class="pricing-card popular animated">
-                    <div class="pricing-icon">🏠</div>
-                    <h3>Móveis Complexos</h3>
-                    <div class="pricing-price">R$ 180<span style="font-size: 1rem; color: #666;"> - 350</span></div>
-                    <div class="pricing-period">por móvel</div>
-                    <ul class="pricing-features">
-                        <li>Guarda-roupa 6 portas</li>
-                        <li>Kits de Cozinha</li>
-                        <li>Home office completo</li>
-                        <li>Estante grande/painel TV</li>
-                        <li>Garantia 6 meses</li>
-                        <li>Limpeza completa</li>
-                        <li>Ajustes grátis 30 dias</li>
-                    </ul>
-                    <a href="#contato" class="pricing-cta premium">
-                        ⚡ Ganhar 20% de Desconto
-                    </a>
-                </div>
-                
-                <div class="pricing-card animated">
-                    <div class="pricing-icon">🏢</div>
-                    <h3>Comercial e Express</h3>
-                    <div class="pricing-price">R$ 120<span style="font-size: 1rem; color: #666;"> - 280</span></div>
-                    <div class="pricing-period">por móvel</div>
-                    <ul class="pricing-features">
-                        <li>Escritórios e consultórios</li>
-                        <li>Móveis para lojas</li>
-                        <li>Atendimento mesmo dia</li>
-                        <li>Horário estendido</li>
-                        <li>Garantia 4 meses</li>
-                        <li>Desconto por quantidade</li>
-                        <li>Orçamento personalizado</li>
-                    </ul>
-                    <a href="#contato" class="pricing-cta">
-                        💼 Solicitar Proposta
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="flex flex-col items-center justify-center space-y-8 flex-grow">
+        <a @click="openMenu = false" href="#sobre" class="hover:text-color-accent transition-colors">Sobre</a>
+        <a @click="openMenu = false" href="#provas-sociais" class="hover:text-color-accent transition-colors">Clientes</a>         <a @click="openMenu = false" href="#contato" class="hover:text-color-accent transition-colors">Contato</a>
+        <a @click="openMenu = false" href="#faq" class="hover:text-color-accent transition-colors">FAQ</a>
+        <a @click="openMenu = false" href="#agendamento" class="bg-primary text-white px-8 py-3 rounded-lg hover:opacity-90 mt-8">
+            AGENDAMENTO ONLINE         </a>
+    </div>
+</div>
 
-    <section class="negotiation">
-        <div class="container">
-            <div class="negotiation-content animated">
-                <h2>Precisando de Móveis Novos? 🤔</h2>
-                <p class="negotiation-subtitle">
-                    Na loja parceira da MontaTech Brasil você encontra os melhores produtos com entrega rápida e garantia Magalu. <p></p>👉 Escolha, compre e já agende sua montagem com a gente!
-                </p>
-                
-                <div class="discount-badges">
-                    <div class="discount-badge">💰 DESCONTO ESPECIAL</div>
-                    <div class="discount-badge">🏠 MÓVEIS + MONTAGEM</div>
-                    <div class="discount-badge">⚡ ENTREGA RÁPIDA</div>
-                </div>
-                
-                <a href="https://www.magazinevoce.com.br/magazinemontatechbrasil/busca/moveis" class="negotiation-cta-main" target="_blank" rel="noopener noreferrer">
-                    <span class="icon">🚀</span> VER PRODUTOS RECOMENDADOS
-                </a>
-            </div>
-        </div>
-    </section>
+<main>
+<section id="hero" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden hero-gradient">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+                        <div class="text-center mb-16">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4 leading-tight text-white">
+                Montagem de Móveis <span class="color-accent">Profissional</span> e com Garantia
+            </h1>
+            <p class="max-w-4xl mx-auto text-xl md:text-2xl text-white font-semibold mt-4">
+                ✅ Residenciais e Comerciais em <strong class="text-inovacao">Valparaíso de Goiás, Brasília DF</strong> e Regiões.
+                <br>
+                💙 Conte com um **Sistema de Agendamento Moderno** que garante pontualidade e transparência.
+            </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="text-2xl md:text-3xl font-black mb-6 color-accent">Não perca tempo! Agende seu serviço agora:</p>
+            
+            <a href="#agendamento" class="bg-primary text-white font-black text-2xl px-16 py-6 rounded-xl glow-button hover:scale-105 inline-block border-2 border-white">
+                📅 AGENDAMENTO ONLINE             </a>
+            
+            <p class="mt-4 font-semibold text-white/90">Atendimento imediato. Fale diretamente com o gestor.</p>
+        </div>
+    </div>
+</section>
 
-    <section class="social-proof" id="provas-sociais">
-        <div class="container">
-            <h2 class="section-title animated">Nossos Clientes</h2>
-            <div class="stats-grid animated">
-                <div class="stat-item">
-                    <span class="stat-number">+2.000</span>
-                    <div class="stat-label">Móveis Montados</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">98%</span>
-                    <div class="stat-label">Clientes Satisfeitos</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">12h</span>
-                    <div class="stat-label">Tempo de Resposta</div>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">R$ 350</span>
-                    <div class="stat-label">Economia Média</div>
-                </div>
-            </div>
-        </div>
-    </section>
+---
 
-    <section class="faq">
-        <div class="container">
-            <h2 class="section-title animated">Perguntas Frequentes</h2>
-            <div class="faq-grid">
-                <div class="faq-item animated">
-                    <div class="faq-question">
-                        ❓ Como funciona a negociação de desconto?
-                    </div>
-                    <div class="faq-answer">
-                        É simples! Clique no WhatsApp, conte quantos móveis precisa montar e qual seu orçamento. 
-                        Nosso atendente fará uma proposta personalizada na hora.
-                    </div>
-                </div>
-                
-                <div class="faq-item animated">
-                    <div class="faq-question">
-                        💰 Qual o maior desconto possível?
-                    </div>
-                    <div class="faq-answer">
-                        Para múltiplos móveis oferecemos até 25% OFF. Para casa nova completa, 
-                        descontos ainda maiores. Cada caso é único!
-                    </div>
-                </div>
-                
-                <div class="faq-item animated">
-                    <div class="faq-question">
-                        📅 Posso agendar para o mesmo dia?
-                    </div>
-                    <div class="faq-answer">
-                        Sim! Temos serviço express para urgências. Taxa adicional pode ser aplicada, 
-                        mas na negociação podemos incluir no pacote.
-                    </div>
-                </div>
-                
-                <div class="faq-item animated">
-                    <div class="faq-question">
-                        🔧 A garantia está inclusa no preço?
-                    </div>
-                    <div class="faq-answer">
-                        Todos os serviços têm garantia inclusa: de 3 meses a 6 meses
-                        </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="sobre" class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl lg:text-4xl font-black color-primary mb-6">Por que a MontaTech Brasil é Diferente?</h2>
+        <p class="text-lg text-gray-700 mb-8">
+            Nós vamos além da montagem. A MontaTech Brasil foi fundada com uma mentalidade de **Gestão e Tecnologia**. Não somos apenas montadores; somos uma empresa que utiliza um **Sistema de Agendamento e Rastreamento** para garantir que seu serviço seja executado com a máxima pontualidade, qualidade e profissionalismo.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div>
+                <p class="text-5xl font-black color-secondary">✅</p>
+                <h3 class="text-lg font-bold color-primary mt-4">Agendamento Otimizado</h3>
+                <p class="text-gray-600 text-sm mt-2">Nossa ferramenta de agendamento garante rastreamento e controle do seu pedido.</p>
+            </div>
+            <div>
+                <p class="text-5xl font-black color-accent">🛡️</p>
+                <h3 class="text-lg font-bold color-primary mt-4">Garantia Formal</h3>
+                <p class="text-gray-600 text-sm mt-2">Serviço com garantia e transparência. Sem surpresas ou amadorismo.</p>
+            </div>
+            <div>
+                <p class="text-5xl font-black color-inovacao">🛠️</p>
+                <h3 class="text-lg font-bold color-primary mt-4">Profissionais Qualificados</h3>
+                <p class="text-gray-600 text-sm mt-2">Equipe treinada, uniformizada e focada em deixar o seu móvel perfeito.</p>
+            </div>
+        </div>
+        <p class="mt-12 text-lg text-gray-700 font-semibold">
+            Nossa missão é transformar a experiência de montagem de móveis em algo <strong class="color-primary">fácil, seguro e digital</strong>.
+        </p>
+    </div>
+</section>
 
-    <section class="final-cta" id="contato">
-        <div class="container animated">
-            <h2>🛠 Montagem de Móveis Profissional</h2>
-            <p>Garanta um montador de móveis em valparaíso de goiás e regiões do entorno agora mesmo!.</p>
-            
-            <div class="cta-buttons">
-                <a href="https://wa.me/5561998865417?text=Quero%20garantir%20meu%20desconto%20AGORA!%20Preciso%20montar%20móveis." class="cta-primary" target="_blank" rel="noopener noreferrer">
-                    🗣 ENVIAR MENSAGEM
-                </a>
-                <a href="tel:+5561998865417" class="cta-secondary">
-                    📞 LIGAR DIRETO
-                </a>
-            </div>
+---
 
-            <img src="img/logo.png" alt="Logo MontaTech Brasil" class="logo-footer">
-        </div>
-    </section>
+<section id="agendamento" class="py-20 bg-primary text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl lg:text-4xl font-black mb-6">Agendamento Online Rápido e Eficiente</h2>
+        <p class="text-lg text-white/90 mb-8">
+            Prefere agendar fora do horário comercial? Utilize nosso formulário online para garantir seu horário. Nossa equipe entrará em contato para confirmar **dentro de 10 minutos** no horário comercial.
+        </p>
 
-    <a href="https://wa.me/5561998865417?text=Oi!%20Vi%20os%20preços%20no%20site%20e%20quero%20negociar%20um%20desconto!" class="whatsapp-float" title="Negocie seu desconto agora!" target="_blank" rel="noopener noreferrer">
-        💬
-    </a>
+        <a href="[LINK DO SEU GOOGLE FORMS DE AGENDAMENTO]" target="_blank" class="bg-accent color-primary font-black text-2xl px-16 py-6 rounded-xl glow-button hover:scale-105 inline-block">
+            📅 RESERVAR HORÁRIO ONLINE
+        </a>
+        
+        <p class="mt-4 text-sm font-semibold text-white/80">Seu agendamento será processado rapidamente por nossa equipe.</p>
 
-    <script>
-        // O Javascript não precisa de alterações
-    </script>
+        <div class="mt-12 text-center border-t border-white/20 pt-8">
+            <h3 class="text-xl font-bold mb-4">Ou se preferir, a via mais rápida é o WhatsApp:</h3>
+            <a href="#contato" class="bg-inovacao text-white font-black px-10 py-4 rounded-lg hover:opacity-90 transition-opacity inline-block">
+                📲 FALE COM O GESTOR AGORA
+            </a>
+        </div>
+    </div>
+</section>
 
-      <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/49534387.js"></script>
+---
+
+<section id="provas-sociais" class="py-20 bg-slate-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl lg:text-4xl font-black color-primary mb-6">Clientes Satisfeitos em Valparaíso e DF</h2>
+        <p class="text-lg text-gray-600 mb-12">Veja o que nossos clientes dizem sobre a pontualidade e qualidade do nosso serviço.</p>
+
+        <div x-data="{ 
+                currentSlide: 0, 
+                reviews: [
+                    { text: 'Pontualidade nota 10 e o serviço ficou impecável. Montaram um guarda-roupa enorme em tempo recorde e sem sujeira. Recomendo!', author: 'Juliana S.', city: 'Valparaíso I' },
+                    { text: 'A melhor experiência que já tive com montagem. O sistema de agendamento é muito profissional e a equipe é educada e muito cuidadosa. Fiquei muito satisfeito!', author: 'Pedro R.', city: 'Santa Maria - DF' },
+                    { text: 'Contratei para montar os móveis da minha loja. O time foi rápido e a qualidade final é visível. É a única empresa que usa a tecnologia a nosso favor. Nota máxima!', author: 'Márcia L.', city: 'Setor Comercial' }
+                ],
+                next() { this.currentSlide = (this.currentSlide + 1) % this.reviews.length; },
+                prev() { this.currentSlide = (this.currentSlide - 1 + this.reviews.length) % this.reviews.length; },
+                autoSlide() {
+                    setInterval(() => {
+                        this.next();
+                    }, 5000); // Muda a cada 5 segundos
+                }
+            }" 
+            x-init="autoSlide()"
+            class="relative mx-auto max-w-lg md:max-w-xl text-center"> <div class="overflow-hidden relative h-56 rounded-xl shadow-lg border-2 border-accent">
+                <template x-for="(review, index) in reviews" :key="index">
+                    <div x-show="currentSlide === index" 
+                         x-transition:enter="transition ease-out duration-500"
+                         x-transition:enter-start="opacity-0 transform translate-x-1/2"
+                         x-transition:enter-end="opacity-100 transform translate-x-0"
+                         x-transition:leave="transition ease-in duration-500"
+                         x-transition:leave-start="opacity-100 transform translate-x-0"
+                         x-transition:leave-end="opacity-0 transform -translate-x-1/2"
+                         class="absolute inset-0 bg-white p-8 flex flex-col justify-center text-left items-center"> <div class="text-3xl color-accent mb-2">★★★★★</div>
+                        <p class="text-gray-700 italic text-lg mb-4 text-center" x-text="`"${review.text}"`"></p> <p class="font-bold color-primary text-center" x-text="review.author"></p>
+                        <p class="text-sm text-gray-600 text-center" x-text="review.city"></p>
+                    </div>
+                </template>
+            </div>
+
+            <button @click="prev()" class="absolute left-0 top-1/2 transform -translate-y-1/2 p-3 bg-primary/70 text-white rounded-full ml-2 hover:bg-primary z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+            </button>
+            <button @click="next()" class="absolute right-0 top-1/2 transform -translate-y-1/2 p-3 bg-primary/70 text-white rounded-full mr-2 hover:bg-primary z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            </button>
+
+            <div class="flex justify-center space-x-2 mt-4">
+                <template x-for="(review, index) in reviews" :key="index">
+                    <button @click="currentSlide = index" class="w-3 h-3 rounded-full transition-colors" :class="{'bg-accent': currentSlide === index, 'bg-gray-300': currentSlide !== index}"></button>
+                </template>
+            </div>
+        </div>
+    </div>
+</section>
+
+---
+
+<section id="faq" class="py-20">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl lg:text-4xl font-black color-primary">Perguntas Frequentes (FAQ)</h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto mt-4">Tire suas dúvidas sobre agendamento, garantia e área de cobertura.</p>
+        </div>
+
+        <div x-data="{ openAccordion: null }" class="bg-slate-50 p-8 rounded-xl shadow-lg border-t-8 border-secondary">
+            <h3 class="text-2xl font-black mb-4 color-primary">Sua Montagem sem Dúvidas</h3>
+            
+            <div class="border rounded-lg overflow-hidden mt-4">
+                <button @click="openAccordion = openAccordion === 1 ? null : 1" class="w-full text-left p-4 flex justify-between items-center font-bold transition-colors" :class="{'bg-primary text-white': openAccordion === 1, 'bg-white hover:bg-slate-100 color-primary': openAccordion !== 1}">
+                    🗺️ A MontaTech atende em Brasília e outras regiões do DF/Entorno?
+                    <span :class="{'rotate-180': openAccordion === 1, 'text-white': openAccordion === 1, 'color-accent': openAccordion !== 1}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
+                </button>
+                <div x-show="openAccordion === 1" x-collapse class="p-6 text-gray-600 bg-white">
+                    <p>Sim! Nossa área principal é **Valparaíso de Goiás**, mas nosso serviço estende-se a **Brasília (DF)**, e outras regiões do entorno. Para agendamentos fora de Valparaíso, por favor, entre em contato via WhatsApp para confirmarmos a taxa de deslocamento e agendarmos o serviço.</p>
+                </div>
+            </div>
+
+            <div class="border rounded-lg overflow-hidden mt-4">
+                <button @click="openAccordion = openAccordion === 2 ? null : 2" class="w-full text-left p-4 flex justify-between items-center font-bold transition-colors" :class="{'bg-primary text-white': openAccordion === 2, 'bg-white hover:bg-slate-100 color-primary': openAccordion !== 2}">
+                    💸 Qual é o processo de cobrança? O pagamento é adiantado?
+                    <span :class="{'rotate-180': openAccordion === 2, 'text-white': openAccordion === 2, 'color-accent': openAccordion !== 2}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
+                </button>
+                <div x-show="openAccordion === 2" x-collapse class="p-6 text-gray-600 bg-white">
+                    <p>O orçamento é dado após a análise do seu móvel (via WhatsApp ou Forms). Você paga apenas após a conclusão do serviço! Aceitamos **Pix** e **Cartões de Crédito/Débito** (com pequena taxa). Para empresas e parcerias, a cobrança é formalizada via boleto ou Pix agendado.</p>
+                </div>
+            </div>
+
+            <div class="border rounded-lg overflow-hidden mt-4">
+                <button @click="openAccordion = openAccordion === 3 ? null : 3" class="w-full text-left p-4 flex justify-between items-center font-bold transition-colors" :class="{'bg-primary text-white': openAccordion === 3, 'bg-white hover:bg-slate-100 color-primary': openAccordion !== 3}">
+                    🗓️ Como funciona o agendamento online?
+                    <span :class="{'rotate-180': openAccordion === 3, 'text-white': openAccordion === 3, 'color-accent': openAccordion !== 3}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
+                </button>
+                <div x-show="openAccordion === 3" x-collapse class="p-6 text-gray-600 bg-white">
+                    <p>Ao preencher o formulário, sua solicitação entra em nosso sistema. Isso nos permite organizar a logística do seu atendimento. Em seguida, um gestor entra em contato com você (em até 10 minutos no horário comercial) para confirmar o horário exato, negociar o valor e validar os detalhes do seu móvel.</p>
+                </div>
+            </div>
+
+            <div class="border rounded-lg overflow-hidden mt-4">
+                <button @click="openAccordion = openAccordion === 4 ? null : 4" class="w-full text-left p-4 flex justify-between items-center font-bold transition-colors" :class="{'bg-primary text-white': openAccordion === 4, 'bg-white hover:bg-slate-100 color-primary': openAccordion !== 4}">
+                    📢 Vocês atendem lojistas e empresas?
+                    <span :class="{'rotate-180': openAccordion === 4, 'text-white': openAccordion === 4, 'color-accent': openAccordion !== 4}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
+                </button>
+                <div x-show="openAccordion === 4" x-collapse class="p-6 text-gray-600 bg-white">
+                    <p>Sim! Somos especializados em parcerias comerciais. Nosso **sistema de agendamento e a garantia formal** são o diferencial que lojistas e empresas procuram. Entre em contato via WhatsApp para conversarmos sobre tabelas de preço e contrato de prestação de serviços fixo.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+---
+
+<section id="contato" class="pb-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-br from-[#0e3d71] to-[#045ebf] rounded-2xl p-12"> <h2 class="text-3xl font-black mb-4 text-white">Pronto para sua Montagem sem Estresse?</h2>
+        <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto"><strong>Agende agora sua montagem profissional e garanta a segurança e durabilidade do seu móvel.</strong></p>
+        
+        <a href="https://wa.me/5561998865417" target="_blank" class="inline-block bg-accent color-primary font-black text-2xl px-16 py-6 rounded-xl glow-button hover:scale-105">
+            CHAMAR NO WHATSAPP AGORA
+        </a>
+        
+        <p class="mt-4 text-lg font-semibold text-white/90">Atendimento 24h em Valparaíso e DF.</p>
+    </div>
+</section>
+</main>
+
+<footer class="bg-primary text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="flex flex-col items-center text-center">
+            <img src="img/logo-clara.png" alt="MontaTech Brasil Logo" class="h-16 mb-4">
+            <p class="empresa-descricao mb-4 text-gray-300">Montagem de Móveis Profissional & Sistema de Gestão</p>
+            
+            <div class="contatos mb-4 text-gray-200 space-y-1">
+                <p><strong>Área de Atendimento:</strong> Valparaíso de Goiás | Brasília DF e Região</p>
+                <p><strong>WhatsApp:</strong> <a href="https://wa.me/5561998865417" target="_blank" class="hover:text-accent transition-colors">(61) 9 9886-5417</a></p>
+            </div>
+            
+            <div class="social-icons flex space-x-6 mb-8">
+                <a href="https://wa.me/5561998865417" target="_blank" class="transform hover:scale-110 transition-transform"><img src="img/whatsapp.png" alt="WhatsApp" class="h-8"></a>
+                <a href="https://www.instagram.com/montatechbrasil.montagens/" target="_blank" class="transform hover:scale-110 transition-transform"><img src="img/instagram.png" alt="Instagram" class="h-8"></a>
+                <a href="https://www.facebook.com/montatechbrasil" target="_blank" class="transform hover:scale-110 transition-transform"><img src="img/facebook.png" alt="Facebook" class="h-8"></a>
+                <a href="https://www.magazinevoce.com.br/magazinemontatechbrasil/busca/moveis/" target="_blank" class="transform hover:scale-110 transition-transform">
+                    <img src="img/magalu.png" alt="Loja Magazine Luiza" class="h-8">
+                </a>
+            </div>
+            
+            <div class="footer-copyright-section border-t border-white/20 w-full pt-6 mt-4">
+                <p class="text-gray-400 text-sm">&copy; 2024 MontaTech Brasil | Todos os direitos reservados. CNPJ 47.965.734/0001-07</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<a href="#" x-show="window.scrollY > 400" @scroll.window="scrolled = window.scrollY > 400"
+   x-transition:enter="transition ease-out duration-300"
+   x-transition:enter-start="opacity-0 transform translate-y-2"
+   x-transition:enter-end="opacity-100 transform translate-y-0"
+   x-transition:leave="transition ease-in duration-300"
+   x-transition:leave-start="opacity-100 transform translate-y-0"
+   x-transition:leave-end="opacity-0 transform translate-y-2"
+   class="fixed bottom-6 right-6 p-3 rounded-full shadow-lg text-white bg-accent z-[9999]">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+    </svg>
+</a>
+
 </body>
 </html>
