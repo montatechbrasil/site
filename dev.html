@@ -1,408 +1,273 @@
 <!DOCTYPE html>
-<html lang="pt-BR" style="scroll-behavior: smooth;">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>MontaTech Brasil | Montagem de Móveis Profissional em Valparaíso e DF</title>
-    <meta name="description" content="Montagem de Móveis Profissional e com garantia em Valparaíso de Goiás, Brasília DF e Regiões. Orçamento via sistema online ou WhatsApp. Serviços Residenciais e Comerciais.">
-    <meta name="keywords" content="montagem de móveis df, montador de móveis valparaíso, montador profissional, montagem de guarda-roupa, montagem de cozinha, montador de móveis brasilia, montatech brasil, orçamento de montagem">
-    <meta name="author" content="MontaTech Brasil">
-    
-        <link rel="icon" type="image/png" href="img/favicon2.png">
-    <link rel="apple-touch-icon" href="img/favicon2.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montagem de Móveis Profissional | MontaTech Brasil</title>
+    <style>
+        /* ========================================================== */
+        /* CSS REINCLUÍDO AQUI (Exemplo de estilos críticos) */
+        /* ========================================================== */
 
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-71WQ023PX4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+        header {
+            background-color: #004c99; /* Azul Escuro */
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 90%;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo-container img {
+            height: 40px; /* Altura corrigida */
+            width: auto; /* Largura automática para evitar distorção */
+            display: block;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0 15px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .main-button {
+            background-color: #ffb703; /* Amarelo */
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-left: 20px;
+            transition: background-color 0.3s;
+        }
+        .main-button:hover {
+            background-color: #ffc33d;
+        }
+        /* Configuração para o Menu Hamburger */
+        .hamburger-menu {
+            display: none; /* Esconde o ícone em telas maiores */
+            cursor: pointer;
+            font-size: 30px;
+            margin-left: 20px;
+        }
+        .nav-links {
+            display: flex; /* Exibe os links em telas maiores */
+        }
 
-      gtag('config', 'G-71WQ023PX4');
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17641071678"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        /* Seção Herói */
+        .hero-section {
+            background-color: #0077c9; /* Azul Mais Claro */
+            color: white;
+            text-align: center;
+            padding: 120px 20px 60px 20px;
+            margin-top: 70px; /* Para descer abaixo do header fixo */
+        }
+        .hero-section h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .hero-section strong {
+            color: #ffb703;
+        }
 
-      gtag('config', 'AW-17641071678');
-    </script>
+        /* Seção Clientes Satisfeitos */
+        .testimonials-section {
+            padding: 60px 5%;
+            text-align: center;
+            background-color: white;
+        }
+        .testimonial-card {
+            background-color: #fff;
+            border: 2px solid #ffb703;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .stars {
+            color: #ffb703;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        .client-review {
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #555;
+            min-height: 40px; /* Espaço para o comentário */
+        }
+        .client-name {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .client-location {
+            font-size: 0.9em;
+            color: #777;
+        }
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+        /* Seção Loja */
+        .store-section {
+            padding: 60px 5%;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        .store-section h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .store-section p {
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+        .store-button {
+            background-color: #9c27b0; /* Roxo Magalu (exemplo) */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
 
-    <style>
-        /* Paleta de Cores MontaTech Brasil */
-        .color-primary { color: #0e3d71; } /* Azul Escuro */
-        .bg-primary { background-color: #0e3d71; }
-        .border-primary { border-color: #0e3d71; }
-        .color-secondary { color: #045ebf; } /* Azul Médio */
-        .bg-secondary { background-color: #045ebf; }
-        .border-secondary { border-color: #045ebf; }
-        .color-accent { color: #f6b401; } /* Dourado */
-        .bg-accent { background-color: #f6b401; }
-        .border-accent { border-color: #f6b401; }
-        .color-inovacao { color: #3BAF63; } /* Verde Inovação */
-        .bg-inovacao { background-color: #3BAF63; }
-        .border-inovacao { border-color: #3BAF63; }
+        /* Rodapé/WhatsApp */
+        .whatsapp-cta {
+            background-color: #004c99;
+            color: white;
+            text-align: center;
+            padding: 40px 5%;
+        }
+        .whatsapp-cta .cta-button {
+            background-color: #ffb703;
+            color: black;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .whatsapp-cta small {
+            display: block;
+            margin-top: 10px;
+        }
+        footer {
+            background-color: #0d253f; /* Azul escuro do rodapé */
+            color: white;
+            text-align: center;
+            padding: 20px 5%;
+        }
+        .footer-logo {
+            max-width: 150px;
+        }
 
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
-        html { scroll-padding-top: 100px; }
-        .glow-button { 
-            box-shadow: 0 0 30px rgba(246, 180, 1, 0.4); 
-            transition: all 0.3s ease-in-out;
-        }
-        .glow-button:hover { 
-            box-shadow: 0 0 50px rgba(246, 180, 1, 0.6); 
-            transform: translateY(-3px) scale(1.05);
-        }
-        
-        /* Estilo para o menu mobile - Hamburguer */
-        .hamburger-menu span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background-color: #0e3d71; /* Cor do hamburguer */
-            margin-bottom: 5px;
-            transition: all 0.3s ease-in-out;
-            border-radius: 2px;
-        }
-        .hamburger-menu.open span:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
-            background-color: white; /* Cor do X */
-        }
-        .hamburger-menu.open span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger-menu.open span:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
-            background-color: white; /* Cor do X */
-        }
-
-        /* NOVO: Estilo do gradiente para Hero */
-        .hero-gradient {
-            background-image: linear-gradient(to bottom right, #0e3d71, #045ebf); /* gradiente de primary para secondary */
-        }
-    </style>
+        /* ========================================================== */
+        /* MEDIA QUERIES (Para telas menores/Menu Hamburger) */
+        /* ========================================================== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: #004c99;
+                padding: 10px 0;
+                text-align: center;
+            }
+            .nav-links a, .nav-links .main-button {
+                margin: 10px 0;
+            }
+            .hamburger-menu {
+                display: block; /* Mostra o ícone */
+            }
+            .nav-links.active {
+                display: flex;
+            }
+        }
+    </style>
 </head>
-<body class="text-gray-800" x-data="{ openMenu: false, currentSlide: 0, reviews: 5 }" :class="{'overflow-hidden': openMenu}">
+<body>
 
-<header class="bg-white/90 backdrop-blur-md fixed top-0 w-full z-50 shadow-md">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center py-3">
-            <a href="#"><img src="img/logo.png" alt="MontaTech Brasil Logo" class="h-12"></a>
-            
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#sobre" class="text-gray-600 hover:text-color-secondary font-semibold transition-colors">Sobre</a>
-                <a href="#provas-sociais" class="text-gray-600 hover:text-color-secondary font-semibold transition-colors">Clientes</a>
-                <a href="#contato" class="text-gray-600 hover:text-color-secondary font-semibold transition-colors">Contato</a>
-                <a href="#magalu" class="text-gray-600 hover:text-color-secondary font-semibold transition-colors">Loja</a>
-                <a href="#faq" class="text-gray-600 hover:text-color-secondary font-semibold transition-colors">FAQ</a>
-            </div>
-                        <a href="#agendamento" class="hidden md:inline-block bg-accent text-primary font-bold px-6 py-2 rounded-lg hover:opacity-90 transition-opacity">
-                📅 Agendar Montador
-            </a>
+    <header>
+        <div class="logo-container">
+            <img src="URL_DA_SUA_LOGO.png" alt="MontaTech Brasil Logo"> 
+        </div>
+        
+        <nav>
+            <div class="nav-links" id="navLinks">
+                <a href="#about">Sobre</a>
+                <a href="#clients">Clientes</a>
+                <a href="#contact">Contato</a>
+                <a href="#store">Loja</a>
+                <a href="#faq">FAQ</a>
+                <a href="https://wa.me/5561998865417?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20montagem!" class="main-button">AGENDAMENTO</a>
+            </div>
+            <div class="hamburger-menu" onclick="toggleMenu()">&#9776;</div>
+        </nav>
+    </header>
 
-            <button @click="openMenu = !openMenu" class="md:hidden p-2 rounded-md focus:outline-none z-50" :class="{'hamburger-menu open': openMenu, 'hamburger-menu': !openMenu}">
-                <span :class="{'bg-white': openMenu}"></span>
-                <span :class="{'bg-white': openMenu}"></span>
-                <span :class="{'bg-white': openMenu}"></span>
-            </button>
-        </div>
-    </nav>
-</header>
-<div x-show="openMenu" 
-      x-transition:enter="transition ease-out duration-300"
-      x-transition:enter-start="opacity-0 translate-x-full"
-      x-transition:enter-end="opacity-100 translate-x-0"
-      x-transition:leave="transition ease-in duration-200"
-      x-transition:leave-start="opacity-100 translate-x-0"
-      x-transition:leave-end="opacity-0 translate-x-full"
-      class="md:hidden fixed inset-0 bg-primary z-[9999] flex flex-col text-xl font-bold text-white">
-    
-    <div class="bg-primary flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 shadow-md">
-        <span class="text-white text-lg font-semibold">MontaTech Brasil</span>
-        <button @click="openMenu = false" class="text-white text-3xl leading-none">&times;</button>
-    </div>
+    <section class="hero-section" id="home">
+        <h1>Montagem de Móveis <strong>Profissional</strong> e com Garantia</h1>
+        <p>✅ Residenciais e Comerciais em Valparaíso de Goiás, Brasília DF e Regiões.</p>
+        <p>💙 Conte com um **Sistema de Agendamento Moderno** que garante pontualidade e transparência.</p>
+        <p>Não perca tempo! Agende seu serviço agora:</p>
+    </section>
 
-    <div class="flex flex-col items-center justify-center space-y-8 flex-grow">
-        <a @click="openMenu = false" href="#sobre" class="hover:text-color-accent transition-colors">Sobre</a>
-        <a @click="openMenu = false" href="#provas-sociais" class="hover:text-color-accent transition-colors">Clientes</a>
-        <a @click="openMenu = false" href="#contato" class="hover:text-color-accent transition-colors">Contato</a>
-        <a @click="openMenu = false" href="#magalu" class="hover:text-color-accent transition-colors">Loja</a>
-        <a @click="openMenu = false" href="#faq" class="hover:text-color-accent transition-colors">FAQ</a>
-        <a @click="openMenu = false" href="#agendamento" class="bg-accent text-primary px-8 py-3 rounded-lg hover:opacity-90 mt-8">
-            📅 Agendar Montador
-        </a>
-    </div>
-</div>
+    <section class="testimonials-section" id="clients">
+        <h2>Clientes Satisfeitos em Valparaíso e DF</h2>
+        <p>Veja o que nossos clientes dizem sobre a pontualidade e qualidade do nosso serviço.</p>
+        
+        <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="client-review">"Serviço excelente, pontual e muito cuidadoso com os móveis. Recomendo!"</p>
+            <p class="client-name">Pedro R.</p>
+            <p class="client-location">Santa Maria – DF</p>
+        </div>
+        </section>
 
-<main>
-<section id="hero" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden hero-gradient">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div class="text-center mb-10">
-            <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4 leading-tight text-white">
-                Montagem de Móveis <span class="color-accent">Profissional</span> e com Garantia
-            </h1>
-            <p class="max-w-4xl mx-auto text-xl md:text-2xl text-white font-semibold mt-4">
-                ✅ Residenciais e Comerciais em <strong class="text-inovacao">Valparaíso de Goiás, Brasília DF</strong> e Regiões.
-            </p>
-        </div>
-        
-        <div class="max-w-4xl mx-auto text-center">
-                        <p class="max-w-4xl mx-auto text-lg md:text-xl text-white/90 font-medium mb-8">
-                Nós vamos além da montagem. A MontaTech Brasil foi fundada com uma mentalidade de **Gestão e Tecnologia**. Não somos apenas montadores; somos uma empresa que utiliza um **Sistema Inteligente de Rastreamento** para garantir que seu serviço seja executado com a máxima pontualidade, qualidade e profissionalismo.
-            </p>
-            
-                        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                
-                                <a href="https://wa.me/5561998865417" target="_blank" class="bg-inovacao text-white font-black text-xl px-8 py-4 rounded-xl hover:scale-105 transition-transform inline-block border-2 border-white glow-button">
-                    📲 AGENDAR MONTAGEM
-                </a>
+    <section class="store-section" id="store">
+        <h2>Compre seu Móvel Novo e Agende Conosco!</h2>
+        <p>Procurando móveis de qualidade? A MontaTech é parceira da Magazine Luiza. Você pode comprar seu produto na nossa loja e já agendar a montagem com a nossa equipe especializada.</p>
+        <a href="URL_DA_SUA_LOJA_MAGALU" class="store-button">🛒 VISITAR LOJA MAGALU</a>
+    </section>
 
-                                <a href="https://forms.gle/jkDzMDV8BcM8g6RD6" target="_blank" class="bg-accent text-primary font-black text-xl px-8 py-4 rounded-xl hover:scale-105 transition-transform inline-block border-2 border-white glow-button">
-                    📝 ORÇAMENTO ONLINE (DETALHADO)
-                </a>
+    <section class="whatsapp-cta">
+        <a href="https://wa.me/5561998865417?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20montagem!" class="cta-button">CHAMAR NO WHATSAPP AGORA</a>
+        <small>Atendimento 24h em Valparaíso e DF.</small>
+    </section>
 
-                                <a href="tel:5561998865417" class="bg-white text-primary font-black text-xl px-8 py-4 rounded-xl hover:scale-105 transition-transform inline-block border-2 border-primary">
-                    📞 LIGAR AGORA
-                </a>
-            </div>
-            
-            <p class="mt-8 font-black text-2xl color-accent">Atendimento Rápido em Valparaíso e DF</p>
-        </div>
-    </div>
-</section>
+    <footer>
+        <img src="URL_DA_SUA_LOGO_PEQUENA.png" alt="MontaTech Brasil Logo" class="footer-logo">
+        <p>MontaTech Brasil - Montagem de Móveis</p>
+        </footer>
 
-<section id="sobre" class="py-20 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl lg:text-4xl font-black color-primary mb-6">Por que a MontaTech Brasil é Diferente?</h2>
-        <p class="text-lg text-gray-700 mb-8">
-            Nós vamos além da montagem. A MontaTech Brasil foi fundada com uma mentalidade de **Gestão e Tecnologia**. Não somos apenas montadores; somos uma empresa que utiliza um **Sistema de Agendamento e Rastreamento** para garantir que seu serviço seja executado com a máxima pontualidade, qualidade e profissionalismo.
-        </p>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-                <p class="text-5xl font-black color-secondary">✅</p>
-                <h3 class="text-lg font-bold color-primary mt-4">Agendamento Otimizado</h3>
-                <p class="text-gray-600 text-sm mt-2">Nossa ferramenta de agendamento garante rastreamento e controle do seu pedido.</p>
-            </div>
-            <div>
-                <p class="text-5xl font-black color-accent">🛡️</p>
-                <h3 class="text-lg font-bold color-primary mt-4">Garantia Formal</h3>
-                <p class="text-gray-600 text-sm mt-2">Serviço com garantia e transparência. Sem surpresas ou amadorismo.</p>
-            </div>
-            <div>
-                <p class="text-5xl font-black color-inovacao">🛠️</p>
-                <h3 class="text-lg font-bold color-primary mt-4">Profissionais Qualificados</h3>
-                <p class="text-gray-600 text-sm mt-2">Equipe treinada, uniformizada e focada em deixar o seu móvel perfeito.</p>
-            </div>
-        </div>
-        <p class="mt-12 text-lg text-gray-700 font-semibold">
-            Nossa missão é transformar a experiência de montagem de móveis em algo <strong class="color-primary">fácil, seguro e digital</strong>.
-        </p>
-    </div>
-</section>
-
-<section id="orcamento-detalhado" class="py-20 bg-primary text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl lg:text-4xl font-black mb-6">ORÇAMENTO ONLINE (DETALHADO)</h2>
-        <p class="text-xl text-white/90 mb-8">
-            **Está de Mudança?** Comprou móveis online e quer agendar a entrega?
-            <br>
-            **Solicite seu orçamento com mais detalhes!** Preencha nosso formulário para que nossa equipe avalie a **localidade, horários preferenciais, tipos de móveis e observações**.
-        </p>
-
-        <a href="https://forms.gle/jkDzMDV8BcM8g6RD6" target="_blank" class="bg-accent color-primary font-black text-2xl px-16 py-6 rounded-xl glow-button hover:scale-105 inline-block">
-            📝 INICIAR ORÇAMENTO DETALHADO
-        </a>
-        
-        <p class="mt-4 text-sm font-semibold text-white/80">Faça seu orçamento e já deixe seu serviço encaminhado para agendamento com o montador.</p>
-
-    </div>
-</section>
-
-<section id="provas-sociais" class="py-20 bg-slate-50">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl lg:text-4xl font-black color-primary mb-6">Clientes 5 Estrelas em Valparaíso e DF</h2>
-        <p class="text-lg text-gray-600 mb-12">Veja o que nossos clientes dizem sobre a pontualidade e qualidade do nosso serviço.</p>
-
-        <div x-data="{ 
-                currentSlide: 0, 
-                reviews: [
-                    { text: 'Fiquei bastante satisfeita com a prestação de serviço. Tratam-se de profissionais capacitados, atenciosos com o cliente e com a qualidade do trabalho, são também pontuais, e bem criteriosos com a organização e a higiene do ambiente. Recomendo a contratação', author: 'Emmanuele', city: 'Flores da Serra' },
-                    { text: 'Ficou muito bom o serviço, tem cuidado com os detalhes.', author: 'Elaido Salles', city: 'Cidade Jardins' },
-                    { text: 'Recomendo! Rapidez e eficiência estão juntas👏👏👏👏👍', author: 'GiL', city: 'Valparaiso 1 Etapa D' },
-                    { text: 'Tive uma experiência muito boa, gostei demais', author: 'Silvone', city: 'Condomínio Paris' },
-                    { text: 'Muito prestativo e responsável, gostei do trabalho!', author: 'Aparecida', city: 'Condomínio Gren Park' }
-                ],
-                next() { this.currentSlide = (this.currentSlide + 1) % this.reviews.length; },
-                prev() { this.currentSlide = (this.currentSlide - 1 + this.reviews.length) % this.reviews.length; },
-                autoSlide() {
-                    setInterval(() => {
-                        this.next();
-                    }, 5000); // Muda a cada 5 segundos
-                }
-            }" 
-            x-init="autoSlide()"
-            class="relative mx-auto max-w-lg md:max-w-xl text-center"> <div class="overflow-hidden relative h-56 rounded-xl shadow-lg border-2 border-accent">
-                <template x-for="(review, index) in reviews" :key="index">
-                    <div x-show="currentSlide === index" 
-                          x-transition:enter="transition ease-out duration-500"
-                          x-transition:enter-start="opacity-0 transform translate-x-1/2"
-                          x-transition:enter-end="opacity-100 transform translate-x-0"
-                          x-transition:leave="transition ease-in duration-500"
-                          x-transition:leave-start="opacity-100 transform translate-x-0"
-                          x-transition:leave-end="opacity-0 transform -translate-x-1/2"
-                          class="absolute inset-0 bg-white p-8 flex flex-col justify-center text-left items-center"> <div class="text-3xl color-accent mb-2">★★★★★</div>
-                        <p class="text-gray-700 italic text-lg mb-4 text-center" x-text="`"${review.text}"`"></p> <p class="font-bold color-primary text-center" x-text="review.author"></p>
-                        <p class="text-sm text-gray-600 text-center" x-text="review.city"></p>
-                    </div>
-                </template>
-            </div>
-
-            <button @click="prev()" class="absolute left-0 top-1/2 transform -translate-y-1/2 p-3 bg-primary/70 text-white rounded-full ml-2 hover:bg-primary z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-            </button>
-            <button @click="next()" class="absolute right-0 top-1/2 transform -translate-y-1/2 p-3 bg-primary/70 text-white rounded-full mr-2 hover:bg-primary z-20">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-            </button>
-
-            <div class="flex justify-center space-x-2 mt-4">
-                <template x-for="(review, index) in reviews" :key="index">
-                    <button @click="currentSlide = index" class="w-3 h-3 rounded-full transition-colors" :class="{'bg-accent': currentSlide === index, 'bg-gray-300': currentSlide !== index}"></button>
-                </template>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="magalu" class="py-20 bg-secondary text-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl lg:text-4xl font-black mb-6">Compre seu Móvel Novo e Agende Conosco!</h2>
-        <p class="text-xl text-white/90 mb-8">
-            Procurando móveis de qualidade? A MontaTech é parceira da Magazine Luiza. Você pode comprar seu produto na nossa loja e já agendar a montagem com a nossa equipe especializada.
-        </p>
-
-        <a href="https://www.magazinevoce.com.br/magazinemontatechbrasil/busca/moveis/" target="_blank" class="bg-accent color-primary font-black text-2xl px-16 py-6 rounded-xl glow-button hover:scale-105 inline-block">
-            🛍️ VISITAR LOJA MAGALU
-        </a>
-    </div>
-</section>
-
-<section id="faq" class="py-20">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl lg:text-4xl font-black color-primary">Perguntas Frequentes (FAQ)</h2>
-            <p class="text-lg text-gray-600 max-w-3xl mx-auto mt-4">Tire suas dúvidas sobre agendamento, garantia e área de cobertura.</p>
-        </div>
-
-        <div x-data="{ openAccordion: null }" x-collapse class="bg-slate-50 p-8 rounded-xl shadow-lg border-t-8 border-secondary">
-            <h3 class="text-2xl font-black mb-4 color-primary">Sua Montagem sem Dúvidas</h3>
-            
-            <div class="border rounded-lg overflow-hidden mt-4">
-                <button @click="openAccordion = openAccordion === 1 ? null : 1" class="w-full text-left p-4 flex justify-between items-center font-bold transition-colors" :class="{'bg-primary text-white': openAccordion === 1, 'bg-white hover:bg-slate-100 color-primary': openAccordion !== 1}">
-                    🗺️ A MontaTech atende em Brasília e outras regiões do DF/Entorno?
-                    <span :class="{'rotate-180': openAccordion === 1, 'text-white': openAccordion === 1, 'color-accent': openAccordion !== 1}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
-                </button>
-                <div x-show="openAccordion === 1" x-collapse class="p-6 text-gray-600 bg-white">
-                    <p>Sim! Nossa área principal é **Valparaíso de Goiás**, mas nosso serviço estende-se a **Brasília (DF)**, e outras regiões do entorno. Para agendamentos fora de Valparaíso, por favor, entre em contato via WhatsApp para confirmarmos a taxa de deslocamento e agendarmos o serviço.</p>
-                </div>
-            </div>
-
-            <div class="border rounded-lg overflow-hidden mt-4">
-                <button @click="openAccordion = openAccordion === 2 ? null : 2" class="w-full text-left p-4 flex justify-between items-center font-bold transition-colors" :class="{'bg-primary text-white': openAccordion === 2, 'bg-white hover:bg-slate-100 color-primary': openAccordion !== 2}">
-                    💸 Qual é o processo de cobrança? O pagamento é adiantado?
-                    <span :class="{'rotate-180': openAccordion === 2, 'text-white': openAccordion === 2, 'color-accent': openAccordion !== 2}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
-                </button>
-                <div x-show="openAccordion === 2" x-collapse class="p-6 text-gray-600 bg-white">
-                    <p>O orçamento é dado após a análise do seu móvel (via WhatsApp ou Forms). Você paga apenas após a conclusão do serviço! Aceitamos **Pix** e **Cartões de Crédito/Débito** (com pequena taxa). Para empresas e parcerias, a cobrança é formalizada via boleto ou Pix agendado.</p>
-                </div>
-            </div>
-
-            <div class="border rounded-lg overflow-hidden mt-4">
-                <button @click="openAccordion = openAccordion === 3 ? null : 3" class="w-full text-left p-4 flex justify-between items-center font-bold transition-colors" :class="{'bg-primary text-white': openAccordion === 3, 'bg-white hover:bg-slate-100 color-primary': openAccordion !== 3}">
-                    🗓️ Como funciona o agendamento online?
-                    <span :class="{'rotate-180': openAccordion === 3, 'text-white': openAccordion === 3, 'color-accent': openAccordion !== 3}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
-                </button>
-                <div x-show="openAccordion === 3" x-collapse class="p-6 text-gray-600 bg-white">
-                    <p>Ao preencher o formulário, sua solicitação entra em nosso sistema. Isso nos permite organizar a logística do seu atendimento. Em seguida, um gestor entra em contato com você (em até 10 minutos no horário comercial) para confirmar o horário exato, negociar o valor e validar os detalhes do seu móvel.</p>
-                </div>
-            </div>
-
-            <div class="border rounded-lg overflow-hidden mt-4">
-                <button @click="openAccordion = openAccordion === 4 ? null : 4" class="w-full text-left p-4 flex justify-between items-center font-bold transition-colors" :class="{'bg-primary text-white': openAccordion === 4, 'bg-white hover:bg-slate-100 color-primary': openAccordion !== 4}">
-                    📢 Vocês atendem lojistas e empresas?
-                    <span :class="{'rotate-180': openAccordion === 4, 'text-white': openAccordion === 4, 'color-accent': openAccordion !== 4}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
-                </button>
-                <div x-show="openAccordion === 4" x-collapse class="p-6 text-gray-600 bg-white">
-                    <p>Sim! Somos especializados em parcerias comerciais. Nosso **sistema de agendamento e a garantia formal** são o diferencial que lojistas e empresas procuram. Entre em contato via WhatsApp para conversarmos sobre tabelas de preço e contrato de prestação de serviços fixo.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section id="contato" class="pb-20">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-br from-[#0e3d71] to-[#045ebf] rounded-2xl p-12"> <h2 class="text-3xl font-black mb-4 text-white">Pronto para sua Montagem sem Preocupação?</h2>
-        <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto"><strong>Agende agora sua montagem profissional e garanta a segurança e durabilidade do seu móvel.</strong></p>
-        
-        <a href="https://wa.me/5561998865417" target="_blank" class="inline-block bg-accent color-primary font-black text-2xl px-16 py-6 rounded-xl glow-button hover:scale-105">
-            AGENDAR MONTAGEM AGORA
-        </a>
-        
-        <p class="mt-4 text-lg font-semibold text-white/90">Atendimento Rápido em Valparaíso e DF.</p>
-    </div>
-</section>
-</main>
-
-<footer class="bg-primary text-white">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="flex flex-col items-center text-center">
-            <img src="img/logo-clara.png" alt="MontaTech Brasil Logo" class="h-16 mb-4">
-            <p class="empresa-descricao mb-4 text-gray-300">Montagem de Móveis Profissional & Sistema de Gestão</p>
-            
-            <div class="contatos mb-4 text-gray-200 space-y-1">
-                <p><strong>Área de Atendimento:</strong> Valparaíso de Goiás | Brasília DF e Região</p>
-                <p><strong>WhatsApp:</strong> <a href="https://wa.me/5561998865417" target="_blank" class="hover:text-accent transition-colors">(61) 9 9886-5417</a></p>
-                <p><strong>Telefone:</strong> <a href="tel:5561998865417" class="hover:text-accent transition-colors">(61) 9 9886-5417</a></p>
-            </div>
-            
-            <div class="social-icons flex space-x-6 mb-8">
-                <a href="https://wa.me/5561998865417" target="_blank" class="transform hover:scale-110 transition-transform"><img src="img/whatsapp.png" alt="WhatsApp" class="h-8"></a>
-                <a href="https://www.instagram.com/montatechbrasil.montagens/" target="_blank" class="transform hover:scale-110 transition-transform"><img src="img/instagram.png" alt="Instagram" class="h-8"></a>
-                <a href="https://www.facebook.com/montatechbrasil" target="_blank" class="transform hover:scale-110 transition-transform"><img src="img/facebook.png" alt="Facebook" class="h-8"></a>
-                <a href="https://www.magazinevoce.com.br/magazinemontatechbrasil/busca/moveis/" target="_blank" class="transform hover:scale-110 transition-transform">
-                    <img src="img/magalu.png" alt="Loja Magazine Luiza" class="h-8">
-                </a>
-            </div>
-            
-            <div class="footer-copyright-section border-t border-white/20 w-full pt-6 mt-4">
-                <p class="text-gray-400 text-sm">&copy; 2024 MontaTech Brasil | Todos os direitos reservados. CNPJ 47.965.734/0001-07</p>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<a href="#hero" x-show="window.scrollY > 400" @scroll.window="scrolled = window.scrollY > 400"
-    x-transition:enter="transition ease-out duration-300"
-    x-transition:enter-start="opacity-0 transform translate-y-2"
-    x-transition:enter-end="opacity-100 transform translate-y-0"
-    x-transition:leave="transition ease-in duration-300"
-    x-transition:leave-start="opacity-100 transform translate-y-0"
-    x-transition:leave-end="opacity-0 transform translate-y-2"
-    class="fixed bottom-6 right-6 p-3 rounded-full shadow-lg text-white bg-accent z-[9999]">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18" />
-    </svg>
-</a>
-
-<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/49534387.js"></script>
+    <script>
+        function toggleMenu() {
+            var navLinks = document.getElementById("navLinks");
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            } else {
+                navLinks.classList.add('active');
+            }
+        }
+    </script>
 
 </body>
 </html>
