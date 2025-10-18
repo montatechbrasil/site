@@ -201,7 +201,7 @@
 
 <section id="provas-sociais" class="py-20 bg-slate-50">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl lg:text-4xl font-black color-primary mb-6">Veja o Que Nossos Clientes Dizem</h2>
+        <h2 class="text-3xl lg:text-4xl font-black color-primary mb-6">O Que Nossos Clientes Dizem?</h2>
         <p class="text-lg text-gray-600 mb-12">Veja o que nossos clientes dizem sobre a pontualidade e qualidade do nosso serviço na cidade Valparaíso de Goiás.</p>
 
         <div x-data="{ 
@@ -276,11 +276,11 @@
             
             <div class="border rounded-lg overflow-hidden mt-4">
                 <button @click="openAccordion = openAccordion === 1 ? null : 1" class="w-full text-left p-4 flex justify-between items-center font-bold transition-colors" :class="{'bg-primary text-white': openAccordion === 1, 'bg-white hover:bg-slate-100 color-primary': openAccordion !== 1}">
-                    🗺️ A MontaTech atende em Brasília e outras regiões do DF/Entorno?
+                    🗺️ Quais as regiões a MontaTech Brasil atende?
                     <span :class="{'rotate-180': openAccordion === 1, 'text-white': openAccordion === 1, 'color-accent': openAccordion !== 1}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
                 </button>
                 <div x-show="openAccordion === 1" x-collapse class="p-6 text-gray-600 bg-white">
-                    <p>Sim! Nossa área principal é **Valparaíso de Goiás**, mas nosso serviço estende-se a **Brasília (DF)**, e outras regiões do entorno. Para agendamentos fora de Valparaíso, por favor, entre em contato via WhatsApp para confirmarmos a taxa de deslocamento e agendarmos o serviço.</p>
+                    <p>Nossa área principal é Valparaíso de Goiás, mas nosso serviço estende-se a Brasília (DF), e outras regiões do entorno. Fale pelo WhatsApp e consulte mais detalhes.</p>
                 </div>
             </div>
 
@@ -296,11 +296,11 @@
 
             <div class="border rounded-lg overflow-hidden mt-4">
                 <button @click="openAccordion = openAccordion === 3 ? null : 3" class="w-full text-left p-4 flex justify-between items-center font-bold transition-colors" :class="{'bg-primary text-white': openAccordion === 3, 'bg-white hover:bg-slate-100 color-primary': openAccordion !== 3}">
-                    🗓️ Como funciona o agendamento online?
+                    🗓️ Como funciona o Orçamento Online?
                     <span :class="{'rotate-180': openAccordion === 3, 'text-white': openAccordion === 3, 'color-accent': openAccordion !== 3}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
                 </button>
                 <div x-show="openAccordion === 3" x-collapse class="p-6 text-gray-600 bg-white">
-                    <p>Ao preencher o formulário, sua solicitação entra em nosso sistema. Isso nos permite organizar a logística do seu atendimento. Em seguida, um gestor entra em contato com você (em até 10 minutos no horário comercial) para confirmar o horário exato, negociar o valor e validar os detalhes do seu móvel.</p>
+                    <p>Ao preencher o formulário, sua solicitação entra em nosso sistema. Isso nos permite organizar a logística do seu atendimento. Em seguida, um gestor entra em contato com você para confirmar o horário exato, negociar o valor e validar os detalhes da montagem dos seus móveis.</p>
                 </div>
             </div>
 
@@ -310,7 +310,7 @@
                     <span :class="{'rotate-180': openAccordion === 4, 'text-white': openAccordion === 4, 'color-accent': openAccordion !== 4}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
                 </button>
                 <div x-show="openAccordion === 4" x-collapse class="p-6 text-gray-600 bg-white">
-                    <p>Sim! Somos especializados em parcerias comerciais. Nosso **sistema de agendamento e a garantia formal** são o diferencial que lojistas e empresas procuram. Entre em contato via WhatsApp para conversarmos sobre tabelas de preço e contrato de prestação de serviços fixo.</p>
+                    <p>Sim! Trabalhamos com parcerias comerciais. Nosso Sistema de agendamento e a garantia formal são o diferencial que lojistas e empresas procuram. Entre em contato para mais detalhes sobre tabelas de preço e contrato de prestação de serviços fixo.</p>
                 </div>
             </div>
 
