@@ -340,11 +340,11 @@
 
             <div class="border rounded-lg overflow-hidden mt-4">
                 <button @click="openAccordion = openAccordion === 5 ? null : 5" class="w-full text-left p-4 flex justify-between items-center font-bold transition-colors" :class="{'bg-primary text-white': openAccordion === 5, 'bg-white hover:bg-slate-100 color-primary': openAccordion !== 5}">
-                    🛡️ A MontaTech oferece garantia para a montagem de móveis?
+                    🛡️ Como funciona a garantia dos serviços?
                     <span :class="{'rotate-180': openAccordion === 5, 'text-white': openAccordion === 5, 'color-accent': openAccordion !== 5}" class="transform transition-transform duration-300 text-2xl font-light">▾</span>
                 </button>
                 <div x-show="openAccordion === 5" x-collapse class="p-6 text-gray-600 bg-white">
-                    <p>Sim. Oferecemos uma Garantia Formal (emitida por escrito) que cobre a qualidade da montagem e o alinhamento das peças. Caso haja qualquer falha na execução do serviço dentro do prazo, nós refazemos o serviço sem custo, priorizando a sua satisfação.</p>
+                    <p>Sim. Oferecemos uma garantia formal através da emissão de nota fiscal que cobre a qualidade da montagem e o alinhamento das peças. Caso haja qualquer falha na execução do serviço dentro do prazo de 30 dias, nós refazemos o serviço sem custo, priorizando a sua satisfação.</p>
                 </div>
             </div>
         </div>
