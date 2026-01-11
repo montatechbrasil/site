@@ -3,10 +3,11 @@
     --azul-escuro: #0e3d71;
     --azul-medio: #045ebf;
     --dourado: #f6b401;
-    --verde-inovacao: #3BAF63; /* Cor adicionada à paleta */
+    --verde-inovacao: #3BAF63;
     --texto-claro: #ffffff;
     --texto-escuro: #333333;
     --fundo-claro: #f8fafc;
+    --fundo-rodape: #1f2937; /* Cinza-Azulado Escuro */
 }
 body, html { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; line-height: 1.6; color: var(--texto-escuro); background-color: var(--fundo-claro); }
 .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
@@ -44,19 +45,18 @@ section p { max-width: 800px; margin: 0 auto 20px auto; }
 .brands-section { background-color: var(--azul-medio); color: var(--texto-claro); }
 .brands-section h2 { color: var(--texto-claro); }
 
-/* Seção Quem Somos (About) - NOVA COR DE FUNDO */
+/* Seção Quem Somos (About) */
 .about-section { 
     background-color: var(--verde-inovacao); 
-    color: var(--texto-claro); /* Texto claro para contraste */
+    color: var(--texto-claro);
 }
 .about-section h2 {
-    color: var(--texto-claro); /* Título claro para contraste */
+    color: var(--texto-claro);
 }
 
 /* --- RODAPÉ --- */
-/* NOVA COR DE FUNDO PARA O RODAPÉ */
 .main-footer { 
-    background-color: var(--azul-medio); 
+    background-color: var(--fundo-rodape); 
     color: var(--texto-claro); 
     padding: 50px 0 20px 0; 
     text-align: center; 
