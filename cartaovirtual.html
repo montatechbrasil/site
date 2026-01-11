@@ -3,263 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MontaTech Brasil - Cartão de Visita Digital</title>
     
-    <!-- Google Fonts: Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Montador de Móveis Valparaíso de Goiás | MontaTech Brasil</title>
+    <meta name="description" content="Serviço de Montagem de Móveis em Valparaíso de Goiás e Região do Entorno. Qualidade e Garantia. Orçamento Rápido Pelo WhatsApp para montagem de guarda-roupa, cozinha, painel de TV e mais.">
     
-    <!-- Ícones (Font Awesome) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="img/favicon2.png" type="image/png">
-    <link rel="apple-touch-icon" href="img/favicon2.png">
+    <!-- SATURAÇÃO DE PALAVRAS-CHAVE NA META KEYWORDS -->
+    <meta name="keywords" content="montador de móveis valparaíso de goiás, montador móveis valparaíso, montagem móveis, montador de guarda roupa perto de mim, montador de painel de tv, montagem de cozinha madesa, montador madeira madeira, contratar montador, empresa de montagem, serviço de desmontagem, montatech brasil, valparaíso go">
 
- <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-71WQ023PX4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="MontaTech Brasil - Montador de Móveis Profissional em Valparaíso">
+    <meta property="og:description" content="Montagem 5 Estrelas de guarda-roupas, cozinhas e painéis. Atendemos Valparaíso e Entorno com garantia. Chame no WhatsApp!">
+    <meta property="og:url" content="https://www.montatechbrasil.com.br/">
+    <meta property="og:type" content="website">
 
-      gtag('config', 'G-71WQ023PX4');
-    </script>
-
- <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-71WQ023PX4"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-71WQ023PX4');
-    </script>
-
-   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17641071678"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-17641071678');
-</script>
-    
-    <style>
-        /* --- Reset e Configurações Globais --- */
-        :root {
-            --azul-escuro: #0e3d71;
-            --azul-medio: #045ebf;
-            --dourado: #f6b401;
-            --verde: #3BAF63;
-            --branco: #ffffff;
-            --cinza-claro: #f0f2f5;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Poppins', sans-serif;
-            color: #333;
-            background: linear-gradient(135deg, var(--cinza-claro), #dde5f0);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 2rem 1rem;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* --- Container Principal (O Cartão) --- */
-        .card-container {
-            background-color: var(--branco);
-            width: 100%;
-            max-width: 600px; /* Largura ideal para desktop */
-            border-radius: 24px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
-            padding: 3rem;
-            text-align: center;
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-
-        /* --- Seção do Perfil --- */
-        .profile .logo {
-            max-width: 150px;
-            margin-bottom: 1.5rem;
-        }
-        .profile h1 {
-            color: var(--azul-escuro);
-            font-size: 2.2rem;
-            font-weight: 700;
-        }
-        .profile p {
-            color: var(--azul-medio);
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-        }
-
-        /* --- Seção de Texto Introdutório --- */
-        .intro-text {
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 2.5rem;
-        }
-
-        /* --- Botões de Ação Principais --- */
-        .action-buttons {
-            display: grid;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-        }
-        .action-buttons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 1rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--branco);
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .action-buttons a:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-        .btn-whatsapp { background-color: var(--verde); }
-        .btn-site { background-color: var(--azul-medio); }
-        .btn-magalu { background-color: var(--dourado); color: var(--azul-escuro); }
-
-        /* --- Links de Redes Sociais --- */
-        .social-links p {
-            font-weight: 600;
-            color: var(--azul-escuro);
-            margin-bottom: 1rem;
-        }
-        .social-icons a {
-            color: var(--azul-medio);
-            font-size: 2.5rem;
-            margin: 0 1rem;
-            transition: all 0.3s ease;
-        }
-        .social-icons a:hover {
-            color: var(--dourado);
-            transform: scale(1.1);
-        }
-
-        /* --- Divisor --- */
-        .divider {
-            border: 0;
-            height: 1px;
-            background-color: #e0e0e0;
-            margin: 2.5rem 0;
-        }
-
-        /* --- Seção do QR Code --- */
-        .qr-code-section img {
-            max-width: 250px;
-            border-radius: 16px;
-            border: 5px solid var(--cinza-claro);
-        }
-        .qr-code-section p {
-            font-weight: 600;
-            color: var(--azul-medio);
-            margin-top: 1rem;
-        }
-
-        /* --- Responsividade para Celular --- */
-        @media (max-width: 640px) {
-            body {
-                padding: 1rem;
-            }
-            .card-container {
-                padding: 2rem 1.5rem;
-            }
-            .profile h1 {
-                font-size: 1.8rem;
-            }
-            .profile p {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    <link rel="icon" href="img/favicon2.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <div class="card-container">
-        
-        <!-- SEÇÃO DO PERFIL -->
-        <header class="profile">
-            <img src="img/logo.png" alt="Logo MontaTech Brasil" class="logo">
-            <h1>⚒️ MONTAGEM DE MÓVEIS</h1>
-            <p>MontaTech Brasil</p>
-        </header>
-
-        <!-- TEXTO INTRODUTÓRIO -->
-        <section class="intro-text">
-            <p>
-                ✅ VALPARAÍSO DE GOIÁS 💙<br>
-                ✅ BRASÍLIA DF E ENTORNO<br>
-            </p>
-        </section>
-        
-        <!-- BOTÕES DE AÇÃO -->
-        <section class="action-buttons">
-            <a href="https://wa.me/5561998865417" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-whatsapp"></i> AGENDAR PELO WHATSAPP
+    <header class="main-header">
+        <div class="container">
+            <a href="#">
+                <img src="img/logo3.png" alt="MontaTech Brasil - Logo Montador de Móveis em Valparaíso de Goiás" width="220" height="50">
             </a>
-            <a href="https://www.magazinevoce.com.br/magazinemontatechbrasil/busca/moveis/" class="btn-magalu" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-store"></i> MOVÉIS NOVOS NA LOJA
-            </a>
-        </section>
+        </div>
+    </header>
 
-        <!-- LINKS DE REDES SOCIAIS -->
-        <section class="social-links">
-            <p>Siga-nos Nas Redes Sociais, Curta e Compartilhe:</p>
-            <div class="social-icons">
-                <a href="https://www.instagram.com/montatechbrasil.montagens/" target="_blank" rel="noopener noreferrer" title="Instagram">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://www.facebook.com/montatechbrasil.montagens" target="_blank" rel="noopener noreferrer" title="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
+    <main>
+        
+        <section class="hero-section">
+            <div class="container">
+                <h1>Montador de Móveis Valparaíso de Goiás</h1>
+                <h2>Serviços de montagem, desmontagem e reparo para Valparaíso e região do Entorno. Qualidade, Garantia e o melhor preço justo.</h2>
+                
+                <button onclick="window.open('https://wa.me/5561998865417?text=Ol%C3%A1%2C%20vi%20o%20site%20e%20gostaria%20de%20um%20or%C3%A7amento.', '_blank')" class="cta-button">
+                    AGENDAR AGORA
+                </button>
             </div>
         </section>
 
-        <hr class="divider">
-
-        <!-- SEÇÃO DO QR CODE -->
-        <section class="qr-code-section">
-            <img src="img/qrcode.png" alt="QR Code para Contato">
-            <p>Aponte a câmera e salve meu contato!</p>
+        <section class="services-section">
+            <div class="container">
+                <h2>Serviços de Montagem e Desmontagem</h2>
+                <div class="services-grid">
+                    <div>
+                        <h3>Montagem de Móveis Convencionais</h3>
+                        <p>Realizamos a montagem de todos os tipos de móveis residenciais e de escritório, garantindo um serviço rápido e perfeito.</p>
+                        <ul>
+                            <li>• Montador de guarda-roupa</li>
+                            <li>• Montagem de cozinhas compactas</li>
+                            <li>• Instalação de painel de TV</li>
+                            <li>• Montagem de mesas e escrivaninhas</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Desmontagem para Mudança</h3>
+                        <p>Serviço cuidadoso de desmontagem e remontagem de móveis para mudanças. Cuidamos das suas peças para que cheguem intactas ao novo lar.</p>
+                        <ul>
+                            <li>• Montador de móveis para mudança</li>
+                            <li>• Desmontagem e montagem profissional</li>
+                            <li>• Organização de peças e ferragens</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Reparos e Manutenções</h3>
+                        <p>Seu móvel está com problemas? Oferecemos serviços de reparo para portas, gavetas e estruturas em geral.</p>
+                        <ul>
+                            <li>• Troca de corrediças e dobradiças</li>
+                            <li>• Regulagem de portas de correr</li>
+                            <li>• Reforço de fundos de gaveta e armários</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
 
-    </div>
-    
-     <!-- Start of HubSpot Embed Code -->
-<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/49534387.js"></script>
-<!-- End of HubSpot Embed Code -->
+        <section class="brands-section">
+            <div class="container">
+                <h2>Montador Especializado para Móveis Comprados Online</h2>
+                <p>Procurando um montador para móveis da **MadeiraMadeira**, **Madesa**, **Magazine Luiza (Magalu)** ou **Casas Bahia**? Temos experiência com os maiores fabricantes e lojas do Brasil, garantindo uma montagem correta e seguindo o manual à risca. Contrate um montador que conhece o seu móvel.</p>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="container">
+                <h2>Quem Somos</h2>
+                <p>A MontaTech Brasil é a sua empresa de montagem de móveis em Valparaíso de Goiás. Mais do que um **montador de móveis particular**, somos uma solução completa que une tecnologia e expertise para oferecer um serviço de extrema qualidade. Se você busca um **montador de guarda roupa perto de mim** ou precisa de um **serviço de montagem de móveis** com garantia, você encontrou o lugar certo. Nosso compromisso é com sua satisfação.</p>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <img src="img/logo3.png" alt="MontaTech Brasil - Montagem de Móveis" class="footer-logo" width="270" height="60">
+            <p class="slogan">Gestão Profissional de Montagem de Móveis</p>
+            <div class="contatos">
+                <p><strong>Atendemos em:</strong> Valparaíso de Goiás e Região do Entorno</p>
+                <p><strong>Contato/WhatsApp:</strong> <a href="https://wa.me/5561998865417">(61) 9 9886-5417</a></p>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/montatechbrasil.montagens/" target="_blank">Instagram</a> |
+                <a href="https://www.facebook.com/montatechbrasil.montagens" target="_blank">Facebook</a> |
+                <a href="https://www.magazinevoce.com.br/magazinemontatechbrasil/" target="_blank">Loja Magalu</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 MontaTech Brasil | Todos os Direitos Reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Códigos Espiões Essenciais (Carregamento Atrasado) -->
+    <script>
+        function loadGoogleScripts() {
+            const scripts = [
+                'https://www.googletagmanager.com/gtag/js?id=G-71WQ023PX4',
+                'https://www.googletagmanager.com/gtag/js?id=AW-17641071678'
+            ];
+            scripts.forEach(src => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.async = true;
+                document.head.appendChild(script);
+            });
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-71WQ023PX4');
+            gtag('config', 'AW-17641071678');
+        }
+        setTimeout(loadGoogleScripts, 4000); 
+    </script>
     
 </body>
 </html>
