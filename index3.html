@@ -82,6 +82,21 @@
         .planejados-section .cta-button {
             margin-top: 30px;
         }
+
+.gallery-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.gallery-scroll img {
+  width: 280px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  scroll-snap-align: start;
+}        
     </style>
 </head>
 
@@ -171,6 +186,18 @@
     </div>
 </section>
 
+<section class="gallery-section">
+  <h2>Galeria de Trabalhos</h2>
+
+  <div class="gallery-scroll">
+    <img src="https://cdn.seusite.com/img1.jpg" alt="">
+    <img src="https://cdn.seusite.com/img2.jpg" alt="">
+    <img src="https://cdn.seusite.com/img3.jpg" alt="">
+    <img src="https://cdn.seusite.com/img4.jpg" alt="">
+    <img src="https://cdn.seusite.com/img5.jpg" alt="">
+  </div>
+</section>
+    
 <!-- AVALIAÇÕES -->
 <section class="reviews-section">
     <div class="container">
