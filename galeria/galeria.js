@@ -1,3 +1,7 @@
+// ============================================
+// GALERIA DINÂMICA - Busca imagens do Cloudinary
+// ============================================
+
 class CarrosselGaleria {
     constructor() {
         this.container = document.getElementById('carouselContainer');
@@ -12,21 +16,118 @@ class CarrosselGaleria {
         this.autoplayInterval = null;
         this.isAutoplayActive = true;
         this.autoplaySpeed = 3000;
+        this.images = [];
         
         this.init();
     }
     
-    init() {
-        this.createDots();
-        this.updateActiveDot();
-        this.setupEventListeners();
-        this.startAutoplay();
+    async init() {
+        // Mostra loading
+        this.track.innerHTML = '<div style="text-align:center; padding:40px;">Carregando imagens...</div>';
+        
+        // Busca as imagens do Cloudinary
+        await this.loadImagesFromCloudinary();
+        
+        // Se encontrou imagens, cria a galeria
+        if (this.images.length > 0) {
+            this.createGallery();
+            this.createDots();
+            this.updateActiveDot();
+            this.setupEventListeners();
+            this.startAutoplay();
+        } else {
+            this.track.innerHTML = '<div style="text-align:center; padding:40px;">Nenhuma imagem encontrada.</div>';
+        }
+    }
+    
+    async loadImagesFromCloudinary() {
+        try {
+            // API do Cloudinary para listar imagens
+            const cloudName = CLOUD_NAME;
+            const folder = FOLDER ? `prefix=${FOLDER}&` : '';
+            
+            // Nota: Esta chamada é pública e só lista imagens (sem expor chaves)
+            const url = `https://res.cloudinary.com/${cloudName}/image/list/${folder}.json`;
+            
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (data.resources && data.resources.length > 0) {
+                // Pega as últimas MAX_IMAGES imagens (mais recentes primeiro)
+                this.images = data.resources
+                    .slice(0, MAX_IMAGES)
+                    .map(resource => ({
+                        publicId: resource.public_id,
+                        url: getOptimizedUrl(resource.public_id),
+                        format: resource.format
+                    }));
+            } else {
+                // Fallback: usa lista manual se a API não funcionar
+                this.useManualFallback();
+            }
+        } catch (error) {
+            console.log('API não disponível, usando lista manual');
+            this.useManualFallback();
+        }
+    }
+    
+    useManualFallback() {
+        // Lista manual das suas 6 imagens (funciona sempre)
+        const manualImages = [
+            'montagem-moveis-valparaiso-goias-01_izqrzz',
+            'montagem-moveis-cidades-entorno-02_vin2np',
+            'montagem-profissional-valparaiso-06_ztmhmi',
+            'montagem-decoracao-interiores-09_z0fjvd',
+            'excelencia-montagem-moveis-04._p1ef6q',
+            'inteligencia-projetos-moveis-05_gr244d'
+        ];
+        
+        this.images = manualImages.map(publicId => ({
+            publicId: publicId,
+            url: getOptimizedUrl(publicId),
+            format: 'png'
+        }));
+    }
+    
+    createGallery() {
+        this.track.innerHTML = '';
+        
+        this.images.forEach((img, index) => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+            slide.setAttribute('itemscope', '');
+            slide.setAttribute('itemtype', 'https://schema.org/ImageObject');
+            
+            // Tenta extrair um título bonito do nome do arquivo
+            let title = img.publicId
+                .replace(/_/g, ' ')
+                .replace(/-/g, ' ')
+                .split(' ')
+                .slice(0, 4)
+                .join(' ')
+                .replace(/\b\w/g, l => l.toUpperCase());
+            
+            slide.innerHTML = `
+                <img src="${img.url}" 
+                     alt="Montagem de móveis - MontaTech Brasil"
+                     title="${title}"
+                     loading="lazy"
+                     width="640"
+                     height="480"
+                     itemprop="contentUrl">
+                <div class="slide-info">
+                    <span class="slide-badge">Trabalho Realizado</span>
+                    <h3 itemprop="name">${title}</h3>
+                    <p itemprop="description">Montagem profissional em Valparaíso de Goiás</p>
+                </div>
+            `;
+            
+            this.track.appendChild(slide);
+        });
     }
     
     createDots() {
-        const slides = this.track.children;
-        const slideCount = slides.length;
-        
+        const slideCount = this.images.length;
         this.dotsContainer.innerHTML = '';
         
         for (let i = 0; i < slideCount; i++) {
@@ -221,6 +322,7 @@ class CarrosselGaleria {
     }
 }
 
+// Inicializar
 document.addEventListener('DOMContentLoaded', () => {
     new CarrosselGaleria();
 });
