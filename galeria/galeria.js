@@ -1,5 +1,5 @@
 // ============================================
-// GALERIA DINÂMICA - Busca imagens do Cloudinary
+// GALERIA CARROSSEL COM LIGHTBOX NAVEGÁVEL
 // ============================================
 
 class CarrosselGaleria {
@@ -10,83 +10,25 @@ class CarrosselGaleria {
         this.nextBtn = document.querySelector('.next-btn');
         this.dotsContainer = document.getElementById('carouselDots');
         
+        this.images = IMAGENS.slice(0, MAX_IMAGENS);
+        this.currentIndex = 0;
+        
         this.isDragging = false;
         this.startX = 0;
         this.scrollLeft = 0;
         this.autoplayInterval = null;
         this.isAutoplayActive = true;
         this.autoplaySpeed = 3000;
-        this.images = [];
         
         this.init();
     }
     
-    async init() {
-        // Mostra loading
-        this.track.innerHTML = '<div style="text-align:center; padding:40px;">Carregando imagens...</div>';
-        
-        // Busca as imagens do Cloudinary
-        await this.loadImagesFromCloudinary();
-        
-        // Se encontrou imagens, cria a galeria
-        if (this.images.length > 0) {
-            this.createGallery();
-            this.createDots();
-            this.updateActiveDot();
-            this.setupEventListeners();
-            this.startAutoplay();
-        } else {
-            this.track.innerHTML = '<div style="text-align:center; padding:40px;">Nenhuma imagem encontrada.</div>';
-        }
-    }
-    
-    async loadImagesFromCloudinary() {
-        try {
-            // API do Cloudinary para listar imagens
-            const cloudName = CLOUD_NAME;
-            const folder = FOLDER ? `prefix=${FOLDER}&` : '';
-            
-            // Nota: Esta chamada é pública e só lista imagens (sem expor chaves)
-            const url = `https://res.cloudinary.com/${cloudName}/image/list/${folder}.json`;
-            
-            const response = await fetch(url);
-            const data = await response.json();
-            
-            if (data.resources && data.resources.length > 0) {
-                // Pega as últimas MAX_IMAGES imagens (mais recentes primeiro)
-                this.images = data.resources
-                    .slice(0, MAX_IMAGES)
-                    .map(resource => ({
-                        publicId: resource.public_id,
-                        url: getOptimizedUrl(resource.public_id),
-                        format: resource.format
-                    }));
-            } else {
-                // Fallback: usa lista manual se a API não funcionar
-                this.useManualFallback();
-            }
-        } catch (error) {
-            console.log('API não disponível, usando lista manual');
-            this.useManualFallback();
-        }
-    }
-    
-    useManualFallback() {
-        // Lista manual das suas 6 imagens (funciona sempre)
-        const manualImages = [
-            'montagem-moveis-valparaiso-goias-01_izqrzz',
-            'montagem-moveis-cidades-entorno-02_vin2np',
-            'montagem-profissional-valparaiso-06_ztmhmi',
-            'montagem-decoracao-interiores-09_z0fjvd',
-            'excelencia-montagem-moveis-04._p1ef6q',
-            'inteligencia-projetos-moveis-05_gr244d'
-        ];
-        
-        this.images = manualImages.map(publicId => ({
-            publicId: publicId,
-            url: getOptimizedUrl(publicId),
-            format: 'png'
-        }));
+    init() {
+        this.createGallery();
+        this.createDots();
+        this.updateActiveDot();
+        this.setupEventListeners();
+        this.startAutoplay();
     }
     
     createGallery() {
@@ -95,31 +37,22 @@ class CarrosselGaleria {
         this.images.forEach((img, index) => {
             const slide = document.createElement('div');
             slide.className = 'carousel-slide';
-            slide.setAttribute('itemscope', '');
-            slide.setAttribute('itemtype', 'https://schema.org/ImageObject');
-            
-            // Tenta extrair um título bonito do nome do arquivo
-            let title = img.publicId
-                .replace(/_/g, ' ')
-                .replace(/-/g, ' ')
-                .split(' ')
-                .slice(0, 4)
-                .join(' ')
-                .replace(/\b\w/g, l => l.toUpperCase());
+            slide.setAttribute('data-index', index);
             
             slide.innerHTML = `
                 <img src="${img.url}" 
-                     alt="Montagem de móveis - MontaTech Brasil"
-                     title="${title}"
+                     alt="${img.titulo || 'Montagem de móveis'}"
+                     title="${img.titulo || ''}"
                      loading="lazy"
                      width="640"
-                     height="480"
-                     itemprop="contentUrl">
+                     height="480">
+                ${MOSTRAR_TEXTO ? `
                 <div class="slide-info">
                     <span class="slide-badge">Trabalho Realizado</span>
-                    <h3 itemprop="name">${title}</h3>
-                    <p itemprop="description">Montagem profissional em Valparaíso de Goiás</p>
+                    <h3>${img.titulo || 'Montagem Profissional'}</h3>
+                    <p>${img.descricao || 'Montagem em Valparaíso de Goiás'}</p>
                 </div>
+                ` : ''}
             `;
             
             this.track.appendChild(slide);
@@ -217,7 +150,50 @@ class CarrosselGaleria {
         }
     }
     
+    // Lightbox com navegação
+    openLightbox(index) {
+        this.currentIndex = index;
+        this.updateLightboxImage();
+        
+        const lightbox = document.getElementById('lightbox');
+        lightbox.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    updateLightboxImage() {
+        const img = this.images[this.currentIndex];
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        
+        // Pega a URL sem os parâmetros de redimensionamento para o lightbox
+        const fullUrl = img.url.replace('w_640,h_480,c_fill,q_auto,f_auto/', '');
+        lightboxImg.src = fullUrl;
+        
+        if (MOSTRAR_TEXTO && img.titulo) {
+            lightboxCaption.textContent = `${img.titulo}${img.descricao ? ' - ' + img.descricao : ''}`;
+        } else {
+            lightboxCaption.textContent = 'MontaTech Brasil - Montagem de Móveis';
+        }
+    }
+    
+    nextLightboxImage() {
+        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        this.updateLightboxImage();
+    }
+    
+    prevLightboxImage() {
+        this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        this.updateLightboxImage();
+    }
+    
+    closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    
     setupEventListeners() {
+        // Botões do carrossel
         this.prevBtn.addEventListener('click', () => {
             this.stopAutoplay();
             this.scrollPrev();
@@ -230,6 +206,7 @@ class CarrosselGaleria {
             if (this.isAutoplayActive) this.startAutoplay();
         });
         
+        // Drag com mouse
         this.container.addEventListener('mousedown', (e) => {
             this.isDragging = true;
             this.startX = e.pageX - this.container.offsetLeft;
@@ -258,6 +235,7 @@ class CarrosselGaleria {
             this.container.scrollLeft = this.scrollLeft - walk;
         });
         
+        // Touch para mobile
         this.container.addEventListener('touchstart', (e) => {
             this.isDragging = true;
             this.startX = e.touches[0].pageX - this.container.offsetLeft;
@@ -281,44 +259,36 @@ class CarrosselGaleria {
             this.updateActiveDot();
         });
         
+        // Abrir lightbox ao clicar no slide
         this.track.addEventListener('click', (e) => {
             const slide = e.target.closest('.carousel-slide');
             if (slide) {
-                this.openLightbox(slide);
+                const index = parseInt(slide.getAttribute('data-index'));
+                this.openLightbox(index);
             }
         });
-    }
-    
-    openLightbox(slide) {
-        const img = slide.querySelector('img');
-        const info = slide.querySelector('.slide-info');
-        const badge = info.querySelector('.slide-badge')?.innerText || '';
-        const title = info.querySelector('h3')?.innerText || '';
-        const desc = info.querySelector('p')?.innerText || '';
         
+        // Controles do lightbox
         const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxCaption = document.getElementById('lightboxCaption');
-        
-        lightboxImg.src = img.src;
-        lightboxCaption.textContent = `${badge} - ${title}${desc ? ': ' + desc : ''}`;
-        lightbox.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        
         const closeBtn = document.querySelector('.lightbox-close');
-        const closeLightbox = () => {
-            lightbox.style.display = 'none';
-            document.body.style.overflow = '';
-        };
+        const prevLightbox = document.getElementById('lightboxPrev');
+        const nextLightbox = document.getElementById('lightboxNext');
         
-        closeBtn.onclick = closeLightbox;
-        lightbox.onclick = (e) => {
-            if (e.target === lightbox) closeLightbox();
-        };
+        closeBtn.addEventListener('click', () => this.closeLightbox());
+        prevLightbox.addEventListener('click', () => this.prevLightboxImage());
+        nextLightbox.addEventListener('click', () => this.nextLightboxImage());
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) this.closeLightbox();
+        });
         
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
-        }, { once: true });
+            if (lightbox.style.display !== 'block') return;
+            
+            if (e.key === 'Escape') this.closeLightbox();
+            if (e.key === 'ArrowLeft') this.prevLightboxImage();
+            if (e.key === 'ArrowRight') this.nextLightboxImage();
+        });
     }
 }
 
