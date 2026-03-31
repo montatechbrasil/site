@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Trabalhos - MontaTech Brasil</title>
+    <link rel="stylesheet" href="galeria.css">
+</head>
+<body>
+    <div class="gallery-wrapper">
+        <div class="gallery-header">
+            <h2 class="gallery-title">Nossos Trabalhos Recentes</h2>
+            <p class="gallery-subtitle">Veja alguns dos projetos que realizamos com excelência</p>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Imagem 1 - Guarda-Roupa -->
+            <div class="gallery-item" data-image="https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&h=600&fit=crop">
+                <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=400&h=300&fit=crop" 
+                     alt="Montagem de guarda-roupa planejado" 
+                     loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Guarda-Roupa</span>
+                    <h3>Guarda-Roupa Planejado</h3>
+                    <p>Montagem completa com acabamento premium</p>
+                </div>
+            </div>
+
+            <!-- Imagem 2 - Cozinha -->
+            <div class="gallery-item" data-image="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=800&h=600&fit=crop">
+                <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=400&h=300&fit=crop" 
+                     alt="Montagem de cozinha completa" 
+                     loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Cozinha</span>
+                    <h3>Cozinha Completa</h3>
+                    <p>Instalação de armários modulados</p>
+                </div>
+            </div>
+
+            <!-- Imagem 3 - Painel de TV -->
+            <div class="gallery-item" data-image="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=800&h=600&fit=crop">
+                <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400&h=300&fit=crop" 
+                     alt="Painel de TV moderno" 
+                     loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Painel de TV</span>
+                    <h3>Painel de TV Moderno</h3>
+                    <p>Instalação com iluminação LED</p>
+                </div>
+            </div>
+
+            <!-- Imagem 4 - Escritório -->
+            <div class="gallery-item" data-image="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=800&h=600&fit=crop">
+                <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=400&h=300&fit=crop" 
+                     alt="Montagem de escritório" 
+                     loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Escritório</span>
+                    <h3>Home Office</h3>
+                    <p>Montagem de mesa e estantes</p>
+                </div>
+            </div>
+
+            <!-- Imagem 5 - Quarto Casal -->
+            <div class="gallery-item" data-image="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=800&h=600&fit=crop">
+                <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=400&h=300&fit=crop" 
+                     alt="Quarto de casal completo" 
+                     loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Quarto</span>
+                    <h3>Quarto de Casal</h3>
+                    <p>Cabeceira, criados e guarda-roupa</p>
+                </div>
+            </div>
+
+            <!-- Imagem 6 - Rack para Sala -->
+            <div class="gallery-item" data-image="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=800&h=600&fit=crop">
+                <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=400&h=300&fit=crop" 
+                     alt="Rack para sala de estar" 
+                     loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="gallery-badge">Rack</span>
+                    <h3>Rack para Sala</h3>
+                    <p>Design moderno e funcional</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal (para ampliar imagens) -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-content" id="lightboxImg">
+        <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+
+    <script src="galeria.js"></script>
+</body>
+</html>
