@@ -5,7 +5,6 @@ class CarrosselGaleria {
         this.prevBtn = document.querySelector('.prev-btn');
         this.nextBtn = document.querySelector('.next-btn');
         this.dotsContainer = document.getElementById('carouselDots');
-        this.autoplayBtn = document.getElementById('autoplayToggle');
         
         this.isDragging = false;
         this.startX = 0;
@@ -38,7 +37,7 @@ class CarrosselGaleria {
     
     updateActiveDot() {
         const scrollPosition = this.container.scrollLeft;
-        const slideWidth = this.track.children[0]?.offsetWidth + 20; // width + gap
+        const slideWidth = this.track.children[0]?.offsetWidth + 20;
         const activeIndex = Math.round(scrollPosition / slideWidth);
         
         const dots = this.dotsContainer.children;
@@ -62,7 +61,7 @@ class CarrosselGaleria {
         let newScroll = currentScroll + slideWidth;
         
         if (newScroll > maxScroll) {
-            newScroll = 0; // Volta ao início
+            newScroll = 0;
         }
         
         this.container.scrollTo({
@@ -77,7 +76,7 @@ class CarrosselGaleria {
         let newScroll = currentScroll - slideWidth;
         
         if (newScroll < 0) {
-            newScroll = this.container.scrollWidth - this.container.clientWidth; // Vai ao final
+            newScroll = this.container.scrollWidth - this.container.clientWidth;
         }
         
         this.container.scrollTo({
@@ -100,20 +99,6 @@ class CarrosselGaleria {
         if (this.autoplayInterval) {
             clearInterval(this.autoplayInterval);
             this.autoplayInterval = null;
-        }
-    }
-    
-    toggleAutoplay() {
-        this.isAutoplayActive = !this.isAutoplayActive;
-        
-        if (this.isAutoplayActive) {
-            this.startAutoplay();
-            this.autoplayBtn.textContent = '⏸ Pausar';
-            this.autoplayBtn.style.opacity = '1';
-        } else {
-            this.stopAutoplay();
-            this.autoplayBtn.textContent = '▶ Play';
-            this.autoplayBtn.style.opacity = '0.7';
         }
     }
     
@@ -185,9 +170,6 @@ class CarrosselGaleria {
             this.updateActiveDot();
         });
         
-        // Autoplay toggle
-        this.autoplayBtn.addEventListener('click', () => this.toggleAutoplay());
-        
         // Lightbox ao clicar nos slides
         this.track.addEventListener('click', (e) => {
             const slide = e.target.closest('.carousel-slide');
@@ -213,7 +195,6 @@ class CarrosselGaleria {
         lightbox.style.display = 'block';
         document.body.style.overflow = 'hidden';
         
-        // Fechar lightbox
         const closeBtn = document.querySelector('.lightbox-close');
         const closeLightbox = () => {
             lightbox.style.display = 'none';
