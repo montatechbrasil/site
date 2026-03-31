@@ -1,74 +1,237 @@
-// Galeria Interativa - Lightbox
-document.addEventListener('DOMContentLoaded', function() {
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxCaption = document.getElementById('lightboxCaption');
-    const closeBtn = document.querySelector('.lightbox-close');
-
-    // Função para obter o texto da legenda
-    function getCaption(item) {
-        const overlay = item.querySelector('.gallery-overlay');
-        const badge = overlay.querySelector('.gallery-badge')?.innerText || '';
-        const title = overlay.querySelector('h3')?.innerText || '';
-        const desc = overlay.querySelector('p')?.innerText || '';
+class CarrosselGaleria {
+    constructor() {
+        this.container = document.getElementById('carouselContainer');
+        this.track = document.getElementById('carouselTrack');
+        this.prevBtn = document.querySelector('.prev-btn');
+        this.nextBtn = document.querySelector('.next-btn');
+        this.dotsContainer = document.getElementById('carouselDots');
+        this.autoplayBtn = document.getElementById('autoplayToggle');
         
-        return `${badge} - ${title}${desc ? ': ' + desc : ''}`;
+        this.isDragging = false;
+        this.startX = 0;
+        this.scrollLeft = 0;
+        this.autoplayInterval = null;
+        this.isAutoplayActive = true;
+        this.autoplaySpeed = 3000;
+        
+        this.init();
     }
-
-    // Abrir lightbox ao clicar na imagem
-    galleryItems.forEach(item => {
-        item.addEventListener('click', function(e) {
-            const imgSrc = this.getAttribute('data-image');
-            const caption = getCaption(this);
-            
-            lightboxImg.src = imgSrc;
-            lightboxCaption.textContent = caption;
-            lightbox.style.display = 'block';
-            
-            // Prevenir scroll do body
-            document.body.style.overflow = 'hidden';
-        });
-    });
-
-    // Fechar lightbox
-    function closeLightbox() {
-        lightbox.style.display = 'none';
-        lightboxImg.src = '';
-        lightboxCaption.textContent = '';
-        document.body.style.overflow = '';
-    }
-
-    closeBtn.addEventListener('click', closeLightbox);
     
-    // Fechar ao clicar fora da imagem
-    lightbox.addEventListener('click', function(e) {
-        if (e.target === lightbox) {
-            closeLightbox();
+    init() {
+        this.createDots();
+        this.updateActiveDot();
+        this.setupEventListeners();
+        this.startAutoplay();
+    }
+    
+    createDots() {
+        const slides = this.track.children;
+        const slideCount = slides.length;
+        
+        for (let i = 0; i < slideCount; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            dot.addEventListener('click', () => this.scrollToSlide(i));
+            this.dotsContainer.appendChild(dot);
         }
-    });
-
-    // Fechar com tecla ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && lightbox.style.display === 'block') {
-            closeLightbox();
-        }
-    });
-
-    // Lazy loading adicional para melhor performance
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.getAttribute('data-src') || img.src;
-                    observer.unobserve(img);
-                }
-            });
-        });
-
-        document.querySelectorAll('.gallery-item img').forEach(img => {
-            imageObserver.observe(img);
+    }
+    
+    updateActiveDot() {
+        const scrollPosition = this.container.scrollLeft;
+        const slideWidth = this.track.children[0]?.offsetWidth + 20; // width + gap
+        const activeIndex = Math.round(scrollPosition / slideWidth);
+        
+        const dots = this.dotsContainer.children;
+        Array.from(dots).forEach((dot, index) => {
+            dot.classList.toggle('active', index === activeIndex);
         });
     }
+    
+    scrollToSlide(index) {
+        const slideWidth = this.track.children[0]?.offsetWidth + 20;
+        this.container.scrollTo({
+            left: slideWidth * index,
+            behavior: 'smooth'
+        });
+    }
+    
+    scrollNext() {
+        const slideWidth = this.track.children[0]?.offsetWidth + 20;
+        const currentScroll = this.container.scrollLeft;
+        const maxScroll = this.container.scrollWidth - this.container.clientWidth;
+        let newScroll = currentScroll + slideWidth;
+        
+        if (newScroll > maxScroll) {
+            newScroll = 0; // Volta ao início
+        }
+        
+        this.container.scrollTo({
+            left: newScroll,
+            behavior: 'smooth'
+        });
+    }
+    
+    scrollPrev() {
+        const slideWidth = this.track.children[0]?.offsetWidth + 20;
+        const currentScroll = this.container.scrollLeft;
+        let newScroll = currentScroll - slideWidth;
+        
+        if (newScroll < 0) {
+            newScroll = this.container.scrollWidth - this.container.clientWidth; // Vai ao final
+        }
+        
+        this.container.scrollTo({
+            left: newScroll,
+            behavior: 'smooth'
+        });
+    }
+    
+    startAutoplay() {
+        if (this.autoplayInterval) clearInterval(this.autoplayInterval);
+        
+        this.autoplayInterval = setInterval(() => {
+            if (this.isAutoplayActive && !this.isDragging) {
+                this.scrollNext();
+            }
+        }, this.autoplaySpeed);
+    }
+    
+    stopAutoplay() {
+        if (this.autoplayInterval) {
+            clearInterval(this.autoplayInterval);
+            this.autoplayInterval = null;
+        }
+    }
+    
+    toggleAutoplay() {
+        this.isAutoplayActive = !this.isAutoplayActive;
+        
+        if (this.isAutoplayActive) {
+            this.startAutoplay();
+            this.autoplayBtn.textContent = '⏸ Pausar';
+            this.autoplayBtn.style.opacity = '1';
+        } else {
+            this.stopAutoplay();
+            this.autoplayBtn.textContent = '▶ Play';
+            this.autoplayBtn.style.opacity = '0.7';
+        }
+    }
+    
+    setupEventListeners() {
+        // Botões de navegação
+        this.prevBtn.addEventListener('click', () => {
+            this.stopAutoplay();
+            this.scrollPrev();
+            if (this.isAutoplayActive) this.startAutoplay();
+        });
+        
+        this.nextBtn.addEventListener('click', () => {
+            this.stopAutoplay();
+            this.scrollNext();
+            if (this.isAutoplayActive) this.startAutoplay();
+        });
+        
+        // Drag/Swipe com mouse
+        this.container.addEventListener('mousedown', (e) => {
+            this.isDragging = true;
+            this.startX = e.pageX - this.container.offsetLeft;
+            this.scrollLeft = this.container.scrollLeft;
+            this.container.style.cursor = 'grabbing';
+            this.stopAutoplay();
+        });
+        
+        this.container.addEventListener('mouseleave', () => {
+            this.isDragging = false;
+            this.container.style.cursor = 'grab';
+            if (this.isAutoplayActive && !this.autoplayInterval) this.startAutoplay();
+        });
+        
+        this.container.addEventListener('mouseup', () => {
+            this.isDragging = false;
+            this.container.style.cursor = 'grab';
+            if (this.isAutoplayActive && !this.autoplayInterval) this.startAutoplay();
+        });
+        
+        this.container.addEventListener('mousemove', (e) => {
+            if (!this.isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - this.container.offsetLeft;
+            const walk = (x - this.startX) * 2;
+            this.container.scrollLeft = this.scrollLeft - walk;
+        });
+        
+        // Touch/Swipe para mobile
+        this.container.addEventListener('touchstart', (e) => {
+            this.isDragging = true;
+            this.startX = e.touches[0].pageX - this.container.offsetLeft;
+            this.scrollLeft = this.container.scrollLeft;
+            this.stopAutoplay();
+        });
+        
+        this.container.addEventListener('touchend', () => {
+            this.isDragging = false;
+            if (this.isAutoplayActive && !this.autoplayInterval) this.startAutoplay();
+        });
+        
+        this.container.addEventListener('touchmove', (e) => {
+            if (!this.isDragging) return;
+            const x = e.touches[0].pageX - this.container.offsetLeft;
+            const walk = (x - this.startX) * 2;
+            this.container.scrollLeft = this.scrollLeft - walk;
+        });
+        
+        // Atualizar dots ao rolar
+        this.container.addEventListener('scroll', () => {
+            this.updateActiveDot();
+        });
+        
+        // Autoplay toggle
+        this.autoplayBtn.addEventListener('click', () => this.toggleAutoplay());
+        
+        // Lightbox ao clicar nos slides
+        this.track.addEventListener('click', (e) => {
+            const slide = e.target.closest('.carousel-slide');
+            if (slide) {
+                this.openLightbox(slide);
+            }
+        });
+    }
+    
+    openLightbox(slide) {
+        const img = slide.querySelector('img');
+        const info = slide.querySelector('.slide-info');
+        const badge = info.querySelector('.slide-badge')?.innerText || '';
+        const title = info.querySelector('h3')?.innerText || '';
+        const desc = info.querySelector('p')?.innerText || '';
+        
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        
+        lightboxImg.src = img.src;
+        lightboxCaption.textContent = `${badge} - ${title}${desc ? ': ' + desc : ''}`;
+        lightbox.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        
+        // Fechar lightbox
+        const closeBtn = document.querySelector('.lightbox-close');
+        const closeLightbox = () => {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = '';
+        };
+        
+        closeBtn.onclick = closeLightbox;
+        lightbox.onclick = (e) => {
+            if (e.target === lightbox) closeLightbox();
+        };
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        }, { once: true });
+    }
+}
+
+// Inicializar quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', () => {
+    new CarrosselGaleria();
 });
