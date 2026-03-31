@@ -27,6 +27,8 @@ class CarrosselGaleria {
         const slides = this.track.children;
         const slideCount = slides.length;
         
+        this.dotsContainer.innerHTML = '';
+        
         for (let i = 0; i < slideCount; i++) {
             const dot = document.createElement('div');
             dot.classList.add('dot');
@@ -37,7 +39,10 @@ class CarrosselGaleria {
     
     updateActiveDot() {
         const scrollPosition = this.container.scrollLeft;
-        const slideWidth = this.track.children[0]?.offsetWidth + 20;
+        const firstSlide = this.track.children[0];
+        if (!firstSlide) return;
+        
+        const slideWidth = firstSlide.offsetWidth + 20;
         const activeIndex = Math.round(scrollPosition / slideWidth);
         
         const dots = this.dotsContainer.children;
@@ -47,7 +52,10 @@ class CarrosselGaleria {
     }
     
     scrollToSlide(index) {
-        const slideWidth = this.track.children[0]?.offsetWidth + 20;
+        const firstSlide = this.track.children[0];
+        if (!firstSlide) return;
+        
+        const slideWidth = firstSlide.offsetWidth + 20;
         this.container.scrollTo({
             left: slideWidth * index,
             behavior: 'smooth'
@@ -55,7 +63,10 @@ class CarrosselGaleria {
     }
     
     scrollNext() {
-        const slideWidth = this.track.children[0]?.offsetWidth + 20;
+        const firstSlide = this.track.children[0];
+        if (!firstSlide) return;
+        
+        const slideWidth = firstSlide.offsetWidth + 20;
         const currentScroll = this.container.scrollLeft;
         const maxScroll = this.container.scrollWidth - this.container.clientWidth;
         let newScroll = currentScroll + slideWidth;
@@ -71,7 +82,10 @@ class CarrosselGaleria {
     }
     
     scrollPrev() {
-        const slideWidth = this.track.children[0]?.offsetWidth + 20;
+        const firstSlide = this.track.children[0];
+        if (!firstSlide) return;
+        
+        const slideWidth = firstSlide.offsetWidth + 20;
         const currentScroll = this.container.scrollLeft;
         let newScroll = currentScroll - slideWidth;
         
@@ -103,7 +117,6 @@ class CarrosselGaleria {
     }
     
     setupEventListeners() {
-        // Botões de navegação
         this.prevBtn.addEventListener('click', () => {
             this.stopAutoplay();
             this.scrollPrev();
@@ -116,7 +129,6 @@ class CarrosselGaleria {
             if (this.isAutoplayActive) this.startAutoplay();
         });
         
-        // Drag/Swipe com mouse
         this.container.addEventListener('mousedown', (e) => {
             this.isDragging = true;
             this.startX = e.pageX - this.container.offsetLeft;
@@ -145,7 +157,6 @@ class CarrosselGaleria {
             this.container.scrollLeft = this.scrollLeft - walk;
         });
         
-        // Touch/Swipe para mobile
         this.container.addEventListener('touchstart', (e) => {
             this.isDragging = true;
             this.startX = e.touches[0].pageX - this.container.offsetLeft;
@@ -165,12 +176,10 @@ class CarrosselGaleria {
             this.container.scrollLeft = this.scrollLeft - walk;
         });
         
-        // Atualizar dots ao rolar
         this.container.addEventListener('scroll', () => {
             this.updateActiveDot();
         });
         
-        // Lightbox ao clicar nos slides
         this.track.addEventListener('click', (e) => {
             const slide = e.target.closest('.carousel-slide');
             if (slide) {
@@ -212,7 +221,6 @@ class CarrosselGaleria {
     }
 }
 
-// Inicializar quando o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', () => {
     new CarrosselGaleria();
 });
