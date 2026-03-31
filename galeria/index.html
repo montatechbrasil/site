@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Galeria de Trabalhos - MontaTech Brasil</title>
+    <title>Galeria de Trabalhos - MontaTech Brasil | Montagem de Móveis em Valparaíso</title>
+    <meta name="description" content="Veja os trabalhos realizados pela MontaTech Brasil. Galeria com fotos reais de montagem de guarda-roupas, cozinhas, painéis de TV e muito mais em Valparaíso de Goiás.">
     <link rel="stylesheet" href="galeria.css">
 </head>
 <body>
@@ -14,117 +15,186 @@
         </div>
 
         <div class="carousel-controls">
-            <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
-            <div class="carousel-container" id="carouselContainer">
+            <button class="carousel-btn prev-btn" aria-label="Anterior" title="Ver trabalho anterior">❮</button>
+            <div class="carousel-container" id="carouselContainer" role="region" aria-label="Galeria de trabalhos">
                 <div class="carousel-track" id="carouselTrack">
+                    <!-- 
+                        ⚠️ INSTRUÇÕES:
+                        1. Substitua "SEU_CLOUD_NAME" pelo seu Cloudinary cloud name
+                        2. Substitua "SUA_IMAGEM_1.jpg" pelo nome do seu arquivo
+                        3. Exemplo final: https://res.cloudinary.com/montatech/image/upload/w_640,h_480,c_fill,q_auto,f_auto/guarda-roupa.jpg
+                    -->
+                    
                     <!-- Item 1 - Guarda-Roupa -->
-                    <div class="carousel-slide" data-title="Guarda-Roupa Planejado" data-desc="Montagem completa com acabamento premium">
-                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&h=400&fit=crop" 
-                             alt="Montagem de guarda-roupa planejado" 
-                             loading="lazy">
+                    <div class="carousel-slide" itemscope itemtype="https://schema.org/ImageObject">
+                        <img src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/w_640,h_480,c_fill,q_auto,f_auto/guarda-roupa.jpg" 
+                             alt="Montagem de guarda-roupa planejado em Valparaíso de Goiás - MontaTech Brasil"
+                             title="Guarda-Roupa Planejado - Montagem profissional"
+                             loading="lazy"
+                             width="640"
+                             height="480"
+                             itemprop="contentUrl">
                         <div class="slide-info">
                             <span class="slide-badge">Guarda-Roupa</span>
-                            <h3>Guarda-Roupa Planejado</h3>
-                            <p>Montagem completa com acabamento premium</p>
+                            <h3 itemprop="name">Guarda-Roupa Planejado</h3>
+                            <p itemprop="description">Montagem completa com acabamento premium em Valparaíso</p>
                         </div>
                     </div>
 
                     <!-- Item 2 - Cozinha -->
-                    <div class="carousel-slide" data-title="Cozinha Completa" data-desc="Instalação de armários modulados">
-                        <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600&h=400&fit=crop" 
-                             alt="Montagem de cozinha completa" 
-                             loading="lazy">
+                    <div class="carousel-slide" itemscope itemtype="https://schema.org/ImageObject">
+                        <img src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/w_640,h_480,c_fill,q_auto,f_auto/cozinha.jpg" 
+                             alt="Montagem de cozinha completa e planejada em Valparaíso de Goiás - MontaTech Brasil"
+                             title="Cozinha Completa - Montagem de armários"
+                             loading="lazy"
+                             width="640"
+                             height="480"
+                             itemprop="contentUrl">
                         <div class="slide-info">
                             <span class="slide-badge">Cozinha</span>
-                            <h3>Cozinha Completa</h3>
-                            <p>Instalação de armários modulados</p>
+                            <h3 itemprop="name">Cozinha Completa</h3>
+                            <p itemprop="description">Instalação de armários modulados com precisão</p>
                         </div>
                     </div>
 
                     <!-- Item 3 - Painel de TV -->
-                    <div class="carousel-slide" data-title="Painel de TV Moderno" data-desc="Instalação com iluminação LED">
-                        <img src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=600&h=400&fit=crop" 
-                             alt="Painel de TV moderno" 
-                             loading="lazy">
+                    <div class="carousel-slide" itemscope itemtype="https://schema.org/ImageObject">
+                        <img src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/w_640,h_480,c_fill,q_auto,f_auto/painel-tv.jpg" 
+                             alt="Painel de TV moderno instalado por montador profissional em Valparaíso - MontaTech Brasil"
+                             title="Painel de TV Moderno com iluminação LED"
+                             loading="lazy"
+                             width="640"
+                             height="480"
+                             itemprop="contentUrl">
                         <div class="slide-info">
                             <span class="slide-badge">Painel de TV</span>
-                            <h3>Painel de TV Moderno</h3>
-                            <p>Instalação com iluminação LED</p>
+                            <h3 itemprop="name">Painel de TV Moderno</h3>
+                            <p itemprop="description">Instalação com iluminação LED e acabamento impecável</p>
                         </div>
                     </div>
 
                     <!-- Item 4 - Escritório -->
-                    <div class="carousel-slide" data-title="Home Office" data-desc="Montagem de mesa e estantes">
-                        <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=600&h=400&fit=crop" 
-                             alt="Montagem de escritório" 
-                             loading="lazy">
+                    <div class="carousel-slide" itemscope itemtype="https://schema.org/ImageObject">
+                        <img src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/w_640,h_480,c_fill,q_auto,f_auto/escritorio.jpg" 
+                             alt="Montagem de escritório home office em Valparaíso de Goiás - MontaTech Brasil"
+                             title="Home Office - Montagem de mesa e estantes"
+                             loading="lazy"
+                             width="640"
+                             height="480"
+                             itemprop="contentUrl">
                         <div class="slide-info">
                             <span class="slide-badge">Escritório</span>
-                            <h3>Home Office</h3>
-                            <p>Montagem de mesa e estantes</p>
+                            <h3 itemprop="name">Home Office</h3>
+                            <p itemprop="description">Montagem de mesa e estantes para trabalho remoto</p>
                         </div>
                     </div>
 
                     <!-- Item 5 - Quarto Casal -->
-                    <div class="carousel-slide" data-title="Quarto de Casal" data-desc="Cabeceira, criados e guarda-roupa">
-                        <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=600&h=400&fit=crop" 
-                             alt="Quarto de casal completo" 
-                             loading="lazy">
+                    <div class="carousel-slide" itemscope itemtype="https://schema.org/ImageObject">
+                        <img src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/w_640,h_480,c_fill,q_auto,f_auto/quarto-casal.jpg" 
+                             alt="Quarto de casal completo com guarda-roupa e criados montados - MontaTech Brasil Valparaíso"
+                             title="Quarto de Casal - Montagem de móveis planejados"
+                             loading="lazy"
+                             width="640"
+                             height="480"
+                             itemprop="contentUrl">
                         <div class="slide-info">
                             <span class="slide-badge">Quarto</span>
-                            <h3>Quarto de Casal</h3>
-                            <p>Cabeceira, criados e guarda-roupa</p>
+                            <h3 itemprop="name">Quarto de Casal</h3>
+                            <p itemprop="description">Cabeceira, criados e guarda-roupa harmonizados</p>
                         </div>
                     </div>
 
                     <!-- Item 6 - Rack para Sala -->
-                    <div class="carousel-slide" data-title="Rack para Sala" data-desc="Design moderno e funcional">
-                        <img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=600&h=400&fit=crop" 
-                             alt="Rack para sala de estar" 
-                             loading="lazy">
+                    <div class="carousel-slide" itemscope itemtype="https://schema.org/ImageObject">
+                        <img src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/w_640,h_480,c_fill,q_auto,f_auto/rack-sala.jpg" 
+                             alt="Rack moderno para sala de estar montado em Valparaíso de Goiás - MontaTech Brasil"
+                             title="Rack para Sala - Design funcional"
+                             loading="lazy"
+                             width="640"
+                             height="480"
+                             itemprop="contentUrl">
                         <div class="slide-info">
                             <span class="slide-badge">Rack</span>
-                            <h3>Rack para Sala</h3>
-                            <p>Design moderno e funcional</p>
+                            <h3 itemprop="name">Rack para Sala</h3>
+                            <p itemprop="description">Design moderno e funcional para sua sala</p>
                         </div>
                     </div>
 
                     <!-- Item 7 - Closet -->
-                    <div class="carousel-slide" data-title="Closet Planejado" data-desc="Organização e estilo">
-                        <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?w=600&h=400&fit=crop" 
-                             alt="Closet planejado" 
-                             loading="lazy">
+                    <div class="carousel-slide" itemscope itemtype="https://schema.org/ImageObject">
+                        <img src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/w_640,h_480,c_fill,q_auto,f_auto/closet.jpg" 
+                             alt="Closet planejado organizado com montagem profissional em Valparaíso - MontaTech Brasil"
+                             title="Closet Planejado - Organização e estilo"
+                             loading="lazy"
+                             width="640"
+                             height="480"
+                             itemprop="contentUrl">
                         <div class="slide-info">
                             <span class="slide-badge">Closet</span>
-                            <h3>Closet Planejado</h3>
-                            <p>Organização e estilo</p>
+                            <h3 itemprop="name">Closet Planejado</h3>
+                            <p itemprop="description">Organização e estilo com acabamento premium</p>
                         </div>
                     </div>
 
                     <!-- Item 8 - Varanda Gourmet -->
-                    <div class="carousel-slide" data-title="Varanda Gourmet" data-desc="Montagem de móveis para área externa">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop" 
-                             alt="Varanda gourmet" 
-                             loading="lazy">
+                    <div class="carousel-slide" itemscope itemtype="https://schema.org/ImageObject">
+                        <img src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/w_640,h_480,c_fill,q_auto,f_auto/varanda-gourmet.jpg" 
+                             alt="Varanda gourmet com móveis planejados montados em Valparaíso de Goiás - MontaTech Brasil"
+                             title="Varanda Gourmet - Área externa completa"
+                             loading="lazy"
+                             width="640"
+                             height="480"
+                             itemprop="contentUrl">
                         <div class="slide-info">
                             <span class="slide-badge">Área Gourmet</span>
-                            <h3>Varanda Gourmet</h3>
-                            <p>Montagem de móveis para área externa</p>
+                            <h3 itemprop="name">Varanda Gourmet</h3>
+                            <p itemprop="description">Montagem de móveis para área externa e churrasqueira</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 9 - Banheiro Planejado -->
+                    <div class="carousel-slide" itemscope itemtype="https://schema.org/ImageObject">
+                        <img src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/w_640,h_480,c_fill,q_auto,f_auto/banheiro-planejado.jpg" 
+                             alt="Banheiro planejado com móveis sob medida montados em Valparaíso - MontaTech Brasil"
+                             title="Banheiro Planejado - Aproveitamento de espaço"
+                             loading="lazy"
+                             width="640"
+                             height="480"
+                             itemprop="contentUrl">
+                        <div class="slide-info">
+                            <span class="slide-badge">Banheiro</span>
+                            <h3 itemprop="name">Banheiro Planejado</h3>
+                            <p itemprop="description">Armários e nichos sob medida para seu banheiro</p>
+                        </div>
+                    </div>
+
+                    <!-- Item 10 - Lavanderia -->
+                    <div class="carousel-slide" itemscope itemtype="https://schema.org/ImageObject">
+                        <img src="https://res.cloudinary.com/SEU_CLOUD_NAME/image/upload/w_640,h_480,c_fill,q_auto,f_auto/lavanderia.jpg" 
+                             alt="Lavanderia planejada com móveis funcionais montados em Valparaíso de Goiás - MontaTech Brasil"
+                             title="Lavanderia Planejada - Organização total"
+                             loading="lazy"
+                             width="640"
+                             height="480"
+                             itemprop="contentUrl">
+                        <div class="slide-info">
+                            <span class="slide-badge">Lavanderia</span>
+                            <h3 itemprop="name">Lavanderia Planejada</h3>
+                            <p itemprop="description">Montagem de móveis para otimizar seu espaço</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <button class="carousel-btn next-btn" aria-label="Próximo">❯</button>
+            <button class="carousel-btn next-btn" aria-label="Próximo" title="Ver próximo trabalho">❯</button>
         </div>
 
-        <!-- Indicadores (dots) -->
-        <div class="carousel-dots" id="carouselDots"></div>
+        <div class="carousel-dots" id="carouselDots" role="navigation" aria-label="Navegação da galeria"></div>
     </div>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightboxImg">
+    <div id="lightbox" class="lightbox" role="dialog" aria-label="Ampliar imagem" aria-modal="true">
+        <span class="lightbox-close" aria-label="Fechar">&times;</span>
+        <img class="lightbox-content" id="lightboxImg" alt="">
         <div id="lightboxCaption" class="lightbox-caption"></div>
     </div>
 
