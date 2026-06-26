@@ -54,3 +54,36 @@ nav a { color: #fff; text-decoration: none; margin-left: 15px; font-weight: bold
 
 /* RODAPÉ BLINDADO */
 .site-footer { background: #1a252f; color: #fff; text-align: center; padding: 20px 0; margin-top: 50px; font-size: 0.9rem; }
+
+/* Bloco de Chamada para Ação */
+.cta-bloco {
+    background: #ffffff;
+    border: 2px solid #25d366;
+    padding: 25px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 35px 0;
+}
+.cta-bloco h3 { color: #1a252f; margin-bottom: 8px; font-size: 1.4rem; }
+.cta-bloco p { color: #555; margin-bottom: 20px; font-size: 1rem; }
+
+/* Botão do WhatsApp Estilo Mobile-First */
+.btn-whats-artigo {
+    display: block; /* Ocupa a largura toda no celular */
+    background: #25d366;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    transition: background 0.3s ease;
+}
+.btn-whats-artigo:hover { background: #1ebd59; }
+
+/* Ajuste para computadores (não ficar gigante de ponta a ponta) */
+@media (min-width: 768px) {
+    .btn-whats-artigo { display: inline-block; padding: 15px 40px; }
+}
+
