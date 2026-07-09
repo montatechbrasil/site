@@ -1,71 +1,85 @@
+/* Paleta de Cores */
 :root {
     --azul-escuro: #0e3d71;
     --azul-medio: #045ebf;
     --dourado: #f6b401;
     --verde: #3baf63;
     --branco: #ffffff;
+    --cinza-fundo: #f8f9fa;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: sans-serif; line-height: 1.5; color: #333; background: #f9f9f9; }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+body { background-color: var(--branco); color: #333; line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-/* Header Fixo e Leve */
-.navbar { 
-    background: var(--azul-escuro); 
-    padding: 15px 0; 
-    position: sticky; 
-    top: 0; 
-    z-index: 1000;
+/* HEADER - Menu Branco e Fixo */
+.main-header { 
+    background-color: var(--branco); 
+    border-bottom: 3px solid var(--azul-escuro);
+    position: sticky; top: 0; z-index: 9999;
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 .nav-container { display: flex; justify-content: space-between; align-items: center; }
-.nav-menu { display: flex; align-items: center; gap: 20px; }
-.nav-menu a { color: #fff; text-decoration: none; font-size: 14px; font-weight: bold; }
+.nav-links { display: flex; align-items: center; gap: 20px; }
+.nav-links a { text-decoration: none; color: var(--azul-escuro); font-weight: 700; font-size: 14px; text-transform: uppercase; }
+.nav-links a:hover { color: var(--azul-medio); }
 
-/* Botão WhatsApp no Menu */
-.btn-whatsapp-menu { 
-    background: var(--verde); 
-    padding: 8px 15px; 
-    border-radius: 4px; 
-    transition: 0.3s;
+/* Botão Orçamento no Menu */
+.btn-orcamento-menu { 
+    background-color: var(--verde); color: #fff !important; 
+    padding: 10px 20px; border-radius: 5px; 
 }
-.btn-whatsapp-menu:hover { background: #2d8a4e; }
 
-/* Hero */
-.hero-clean { padding: 40px 0; text-align: center; background: #fff; border-bottom: 1px solid #eee; }
-.hero-clean h1 { color: var(--azul-escuro); font-size: 24px; }
+/* Hamburguer Mobile */
+#menu-toggle, .menu-icon { display: none; }
 
-/* Grid de 3 Colunas */
-.grid-3 { 
-    display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px; 
-    padding: 40px 0; 
-}
-.card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+/* HERO */
+.hero-section { text-align: center; padding: 40px 0; background: var(--cinza-fundo); }
+.hero-section h1 { color: var(--azul-escuro); font-size: 32px; margin-bottom: 10px; }
+.hero-section h2 { font-size: 18px; color: #666; font-weight: 400; max-width: 800px; margin: 0 auto; }
 
-/* Controle de Imagem para não explodir no mobile */
-.card img { 
-    width: 100%; 
-    height: 200px; 
-    object-fit: cover; 
-    display: block;
-}
-.card-content { padding: 20px; }
-.card-content h3 { color: var(--azul-medio); margin-bottom: 10px; border-bottom: 2px solid var(--dourado); display: inline-block; }
-.card-content ul { list-style: none; margin-top: 10px; font-size: 14px; }
-.card-content li { margin-bottom: 5px; }
-.card-content li::before { content: "• "; color: var(--dourado); }
+/* GRID DE SERVIÇOS */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; padding: 40px 0; }
+.service-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; transition: 0.3s; }
+.service-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
-/* FAQ & Work */
-.faq-section, .work-with-us { padding: 30px 0; }
-details { background: #fff; padding: 15px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; }
-.work-box { background: var(--azul-escuro); color: #fff; padding: 30px; border-radius: 8px; text-align: center; }
+/* IMAGENS CONTROLADAS */
+.img-container { width: 100%; height: 220px; overflow: hidden; background: #eee; }
+.img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-/* MOBILE ADJUSTMENTS */
-@media (max-width: 768px) {
-    .nav-menu a:not(.btn-whatsapp-menu) { display: none; } /* Esconde links menos importantes no mobile para caber o botão */
-    .grid-3 { grid-template-columns: 1fr; } /* Coluna única no celular */
-    .card img { height: 180px; } /* Imagem menor no celular */
-    .hero-clean h1 { font-size: 20px; }
+.card-text { padding: 20px; }
+.card-text h3 { color: var(--azul-escuro); margin-bottom: 15px; border-bottom: 2px solid var(--dourado); display: inline-block; }
+.card-text ul { list-style: none; font-size: 14px; }
+.card-text li::before { content: "✓ "; color: var(--verde); font-weight: bold; }
+
+/* SEO CONTENT & EXTRA */
+.seo-content, .extra-sections { padding: 40px 20px; border-top: 1px solid #eee; }
+.brands-box h2, .about-box h2, .faq-container h2, .work-container h2 { color: var(--azul-escuro); margin-bottom: 15px; }
+.about-box, .work-container { background: var(--azul-escuro); color: #fff; padding: 30px; border-radius: 8px; margin-top: 20px; }
+.about-box h2, .work-container h2 { color: var(--dourado); }
+
+/* FAQ */
+details { background: #f1f1f1; padding: 15px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; }
+summary { font-weight: bold; color: var(--azul-escuro); }
+
+/* FOOTER ORIGINAL */
+.main-footer { background: var(--cinza-fundo); padding: 40px 0; text-align: center; border-top: 4px solid var(--azul-escuro); margin-top: 40px;}
+.footer-logo { margin-bottom: 20px; }
+.slogan { color: var(--azul-escuro); margin-bottom: 20px; }
+.contatos p { margin: 10px 0; font-size: 14px; }
+.social-links a { color: var(--azul-medio); text-decoration: none; font-weight: bold; }
+.copyright { margin-top: 30px; font-size: 12px; color: #888; }
+
+/* RESPONSIVO */
+@media (max-width: 900px) {
+    .grid-3 { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .menu-icon { display: block; font-size: 30px; color: var(--azul-escuro); cursor: pointer; }
+    #menu-toggle:checked ~ .nav-links { 
+        display: flex; flex-direction: column; position: absolute; 
+        top: 65px; left: 0; width: 100%; background: #fff; padding: 20px; 
+        border-bottom: 3px solid var(--azul-escuro);
+    }
+    .img-container { height: 250px; }
 }
