@@ -1,0 +1,67 @@
+:root {
+    --azul-escuro: #0e3d71;
+    --azul-medio: #045ebf;
+    --dourado: #f6b401;
+    --verde: #3baf63;
+    --branco: #ffffff;
+    --cinza-leve: #f4f4f4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; scroll-behavior: smooth; }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* Header & Nav */
+.navbar { background: var(--azul-escuro); padding: 10px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links a { color: var(--branco); text-decoration: none; font-weight: 500; transition: 0.3s; }
+.nav-links a:hover { color: var(--dourado); }
+
+.nav-cta { background: var(--verde); padding: 10px 20px; border-radius: 5px; }
+
+/* Dropdown */
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content { 
+    display: none; position: absolute; background: var(--branco); 
+    min-width: 200px; box-shadow: 0 8px 16px rgba(0,0,0,0.2); z-index: 1; 
+}
+.dropdown-content a { color: var(--azul-escuro); padding: 12px 16px; display: block; }
+.dropdown-content a:hover { background: var(--cinza-leve); }
+.dropdown:hover .dropdown-content { display: block; }
+
+/* Hero */
+.hero { background: linear-gradient(135deg, var(--azul-escuro) 0%, var(--azul-medio) 100%); color: var(--branco); padding: 80px 0; }
+.hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
+.hero h1 { font-size: 2.8rem; margin-bottom: 20px; line-height: 1.1; }
+.btn-primary { background: var(--dourado); color: var(--azul-escuro); padding: 15px 30px; border-radius: 5px; font-weight: bold; text-decoration: none; display: inline-block; font-size: 1.1rem; }
+
+/* Cards de Serviço */
+.services-overview { padding: 60px 0; background: var(--cinza-leve); }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+.service-card { background: var(--branco); padding: 30px; border-radius: 10px; border-top: 5px solid var(--azul-medio); transition: transform 0.3s; }
+.service-card.highlight { border-top-color: var(--dourado); transform: scale(1.05); }
+.service-card h3 { margin-bottom: 15px; color: var(--azul-escuro); }
+.service-card ul { list-style: none; }
+.service-card ul li::before { content: "✓ "; color: var(--verde); font-weight: bold; }
+
+/* FAQ */
+.faq-section { padding: 60px 0; }
+details { background: #fff; padding: 15px; margin-bottom: 10px; border-bottom: 1px solid #ddd; cursor: pointer; }
+summary { font-weight: bold; font-size: 1.1rem; }
+
+/* WhatsApp Float */
+.whatsapp-float { 
+    position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; 
+    background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; 
+    font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 100; display: flex; align-items: center; justify-content: center;
+}
+.whatsapp-icon { width: 35px; fill: white; }
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .nav-links { display: none; } /* Adicionar lógica de hambúrguer simples aqui */
+    .hero h1 { font-size: 2rem; }
+}
