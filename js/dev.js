@@ -113,7 +113,9 @@
         'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1774999808/montagem-profissional-valparaiso-06_ztmhmi.png',
         'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1774999808/montagem-moveis-cidades-entorno-02_vin2np.png'
     ];
-    
+
+    // No mobile (2 colunas) carrega 4, no desktop (3 colunas) carrega 3
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const itemsPerLoad = isMobile ? 4 : 3;
     let visibleCount = 0;
     
