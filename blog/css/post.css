@@ -10,8 +10,9 @@
 
 /* Cabeçalho do post */
 .post-header {
+    max-width: 800px;
+    margin: 0 auto 40px;
     text-align: center;
-    margin-bottom: 40px;
     padding-bottom: 30px;
     border-bottom: 2px solid #e0e0e0;
 }
@@ -43,10 +44,10 @@
     flex-wrap: wrap;
 }
 
-/* Imagem de destaque */
+/* Imagem de destaque - AGORA DENTRO DO LIMITE */
 .post-image {
     width: 100%;
-    max-width: 100%;
+    max-width: 800px;
     height: auto;
     margin: 0 auto 30px;
     display: block;
@@ -104,19 +105,19 @@
     color: var(--azul-escuro);
 }
 
-/* CTA dentro do post */
+/* CTA dentro do post - TAMANHO CORRIGIDO */
 .post-cta {
     background: linear-gradient(135deg, var(--verde) 0%, #2d9e50 100%);
     color: var(--branco);
     text-align: center;
-    padding: 35px 25px;
+    padding: 30px 25px;
     border-radius: 15px;
     margin: 40px 0;
 }
 
 .post-cta h3 {
     color: var(--branco) !important;
-    font-size: 1.4em;
+    font-size: 1.3em;
     margin-bottom: 10px;
     border: none;
 }
@@ -125,24 +126,27 @@
     color: var(--branco) !important;
     margin-bottom: 20px;
     opacity: 0.95;
+    font-size: 1em;
 }
 
 .post-cta .cta-button {
-    background: var(--dourado);
-    color: var(--azul-escuro);
-    display: inline-block;
-    padding: 16px 40px;
-    font-size: 1.1em;
+    display: inline-block !important;
+    background: var(--dourado) !important;
+    color: var(--azul-escuro) !important;
+    padding: 14px 35px !important;
+    font-size: 1.05em !important;
     font-weight: 700;
     text-decoration: none;
     border-radius: 50px;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    width: auto !important;
+    max-width: 100% !important;
 }
 
 .post-cta .cta-button:hover {
-    background: var(--branco);
-    color: var(--azul-escuro);
+    background: var(--branco) !important;
+    color: var(--azul-escuro) !important;
     transform: translateY(-3px);
 }
 
@@ -168,6 +172,8 @@
     transition: all 0.3s ease;
     font-size: 0.95em;
     border: 2px solid transparent;
+    display: inline-block;
+    width: auto;
 }
 
 .post-nav-link:hover {
@@ -207,7 +213,12 @@
     }
     
     .post-cta {
-        padding: 25px 20px;
+        padding: 25px 18px;
+    }
+    
+    .post-cta .cta-button {
+        padding: 12px 28px !important;
+        font-size: 1em !important;
     }
     
     .post-meta {
