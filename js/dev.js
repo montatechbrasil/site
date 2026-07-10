@@ -114,7 +114,7 @@
         'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1774999808/montagem-moveis-cidades-entorno-02_vin2np.png'
     ];
     
-    const itemsPerLoad = 3;
+    const itemsPerLoad = isMobile ? 4 : 3;
     let visibleCount = 0;
     
     // Lightbox
@@ -169,7 +169,7 @@
     }
     
     // Inicial: mostrar 3
-    showItems(3);
+    showItems(itemsPerLoad);
     
     // Botão Ver Mais: mostra +3
     verMaisBtn.addEventListener('click', () => {
