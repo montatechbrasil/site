@@ -645,3 +645,312 @@ img {
         padding: 0 15px;
     }
 }
+
+/* ============================================
+   CORREÇÃO MENU MOBILE
+   ============================================ */
+.main-header .container {
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .nav-list {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--branco);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        gap: 5px;
+        z-index: 999;
+        border-radius: 0 0 15px 15px;
+    }
+    
+    .nav-list.active {
+        display: flex !important;
+    }
+    
+    .nav-list a {
+        padding: 15px;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+}
+
+/* ============================================
+   HERO - REMOVIDO RATING BADGE
+   ============================================ */
+.cta-button {
+    display: inline-block;
+    background: var(--verde);
+    color: var(--branco);
+    padding: 18px 45px;
+    font-size: 1.3em;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(59, 175, 99, 0.4);
+    letter-spacing: 0.5px;
+}
+
+.cta-button:hover {
+    background: var(--dourado);
+    color: var(--azul-escuro);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(246, 180, 1, 0.5);
+}
+
+/* ============================================
+   SEÇÃO DE AVALIAÇÕES (NOVA)
+   ============================================ */
+.reviews-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--verde) 0%, #2d9e50 100%);
+    color: var(--branco);
+    text-align: center;
+}
+
+.reviews-section h2 {
+    font-size: 2.2em;
+    margin-bottom: 50px;
+    color: var(--branco);
+}
+
+.reviews-highlight {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.rating-counter {
+    margin-bottom: 50px;
+    animation: fadeInUp 0.8s ease;
+}
+
+.rating-number {
+    font-size: 5em;
+    font-weight: 800;
+    line-height: 1;
+    display: inline-block;
+    color: var(--dourado);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.rating-plus {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--dourado);
+    vertical-align: super;
+}
+
+.rating-stars {
+    font-size: 2em;
+    color: var(--dourado);
+    letter-spacing: 5px;
+    margin-top: 10px;
+}
+
+.rating-label {
+    display: block;
+    font-size: 1.2em;
+    margin-top: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+}
+
+.review-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s;
+}
+
+.review-card:hover {
+    transform: translateY(-3px);
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.review-stars {
+    color: var(--dourado);
+    font-size: 1.2em;
+    letter-spacing: 2px;
+}
+
+.review-date {
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+.review-text {
+    font-size: 0.95em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+.review-author {
+    font-weight: 600;
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+.reviews-cta {
+    margin-top: 30px;
+}
+
+.reviews-cta p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.google-review-link {
+    display: inline-block;
+    padding: 15px 35px;
+    background: var(--branco);
+    color: var(--verde);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.google-review-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    color: var(--azul-escuro);
+}
+
+@media (max-width: 768px) {
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .rating-number {
+        font-size: 3.5em;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   GALERIA COM SCROLL (ATUALIZADA)
+   ============================================ */
+.gallery-section {
+    padding: 80px 0;
+    background: var(--cinza-claro);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    background: #e0e0e0;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.gallery-item img.loaded {
+    opacity: 1;
+}
+
+.gallery-loader {
+    text-align: center;
+    padding: 20px;
+}
+
+.loader-spinner {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 3px solid #e0e0e0;
+    border-top-color: var(--azul-medio);
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+}
+
+/* ============================================
+   SOBRE - FUNDO VERDE SUAVE
+   ============================================ */
+.about-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, rgba(59, 175, 99, 0.08) 0%, rgba(59, 175, 99, 0.03) 100%);
+}
+
+/* ============================================
+   CONTATO - COR VERDE
+   ============================================ */
+.contact-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--verde) 0%, #2d9e50 100%);
+    color: var(--branco);
+}
