@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Título do Artigo | Blog MontaTech Brasil</title>
+    <meta name="description" content="Descrição do artigo para SEO">
+    
+    <link rel="preload" href="../../css/cores.css" as="style">
+    <link rel="stylesheet" href="../../css/cores.css">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Título do Artigo">
+    <meta property="og:description" content="Descrição do artigo">
+    <meta property="og:url" content="https://montatechbrasil.com.br/blog/posts/exemplo.html">
+    <meta property="og:type" content="article">
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <a href="../../index.html" class="logo-link">
+                <img src="../../img/logo3.png" alt="MontaTech Brasil" width="220" height="50" loading="eager">
+            </a>
+            
+            <nav class="main-nav">
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-list" id="navList">
+                    <li><a href="../../index.html">Home</a></li>
+                    <li><a href="../../index.html#servicos">Serviços</a></li>
+                    <li><a href="../../index.html#galeria">Galeria</a></li>
+                    <li><a href="../index.html">Blog</a></li>
+                    <li><a href="../../index.html#sobre">Sobre</a></li>
+                    <li><a href="../../index.html#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <!-- Conteúdo do Artigo -->
+        <article class="blog-post">
+            <div class="container">
+                <header class="post-header">
+                    <span class="blog-category">Categoria</span>
+                    <h1>Título do Artigo</h1>
+                    <div class="post-meta">
+                        <span>📅 15 Jul 2026</span>
+                        <span>⏱️ 5 min leitura</span>
+                        <span>✍️ Por MontaTech Brasil</span>
+                    </div>
+                </header>
+                
+                <div class="post-content">
+                    <img src="https://res.cloudinary.com/dxqm3lwrk/image/upload/v1774999809/montagem-moveis-valparaiso-goias-01_izqrzz.png" 
+                         alt="Descrição" 
+                         class="post-image"
+                         loading="lazy">
+                    
+                    <h2>Subtítulo da Seção</h2>
+                    <p>Conteúdo do artigo aqui...</p>
+                    
+                    <h2>Outra Seção</h2>
+                    <p>Mais conteúdo...</p>
+                    
+                    <!-- CTA dentro do post -->
+                    <div class="post-cta">
+                        <h3>Precisa de um montador profissional?</h3>
+                        <p>Fale conosco pelo WhatsApp e receba um orçamento em minutos!</p>
+                        <a href="https://api.whatsapp.com/send/?phone=5561998865417&text=Ol%C3%A1%2C+vi+o+artigo+do+blog+e+gostaria+de+um+or%C3%A7amento.&type=phone_number&app_absent=0" 
+                           class="cta-button" 
+                           target="_blank" 
+                           rel="noopener">
+                            Solicitar Orçamento
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Navegação entre posts -->
+                <nav class="post-navigation">
+                    <a href="artigo-anterior.html" class="post-nav-link">← Post Anterior</a>
+                    <a href="../index.html" class="post-nav-link">Voltar ao Blog</a>
+                    <a href="proximo-artigo.html" class="post-nav-link">Próximo Post →</a>
+                </nav>
+            </div>
+        </article>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <a href="../../index.html">
+                <img src="../../img/logo3.png" alt="MontaTech Brasil" class="footer-logo" width="270" height="60">
+            </a>
+            <p class="slogan"><strong>Inteligencia de Projetos & Excelência na Montagem</strong></p>
+            <div class="contatos">
+                <p><strong>Atendemos em:</strong> Valparaíso de Goiás, Jardim Ingá, Luziânia, Ocidental, Novo Gama, Gama, Céu Azul e Santa Maria DF</p>
+                <p><strong>Contato/WhatsApp:</strong> <a href="https://wa.me/5561998865417">(61) 9 9886-5417</a></p>
+            </div>
+            <div class="social-links">
+                <a href="https://www.instagram.com/montatechbrasil.montagens/" target="_blank">Instagram</a> |
+                <a href="https://www.facebook.com/montatechbrasil.montagens" target="_blank">Facebook</a> |
+                <a href="https://www.magazinevoce.com.br/magazinemontatechbrasil/" target="_blank">Loja Magalu</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 MontaTech Brasil | Todos os Direitos Reservados | montatechbrasil.com.br.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../../js/scripts.js" defer></script>
+    
+    <!-- Google Scripts -->
+    <script>
+        function loadGoogleScripts() {
+            const scripts = [
+                'https://www.googletagmanager.com/gtag/js?id=G-71WQ023PX4',
+                'https://www.googletagmanager.com/gtag/js?id=AW-17641071678'
+            ];
+            scripts.forEach(src => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.async = true;
+                document.head.appendChild(script);
+            });
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-71WQ023PX4');
+            gtag('config', 'AW-17641071678');
+        }
+        setTimeout(loadGoogleScripts, 4000);
+    </script>
+    
+</body>
+</html>
