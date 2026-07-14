@@ -1,5 +1,16 @@
 var todosPosts = [
     {
+    id: 99,
+    titulo: "TESTE - Post Extra para Ver Paginação",
+    categoria: "Teste",
+    resumo: "Post temporário só para testar a paginação automática.",
+    imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1774999809/montagem-moveis-valparaiso-goias-01_izqrzz.png",
+    data: "14 Jul 2026",
+    link: "posts/cozinha-planejada-dicas.html",
+    tempoLeitura: "1 min"
+}, 
+    
+    {
         id: 6,
         titulo: "Mudança Residencial: Como Proteger Seus Móveis",
         categoria: "Mudanças",
