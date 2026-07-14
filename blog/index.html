@@ -1,120 +1,91 @@
-// ============================================
-// MONTATECH BRASIL - SISTEMA DE BLOG
-// Paginação automática - Não editar
-// ============================================
-
-(function() {
-    'use strict';
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    const postsPorPagina = 6;
-    const blogGrid = document.getElementById('blogGrid');
-    const paginationContainer = document.getElementById('pagination');
+    <title>Blog MontaTech Brasil | Dicas de Montagem de Móveis</title>
+    <meta name="description" content="Blog da MontaTech Brasil - Dicas, tutoriais e novidades sobre montagem de móveis, cozinhas planejadas e decoração. Especialistas em Valparaíso de Goiás.">
     
-    if (!blogGrid || !paginationContainer) return;
+    <link rel="preload" href="/css/cores.css" as="style">
+    <link rel="stylesheet" href="/css/cores.css">
     
-    // Descobrir página atual pela URL
-    function getPaginaAtual() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const pagina = parseInt(urlParams.get('pagina')) || 1;
-        return pagina;
-    }
-    
-    // Gerar HTML de um card
-    function criarCard(post) {
-        return `
-            <article class="blog-card">
-                <div class="blog-card-image">
-                    <img src="${post.imagem}" 
-                         alt="${post.titulo}" 
-                         loading="lazy" 
-                         width="400" 
-                         height="250">
-                </div>
-                <div class="blog-card-content">
-                    <span class="blog-category">${post.categoria}</span>
-                    <h2><a href="${post.link}">${post.titulo}</a></h2>
-                    <p>${post.resumo}</p>
-                    <div class="blog-meta">
-                        <span>📅 ${post.data}</span>
-                        <span>⏱️ ${post.tempoLeitura}</span>
-                    </div>
-                </div>
-            </article>
-        `;
-    }
-    
-    // Gerar paginação
-    function criarPaginacao(paginaAtual, totalPaginas) {
-        if (totalPaginas <= 1) return '';
-        
-        let html = '';
-        
-        // Informação
-        html += `<span class="pagination-info">Página ${paginaAtual} de ${totalPaginas}</span>`;
-        html += '<div class="pagination-buttons">';
-        
-        // Botão Anterior
-        if (paginaAtual > 1) {
-            html += `<a href="?pagina=${paginaAtual - 1}" class="page-btn">← Anterior</a>`;
-        } else {
-            html += '<span class="page-btn disabled">← Anterior</span>';
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Blog MontaTech Brasil",
+        "url": "https://montatechbrasil.com.br/blog/",
+        "about": "Dicas e tutoriais sobre montagem de móveis",
+        "publisher": {
+            "@type": "LocalBusiness",
+            "name": "MontaTech Brasil",
+            "telephone": "+5561998865417"
         }
-        
-        // Números das páginas
-        for (let i = 1; i <= totalPaginas; i++) {
-            if (i === paginaAtual) {
-                html += `<span class="page-btn active">${i}</span>`;
-            } else {
-                html += `<a href="?pagina=${i}" class="page-btn">${i}</a>`;
-            }
-        }
-        
-        // Botão Próxima
-        if (paginaAtual < totalPaginas) {
-            html += `<a href="?pagina=${paginaAtual + 1}" class="page-btn">Próxima →</a>`;
-        } else {
-            html += '<span class="page-btn disabled">Próxima →</span>';
-        }
-        
-        html += '</div>';
-        return html;
     }
+    </script>
     
-    // Inicializar
-    function init() {
-        if (typeof todosPosts === 'undefined') {
-            blogGrid.innerHTML = '<p style="text-align:center;padding:40px;">Nenhum post encontrado.</p>';
-            return;
-        }
-        
-        const totalPosts = todosPosts.length;
-        const totalPaginas = Math.ceil(totalPosts / postsPorPagina);
-        const paginaAtual = getPaginaAtual();
-        
-        // Validar página
-        if (paginaAtual < 1 || paginaAtual > totalPaginas) {
-            window.location.href = '?pagina=1';
-            return;
-        }
-        
-        // Calcular posts da página atual
-        const inicio = (paginaAtual - 1) * postsPorPagina;
-        const fim = inicio + postsPorPagina;
-        const postsDaPagina = todosPosts.slice(inicio, fim);
-        
-        // Renderizar cards
-        blogGrid.innerHTML = postsDaPagina.map(post => criarCard(post)).join('');
-        
-        // Renderizar paginação
-        paginationContainer.innerHTML = criarPaginacao(paginaAtual, totalPaginas);
-        paginationContainer.className = 'pagination pagination-bottom';
-    }
+    <meta property="og:title" content="Blog MontaTech Brasil - Dicas de Montagem de Móveis">
+    <meta property="og:description" content="Dicas profissionais sobre montagem de móveis, cozinhas planejadas e muito mais.">
+    <meta property="og:url" content="https://www.montatechbrasil.com.br/blog/">
+    <meta property="og:type" content="website">
+</head>
+<body>
     
-    // Executar quando DOM estiver pronto
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init);
-    } else {
-        init();
-    }
+    <div id="menu-container"></div>
     
-})();
+    <main>
+        
+        <!-- Hero do Blog -->
+        <section class="blog-hero">
+            <div class="container">
+                <h1>Blog MontaTech Brasil</h1>
+                <p>Dicas, tutoriais e novidades sobre montagem de móveis, cozinhas planejadas e decoração</p>
+            </div>
+        </section>
+        
+        <!-- Lista de Posts -->
+        <section class="blog-posts-section">
+            <div class="container">
+                
+                <!-- PAGINAÇÃO SUPERIOR -->
+                <div class="pagination pagination-top" id="paginationTop"></div>
+                
+                <!-- GRID DE POSTS (Gerado pelo JavaScript) -->
+                <div class="blog-grid" id="blogGrid"></div>
+                
+                <!-- PAGINAÇÃO INFERIOR (Gerado pelo JavaScript) -->
+                <div id="pagination"></div>
+                
+            </div>
+        </section>
+        
+        <!-- CTA -->
+        <section class="blog-cta">
+            <div class="container">
+                <h2>Precisa de um orçamento?</h2>
+                <p>Fale agora com um montador profissional em Valparaíso de Goiás</p>
+                <a href="https://api.whatsapp.com/send/?phone=5561998865417&text=Ol%C3%A1%2C+vi+o+blog+e+gostaria+de+um+or%C3%A7amento.&type=phone_number&app_absent=0" 
+                   class="cta-button" target="_blank" rel="noopener">
+                    Solicitar Orçamento
+                </a>
+            </div>
+        </section>
+        
+    </main>
+    
+    <div id="footer-container"></div>
+    
+    <!-- Scripts -->
+    <script src="/js/componentes.js" defer></script>
+    <script src="/js/metrics.js" defer></script>
+    
+    <!-- Blog: Dados dos posts -->
+    <script src="posts/dados.js" defer></script>
+    
+    <!-- Blog: Sistema de paginação automática -->
+    <script src="js/blog.js" defer></script>
+    
+</body>
+</html>
