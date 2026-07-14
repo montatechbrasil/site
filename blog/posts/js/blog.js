@@ -1,116 +1,95 @@
-// ============================================
-// MONTATECH BRASIL - SISTEMA DE BLOG
-// Paginação automática - Não editar
-// ============================================
-
 (function() {
     'use strict';
     
-    const postsPorPagina = 6;
-    const blogGrid = document.getElementById('blogGrid');
-    const paginationContainer = document.getElementById('pagination');
+    var postsPorPagina = 6;
+    var blogGrid = document.getElementById('blogGrid');
+    var paginationContainer = document.getElementById('pagination');
     
     if (!blogGrid || !paginationContainer) return;
     
-    // Descobrir página atual pela URL
     function getPaginaAtual() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const pagina = parseInt(urlParams.get('pagina')) || 1;
+        var urlParams = new URLSearchParams(window.location.search);
+        var pagina = parseInt(urlParams.get('pagina')) || 1;
         return pagina;
     }
     
-    // Gerar HTML de um card
     function criarCard(post) {
-        return `
-            <article class="blog-card">
-                <div class="blog-card-image">
-                    <img src="${post.imagem}" 
-                         alt="${post.titulo}" 
-                         loading="lazy" 
-                         width="400" 
-                         height="250">
-                </div>
-                <div class="blog-card-content">
-                    <span class="blog-category">${post.categoria}</span>
-                    <h2><a href="${post.link}">${post.titulo}</a></h2>
-                    <p>${post.resumo}</p>
-                    <div class="blog-meta">
-                        <span>📅 ${post.data}</span>
-                        <span>⏱️ ${post.tempoLeitura}</span>
-                    </div>
-                </div>
-            </article>
-        `;
+        var html = '';
+        html += '<article class="blog-card">';
+        html += '<div class="blog-card-image">';
+        html += '<img src="' + post.imagem + '" alt="' + post.titulo + '" loading="lazy" width="400" height="250">';
+        html += '</div>';
+        html += '<div class="blog-card-content">';
+        html += '<span class="blog-category">' + post.categoria + '</span>';
+        html += '<h2><a href="' + post.link + '">' + post.titulo + '</a></h2>';
+        html += '<p>' + post.resumo + '</p>';
+        html += '<div class="blog-meta">';
+        html += '<span>&#128197; ' + post.data + '</span>';
+        html += '<span>&#9201; ' + post.tempoLeitura + '</span>';
+        html += '</div>';
+        html += '</div>';
+        html += '</article>';
+        return html;
     }
     
-    // Gerar paginação
     function criarPaginacao(paginaAtual, totalPaginas) {
         if (totalPaginas <= 1) return '';
         
-        let html = '';
-        
-        // Informação
-        html += `<span class="pagination-info">Página ${paginaAtual} de ${totalPaginas}</span>`;
+        var html = '';
+        html += '<span class="pagination-info">Pagina ' + paginaAtual + ' de ' + totalPaginas + '</span>';
         html += '<div class="pagination-buttons">';
         
-        // Botão Anterior
         if (paginaAtual > 1) {
-            html += `<a href="?pagina=${paginaAtual - 1}" class="page-btn">← Anterior</a>`;
+            html += '<a href="?pagina=' + (paginaAtual - 1) + '" class="page-btn">← Anterior</a>';
         } else {
             html += '<span class="page-btn disabled">← Anterior</span>';
         }
         
-        // Números das páginas
-        for (let i = 1; i <= totalPaginas; i++) {
+        for (var i = 1; i <= totalPaginas; i++) {
             if (i === paginaAtual) {
-                html += `<span class="page-btn active">${i}</span>`;
+                html += '<span class="page-btn active">' + i + '</span>';
             } else {
-                html += `<a href="?pagina=${i}" class="page-btn">${i}</a>`;
+                html += '<a href="?pagina=' + i + '" class="page-btn">' + i + '</a>';
             }
         }
         
-        // Botão Próxima
         if (paginaAtual < totalPaginas) {
-            html += `<a href="?pagina=${paginaAtual + 1}" class="page-btn">Próxima →</a>`;
+            html += '<a href="?pagina=' + (paginaAtual + 1) + '" class="page-btn">Proxima →</a>';
         } else {
-            html += '<span class="page-btn disabled">Próxima →</span>';
+            html += '<span class="page-btn disabled">Proxima →</span>';
         }
         
         html += '</div>';
         return html;
     }
     
-    // Inicializar
     function init() {
         if (typeof todosPosts === 'undefined') {
             blogGrid.innerHTML = '<p style="text-align:center;padding:40px;">Nenhum post encontrado.</p>';
             return;
         }
         
-        const totalPosts = todosPosts.length;
-        const totalPaginas = Math.ceil(totalPosts / postsPorPagina);
-        const paginaAtual = getPaginaAtual();
+        var totalPosts = todosPosts.length;
+        var totalPaginas = Math.ceil(totalPosts / postsPorPagina);
+        var paginaAtual = getPaginaAtual();
         
-        // Validar página
         if (paginaAtual < 1 || paginaAtual > totalPaginas) {
             window.location.href = '?pagina=1';
             return;
         }
         
-        // Calcular posts da página atual
-        const inicio = (paginaAtual - 1) * postsPorPagina;
-        const fim = inicio + postsPorPagina;
-        const postsDaPagina = todosPosts.slice(inicio, fim);
+        var inicio = (paginaAtual - 1) * postsPorPagina;
+        var fim = inicio + postsPorPagina;
+        var postsDaPagina = todosPosts.slice(inicio, fim);
         
-        // Renderizar cards
-        blogGrid.innerHTML = postsDaPagina.map(post => criarCard(post)).join('');
+        blogGrid.innerHTML = postsDaPagina.map(function(post) {
+            return criarCard(post);
+        }).join('');
         
-        // Renderizar paginação
         paginationContainer.innerHTML = criarPaginacao(paginaAtual, totalPaginas);
         paginationContainer.className = 'pagination pagination-bottom';
     }
     
-    // Executar quando DOM estiver pronto
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
