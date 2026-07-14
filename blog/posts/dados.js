@@ -3,7 +3,7 @@
 // Adicione novos posts no TOPO da lista
 // ============================================
 
-const todosPosts = [
+var todosPosts = [
     {
         id: 6,
         titulo: "Mudança Residencial: Como Proteger Seus Móveis",
