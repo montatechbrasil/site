@@ -1,6 +1,5 @@
 var todosPosts = [
-   
-    {
+       {
     id: 2,
     titulo: "Guia Completo de Parafusos para Montagem de Móveis: Tipos, Ferramentas e Segredos",
     categoria: "Dicas Práticas",
