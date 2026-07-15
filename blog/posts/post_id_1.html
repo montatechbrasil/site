@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>TÍTULO DO POST | Blog MontaTech Brasil</title>
+    <meta name="description" content="DESCRIÇÃO DO POST AQUI.">
+    
+    <!-- CSS Principal (menu, footer, variáveis) -->
+    <link rel="preload" href="/css/cores.css" as="style">
+    <link rel="stylesheet" href="/css/cores.css">
+    
+    <!-- CSS do Post (conteúdo do artigo) -->
+    <link rel="preload" href="/blog/css/post.css" as="style">
+    <link rel="stylesheet" href="/blog/css/post.css">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="TÍTULO DO POST">
+    <meta property="og:description" content="DESCRIÇÃO DO POST">
+    <meta property="og:url" content="https://montatechbrasil.com.br/blog/posts/NOME-DO-ARQUIVO.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="URL-DA-IMAGEM-DE-DESTAQUE">
+</head>
+<body>
+    
+    <div id="menu-container"></div>
+    
+    <main>
+        <article class="blog-post">
+            
+            <div class="post-wrapper">
+                
+                <!-- CABEÇALHO -->
+                <header class="post-header">
+                    <span class="blog-category">CATEGORIA</span>
+                    <h1>TÍTULO DO POST</h1>
+                    <div class="post-meta">
+                        <span>📅 DATA</span>
+                        <span>⏱️ TEMPO DE LEITURA</span>
+                        <span>✍️ Por Equipe MontaTech Brasil</span>
+                    </div>
+                </header>
+                
+                <!-- IMAGEM DE DESTAQUE -->
+                <img src="URL-DA-IMAGEM" 
+                     alt="DESCRIÇÃO DA IMAGEM" 
+                     class="post-image" 
+                     loading="lazy">
+                
+                <!-- CONTEÚDO DO ARTIGO -->
+                <div class="post-content">
+                    
+                    <p>Parágrafo de introdução do artigo. Escreva aqui o texto que vai prender a atenção do leitor.</p>
+                    
+                    <h2>Subtítulo da Primeira Seção</h2>
+                    <p>Conteúdo da primeira seção do artigo. Desenvolva seu texto aqui com informações relevantes.</p>
+                    
+                    <h2>Subtítulo da Segunda Seção</h2>
+                    <p>Mais conteúdo importante para o leitor. Continue desenvolvendo o tema.</p>
+                    
+                    <h2>Conclusão</h2>
+                    <p>Resuma os pontos principais e deixe uma mensagem final para o leitor.</p>
+                    
+                    <!-- CTA - CALL TO ACTION -->
+                    <div class="post-cta">
+                        <h3>Precisa de um orçamento?</h3>
+                        <p>Fale com a MontaTech Brasil pelo WhatsApp e receba um atendimento personalizado!</p>
+                        <a href="https://api.whatsapp.com/send/?phone=5561998865417&text=Ol%C3%A1%2C+quero+um+or%C3%A7amento.&type=phone_number&app_absent=0" 
+                           class="cta-button" target="_blank" rel="noopener">
+                            Solicitar Orçamento
+                        </a>
+                    </div>
+                    
+                </div>
+                
+                <!-- NAVEGAÇÃO ENTRE POSTS -->
+                <nav class="post-navigation">
+                    <a href="post_id_0.html" class="post-nav-link">← Post Anterior</a>
+                    <a href="/blog/" class="post-nav-link">📚 Voltar ao Blog</a>
+                    <a href="post_id_1.html" class="post-nav-link">Próximo Post →</a>
+                </nav>
+                
+            </div>
+            
+        </article>
+    </main>
+    
+    <div id="footer-container"></div>
+    
+    <script src="/js/componentes.js" defer></script>
+    <script src="/js/metrics.js" defer></script>
+    
+</body>
+</html>
