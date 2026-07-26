@@ -1,5 +1,5 @@
 var todosPosts = [
-    // 🆕 ID 1 - PRIMOGÊNITO (26 Jul)
+    
     {
         id: 1,
         titulo: "Quanto Custa um Montador de Móveis em Valparaíso? Guia de Preços 2026",
@@ -10,7 +10,7 @@ var todosPosts = [
         link: "posts/quanto-custa-montador-moveis-valparaiso.html",
         tempoLeitura: "7 min"
     },
-    // ID 2 - SEGUNDO (14 Jul)
+
     {
         id: 2,
         titulo: "Guia Completo de Parafusos para Montagem de Móveis: Tipos, Ferramentas e Segredos",
