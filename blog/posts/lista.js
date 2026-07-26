@@ -23,8 +23,7 @@ var todosPosts = [
     },
     // Posts antigos abaixo (IDs 6 a 1 antigos)
     // ...
-];
-    
+   
     {
     id: 99,
     titulo: "TESTE - Post Extra para Ver Paginação",
