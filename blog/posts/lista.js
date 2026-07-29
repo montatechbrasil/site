@@ -5,7 +5,7 @@ var todosPosts = [
         titulo: "Como Escolher um Montador de Móveis em Valparaíso Sem Correr Riscos",
         categoria: "Contratação",
         resumo: "Descubra 8 critérios essenciais para escolher um montador profissional em Valparaíso de Goiás. Evite dores de cabeça e prejuízos.",
-        imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1774999808/montagem-profissional-valparaiso-06_ztmhmi.png",
+        imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785349272/Generated_Image_June_28_2026_-_11_48AM_zn0bdz.png",
         data: "26 Jul 2026",
         link: "posts/como-escolher-montador-profissional.html",
         tempoLeitura: "6 min"
