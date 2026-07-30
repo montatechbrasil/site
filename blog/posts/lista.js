@@ -27,8 +27,8 @@ var todosPosts = [
         titulo: "Vale a Pena Desmontar um Guarda-Roupa para Mudança? Descubra Quando Compensa",
         categoria: "Orçamento",
         resumo: "Sim, vale a pena desmontar um guarda-roupa, principalmente quando ele está em bom estado de conservação e possui estrutura resistente.",
-        imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785371180/imagens_posts_blog_1_boahss.png",
-        data: "28 Jul 2026",
+        imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785373342/montagem_de_moveis_valparaiso_go__prictb.png",
+        data: "3 Mai 2026",
         link: "posts/vale-a-pena-desmontar-guardaroupa-mudanca.html",
         tempoLeitura: "5 min"
     },
