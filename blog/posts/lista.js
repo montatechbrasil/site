@@ -21,17 +21,17 @@ var todosPosts = [
         link: "posts/quanto-custa-montador-moveis-valparaiso.html",
         tempoLeitura: "2 min"
     },
-  // ID 2.1
+  // ID 3
     {
         id: 2.1,
         titulo: "Vale a Pena Desmontar um Guarda-Roupa para Mudança? Descubra Quando Compensa",
         categoria: "Orçamento",
         resumo: "Sim, vale a pena desmontar um guarda-roupa, principalmente quando ele está em bom estado de conservação e possui estrutura resistente.",
-        imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1774999808/montagem-profissional-valparaiso-06_ztmhmi.png",
+        imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785371180/imagens_posts_blog_1_boahss.png",
         data: "28 Jul 2026",
         link: "posts/vale-a-pena-desmontar-guardaroupa-mudanca.html",
         tempoLeitura: "5 min"
     },
-    // ID 3
+    // COMMENTS
 
 ];
