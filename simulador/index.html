@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Simulador de Preço de Montagem de Móveis | MontaTech Brasil</title>
+    <meta name="description" content="Simule o preço de montagem do seu móvel em segundos. Ferramenta inteligente da MontaTech Brasil em Valparaíso de Goiás. Orçamento rápido e sem compromisso.">
+    
+    <!-- CSS Global -->
+    <link rel="preload" href="../css/cores.css" as="style">
+    <link rel="stylesheet" href="../css/cores.css">
+    
+    <!-- CSS do Simulador -->
+    <link rel="preload" href="css/estilo.css" as="style">
+    <link rel="stylesheet" href="css/estilo.css">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Simulador de Preço de Montagem de Móveis",
+        "url": "https://montatechbrasil.com.br/simulador/",
+        "description": "Ferramenta inteligente para estimar o preço de montagem de móveis em Valparaíso de Goiás.",
+        "applicationCategory": "BusinessApplication",
+        "author": {
+            "@type": "LocalBusiness",
+            "name": "MontaTech Brasil",
+            "telephone": "+5561998865417"
+        }
+    }
+    </script>
+    
+    <meta property="og:title" content="Simulador de Preço de Montagem de Móveis | MontaTech Brasil">
+    <meta property="og:description" content="Simule o preço de montagem do seu móvel em segundos.">
+    <meta property="og:url" content="https://montatechbrasil.com.br/simulador/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://res.cloudinary.com/dxqm3lwrk/image/upload/v1774999808/montagem-profissional-valparaiso-06_ztmhmi.png">
+</head>
+<body>
+    
+    <div id="menu-container"></div>
+    
+    <main>
+        
+        <!-- Hero -->
+        <section class="simulador-hero">
+            <div class="container">
+                <h1>Simulador de Preço de Montagem de Móveis</h1>
+                <p class="simulador-subtitulo">Descubra uma estimativa em poucos segundos e entenda quais fatores influenciam o orçamento.</p>
+                <button class="btn-iniciar" id="btnIniciar" aria-label="Começar simulação">Começar Planejamento</button>
+            </div>
+        </section>
+        
+        <!-- Wizard -->
+        <section class="simulador-wizard" id="simuladorWizard" style="display:none;">
+            <div class="container">
+                <div class="progresso-bar"><div class="progresso-preenchimento" id="progressoFill"></div></div>
+                <p class="progresso-texto" id="progressoTexto">Etapa 1 de 8</p>
+                <div class="etapa-container" id="etapaContainer"></div>
+                <div class="etapa-botoes">
+                    <button class="btn-voltar" id="btnVoltar" style="display:none;">← Voltar</button>
+                    <button class="btn-avancar" id="btnAvancar" style="display:none;">Continuar →</button>
+                    <button class="btn-calcular" id="btnCalcular" style="display:none;">Calcular Estimativa</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resultado -->
+        <section class="simulador-resultado" id="simuladorResultado" style="display:none;">
+            <div class="container">
+                <div class="resultado-card" id="resultadoCard"></div>
+            </div>
+        </section>
+        
+        <!-- Conteúdo SEO -->
+        <section class="simulador-seo">
+            <div class="container">
+                
+                <h2>Quanto Custa Montar Móveis em Valparaíso de Goiás?</h2>
+                <p>O preço de montagem de móveis varia conforme o tipo, tamanho, complexidade e localização. Em <strong>Valparaíso de Goiás e Entorno do DF</strong>, os valores costumam seguir faixas médias de mercado.</p>
+                
+                <!-- Tabela aqui -->
+                
+                <h2>Perguntas Frequentes</h2>
+                <h3>O simulador mostra o preço exato?</h3>
+                <p>Não. Ele fornece uma <strong>estimativa baseada nas informações fornecidas</strong>. O orçamento definitivo depende da análise do móvel.</p>
+                
+                <h3>Preciso pagar para usar?</h3>
+                <p>Não. A ferramenta é <strong>totalmente gratuita</strong> e não exige cadastro.</p>
+                
+                <h3>Como contratar após a simulação?</h3>
+                <p>No final, há um botão para <strong>chamar no WhatsApp</strong> com todas as informações preenchidas.</p>
+                
+            </div>
+        </section>
+        
+    </main>
+    
+    <div id="footer-container"></div>
+    
+    <script src="../js/componentes.js" defer></script>
+    <script src="../js/metrics.js" defer></script>
+    <script src="js/precos.js" defer></script>
+    <script src="js/logica.js" defer></script>
+    
+</body>
+</html>
