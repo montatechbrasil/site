@@ -2,7 +2,7 @@
     var dados = { moveis: [], condicao: null, desmontagem: null, remontagem: null, fixacao: null, recortes: [], cidade: null };
     var etapaAtual = 1;
     var totalEtapas = 8;
-    var etapasAtivas = [1,2,5,7,8]; // Padrão: móvel novo
+    var etapasAtivas = [1, 2, 5, 7, 8];
 
     var btnIniciar = document.getElementById('btnIniciar');
     var simuladorHero = document.getElementById('simuladorHero');
@@ -33,6 +33,8 @@
 
     btnAvancar.onclick = function() {
         if (validarEtapa()) {
+            if (etapaAtual === 2 && !dados.condicao) return;
+            if (etapaAtual === 2 && dados.condicao) atualizarEtapas();
             var idx = etapasAtivas.indexOf(etapaAtual);
             if (idx < etapasAtivas.length - 1) renderizarEtapa(etapasAtivas[idx + 1]);
         }
@@ -43,11 +45,10 @@
     };
 
     function atualizarEtapas() {
-        etapasAtivas = [1, 2]; // Sempre: móveis + condição
+        etapasAtivas = [1, 2];
         if (dados.condicao === 'usado') {
-            etapasAtivas.push(3, 4); // Desmontagem + Remontagem
+            etapasAtivas.push(3, 4);
         }
-        // Verificar se algum móvel selecionado permite fixação
         var temFixacao = false;
         var temRecorte = false;
         dados.moveis.forEach(function(key) {
@@ -56,7 +57,7 @@
         });
         if (temFixacao) etapasAtivas.push(5);
         if (temRecorte) etapasAtivas.push(6);
-        etapasAtivas.push(7, 8); // Cidade + Calcular
+        etapasAtivas.push(7, 8);
         totalEtapas = etapasAtivas.length;
     }
 
@@ -94,7 +95,7 @@
         }
         h += '</div>';
         h += '<p style="text-align:center;margin-top:15px;font-weight:600;color:var(--azul-escuro);">';
-        h += '<span id="contadorMoveis">0</span> móvel(is) selecionado(s)</p>';
+        h += '<span id="contadorMoveis">' + dados.moveis.length + '</span> móvel(is) selecionado(s)</p>';
         return h;
     }
 
@@ -175,78 +176,83 @@
     }
 
     function addEventos(numero) {
-        if (numero === 1) {
-            document.querySelectorAll('.opcao-item').forEach(function(item) {
-                item.onclick = function() {
-                    var v = this.getAttribute('data-valor');
-                    var idx = dados.moveis.indexOf(v);
-                    if (idx === -1) {
-                        dados.moveis.push(v);
+        setTimeout(function() {
+            if (numero === 1) {
+                var items = document.querySelectorAll('#etapaContainer .opcao-item');
+                items.forEach(function(item) {
+                    item.onclick = function() {
+                        var v = this.getAttribute('data-valor');
+                        var idx = dados.moveis.indexOf(v);
+                        if (idx === -1) {
+                            dados.moveis.push(v);
+                            this.classList.add('selecionado');
+                        } else {
+                            dados.moveis.splice(idx, 1);
+                            this.classList.remove('selecionado');
+                        }
+                        var contador = document.getElementById('contadorMoveis');
+                        if (contador) contador.textContent = dados.moveis.length;
+                    };
+                });
+            }
+            if (numero === 2) {
+                var simples = document.querySelectorAll('#etapaContainer .opcao-simples');
+                simples.forEach(function(item) {
+                    item.onclick = function() {
+                        simples.forEach(function(i) { i.classList.remove('selecionado'); });
                         this.classList.add('selecionado');
-                    } else {
-                        dados.moveis.splice(idx, 1);
-                        this.classList.remove('selecionado');
-                    }
-                    var contador = document.getElementById('contadorMoveis');
-                    if (contador) contador.textContent = dados.moveis.length;
-                };
-            });
-        }
-        if (numero === 2) {
-            document.querySelectorAll('.opcao-simples').forEach(function(item) {
-                item.onclick = function() {
-                    document.querySelectorAll('.opcao-simples').forEach(function(i) { i.classList.remove('selecionado'); });
-                    this.classList.add('selecionado');
-                    dados.condicao = this.getAttribute('data-valor');
-                    if (dados.condicao === 'novo') {
-                        dados.desmontagem = null;
-                        dados.remontagem = null;
-                    }
-                    atualizarEtapas();
-                };
-            });
-        }
-        if (numero === 3 || numero === 4) {
-            document.querySelectorAll('.opcao-simples').forEach(function(item) {
-                item.onclick = function() {
-                    var parent = this.parentElement;
-                    parent.querySelectorAll('.opcao-simples').forEach(function(i) { i.classList.remove('selecionado'); });
-                    this.classList.add('selecionado');
-                    var v = this.getAttribute('data-valor');
-                    if (numero === 3) dados.desmontagem = v;
-                    if (numero === 4) dados.remontagem = v;
-                };
-            });
-        }
-        if (numero === 5) {
-            document.querySelectorAll('.opcao-simples').forEach(function(item) {
-                item.onclick = function() {
-                    var parent = this.parentElement;
-                    parent.querySelectorAll('.opcao-simples').forEach(function(i) { i.classList.remove('selecionado'); });
-                    this.classList.add('selecionado');
-                    dados.fixacao = this.getAttribute('data-valor');
-                };
-            });
-        }
-        if (numero === 6) {
-            document.querySelectorAll('.opcao-checkbox').forEach(function(item) {
-                item.onclick = function() {
-                    var v = this.getAttribute('data-valor');
-                    var ri = dados.recortes.indexOf(v);
-                    if (ri === -1) { dados.recortes.push(v); this.classList.add('selecionado'); }
-                    else { dados.recortes.splice(ri, 1); this.classList.remove('selecionado'); }
-                };
-            });
-        }
-        if (numero === 7) {
-            document.querySelectorAll('.opcao-item').forEach(function(item) {
-                item.onclick = function() {
-                    document.querySelectorAll('.opcao-item').forEach(function(i) { i.classList.remove('selecionado'); });
-                    this.classList.add('selecionado');
-                    dados.cidade = this.getAttribute('data-valor');
-                };
-            });
-        }
+                        dados.condicao = this.getAttribute('data-valor');
+                        if (dados.condicao === 'novo') {
+                            dados.desmontagem = null;
+                            dados.remontagem = null;
+                        }
+                    };
+                });
+            }
+            if (numero === 3 || numero === 4) {
+                var simples2 = document.querySelectorAll('#etapaContainer .opcao-simples');
+                simples2.forEach(function(item) {
+                    item.onclick = function() {
+                        simples2.forEach(function(i) { i.classList.remove('selecionado'); });
+                        this.classList.add('selecionado');
+                        var v = this.getAttribute('data-valor');
+                        if (numero === 3) dados.desmontagem = v;
+                        if (numero === 4) dados.remontagem = v;
+                    };
+                });
+            }
+            if (numero === 5) {
+                var simples5 = document.querySelectorAll('#etapaContainer .opcao-simples');
+                simples5.forEach(function(item) {
+                    item.onclick = function() {
+                        simples5.forEach(function(i) { i.classList.remove('selecionado'); });
+                        this.classList.add('selecionado');
+                        dados.fixacao = this.getAttribute('data-valor');
+                    };
+                });
+            }
+            if (numero === 6) {
+                var checks = document.querySelectorAll('#etapaContainer .opcao-checkbox');
+                checks.forEach(function(item) {
+                    item.onclick = function() {
+                        var v = this.getAttribute('data-valor');
+                        var ri = dados.recortes.indexOf(v);
+                        if (ri === -1) { dados.recortes.push(v); this.classList.add('selecionado'); }
+                        else { dados.recortes.splice(ri, 1); this.classList.remove('selecionado'); }
+                    };
+                });
+            }
+            if (numero === 7) {
+                var items7 = document.querySelectorAll('#etapaContainer .opcao-item');
+                items7.forEach(function(item) {
+                    item.onclick = function() {
+                        items7.forEach(function(i) { i.classList.remove('selecionado'); });
+                        this.classList.add('selecionado');
+                        dados.cidade = this.getAttribute('data-valor');
+                    };
+                });
+            }
+        }, 50);
     }
 
     function validarEtapa() {
@@ -297,7 +303,6 @@
             else if (m.complexidade === 'media' && complexidadeMax !== 'alta') complexidadeMax = 'media';
         });
 
-        // Desconto por múltiplos móveis
         if (dados.moveis.length > 1) {
             var desconto = fatoresAjuste.multiplosMoveis.desconto;
             pMinTotal = Math.round(pMinTotal * (1 - desconto));
