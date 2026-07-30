@@ -16,10 +16,10 @@ var todosPosts = [
         titulo: "Quanto Custa um Montador de Móveis em Valparaíso? Guia de Preços 2026",
         categoria: "Orçamento",
         resumo: "Descubra o preço real de montagem de guarda-roupa, cozinhas planejada, painel de TV e mais. Orçamento transparente e sem surpresas.",
-        imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785360876/imagens_posts_blog_i4z3bd.png",
-        data: "26 Jul 2026",
+        imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785369827/imagens_posts_blog_1_qfiom3.png",
+        data: "29 Jul 2026",
         link: "posts/quanto-custa-montador-moveis-valparaiso.html",
-        tempoLeitura: "7 min"
+        tempoLeitura: "2 min"
     },
   // ID 2.1
     {
