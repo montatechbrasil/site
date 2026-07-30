@@ -7,15 +7,12 @@
     <title>Simulador de Preço de Montagem de Móveis | MontaTech Brasil</title>
     <meta name="description" content="Simule o preço de montagem do seu móvel em segundos. Ferramenta inteligente da MontaTech Brasil em Valparaíso de Goiás. Orçamento rápido e sem compromisso.">
     
-    <!-- CSS Global -->
     <link rel="preload" href="../css/cores.css" as="style">
     <link rel="stylesheet" href="../css/cores.css">
     
-    <!-- CSS do Simulador -->
     <link rel="preload" href="css/estilo.css" as="style">
     <link rel="stylesheet" href="css/estilo.css">
     
-    <!-- Schema.org -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -45,7 +42,7 @@
     <main>
         
         <!-- Hero -->
-        <section class="simulador-hero">
+        <section class="simulador-hero" id="simuladorHero">
             <div class="container">
                 <h1>Simulador de Preço de Montagem de Móveis</h1>
                 <p class="simulador-subtitulo">Descubra uma estimativa em poucos segundos e entenda quais fatores influenciam o orçamento.</p>
@@ -61,7 +58,7 @@
                 <div class="etapa-container" id="etapaContainer"></div>
                 <div class="etapa-botoes">
                     <button class="btn-voltar" id="btnVoltar" style="display:none;">← Voltar</button>
-                    <button class="btn-avancar" id="btnAvancar" style="display:none;">Continuar →</button>
+                    <button class="btn-avancar" id="btnAvancar">Continuar →</button>
                     <button class="btn-calcular" id="btnCalcular" style="display:none;">Calcular Estimativa</button>
                 </div>
             </div>
@@ -75,23 +72,90 @@
         </section>
         
         <!-- Conteúdo SEO -->
-        <section class="simulador-seo">
+        <section class="simulador-seo" id="simuladorSeo">
             <div class="container">
                 
                 <h2>Quanto Custa Montar Móveis em Valparaíso de Goiás?</h2>
-                <p>O preço de montagem de móveis varia conforme o tipo, tamanho, complexidade e localização. Em <strong>Valparaíso de Goiás e Entorno do DF</strong>, os valores costumam seguir faixas médias de mercado.</p>
                 
-                <!-- Tabela aqui -->
+                <p>O preço de montagem de móveis varia conforme o tipo, tamanho, complexidade e localização. Em <strong>Valparaíso de Goiás e Entorno do DF</strong>, os valores costumam seguir faixas médias de mercado, que servem como referência inicial. Abaixo, confira uma tabela com estimativas baseadas em serviços realizados na região:</p>
+                
+                <div class="tabela-responsiva">
+                    <table class="tabela-precos">
+                        <thead>
+                            <tr>
+                                <th>Móvel</th>
+                                <th>Faixa Média</th>
+                                <th>Tempo Médio</th>
+                                <th>Complexidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Mesa de cabeceira</td><td>R$ 80 – R$ 120</td><td>20 a 40 min</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Criado-mudo</td><td>R$ 80 – R$ 120</td><td>20 a 40 min</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Sapateira</td><td>R$ 90 – R$ 180</td><td>30 a 60 min</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Estante pequena</td><td>R$ 120 – R$ 200</td><td>40 min a 2h</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Escrivaninha</td><td>R$ 150 – R$ 280</td><td>1 a 2 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Cômoda</td><td>R$ 180 – R$ 350</td><td>1 a 2 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Rack para TV</td><td>R$ 180 – R$ 380</td><td>1 a 3 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Painel para TV</td><td>R$ 180 – R$ 450</td><td>2 a 4 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Mesa de jantar</td><td>R$ 150 – R$ 350</td><td>1 a 3 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Armário aéreo</td><td>R$ 120 – R$ 250</td><td>1 a 2,5 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Balcão de cozinha</td><td>R$ 150 – R$ 300</td><td>1,5 a 3 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Guarda-roupa solteiro</td><td>R$ 250 – R$ 500</td><td>3 a 5 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Guarda-roupa casal</td><td>R$ 350 – R$ 700</td><td>4 a 8 horas</td><td>🔴 Alta</td></tr>
+                            <tr><td>Guarda-roupa portas de correr</td><td>R$ 450 – R$ 850</td><td>5 a 8 horas</td><td>🔴 Alta</td></tr>
+                            <tr><td>Cozinha modulada pequena</td><td>R$ 500 – R$ 900</td><td>5 a 8 horas</td><td>🔴 Alta</td></tr>
+                            <tr><td>Cozinha modulada completa</td><td>Sob orçamento</td><td>1 a 2 dias</td><td>🔴 Alta</td></tr>
+                            <tr><td>Home office completo</td><td>Sob orçamento</td><td>4 a 8 horas</td><td>🔴 Alta</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p><strong>Importante:</strong> Os valores acima representam médias de mercado e servem apenas como referência. O orçamento definitivo depende da análise do móvel e das condições do ambiente.</p>
+                
+                <h2>Como Funciona o Simulador de Preço?</h2>
+                
+                <p>Nossa ferramenta faz perguntas simples sobre seu móvel e, com base nas suas respostas, calcula uma estimativa de preço em tempo real. O processo leva menos de 1 minuto e ajuda você a entender melhor os fatores que influenciam no valor final da montagem.</p>
+                
+                <p>O simulador considera:</p>
+                
+                <ul>
+                    <li><strong>Tipo de móvel:</strong> Guarda-roupas e cozinhas exigem mais tempo que mesas e criados.</li>
+                    <li><strong>Estado do móvel:</strong> Móveis usados podem precisar de ajustes extras.</li>
+                    <li><strong>Desmontagem e remontagem:</strong> Se o móvel precisar ser desmontado antes, o tempo aumenta.</li>
+                    <li><strong>Fixação na parede:</strong> Alguns móveis exigem fixação para segurança.</li>
+                    <li><strong>Recortes e adaptações:</strong> Ajustes para pia, tomadas ou rodapés influenciam no valor.</li>
+                    <li><strong>Localização:</strong> O deslocamento até bairros mais distantes de Valparaíso ou cidades do Entorno pode influenciar.</li>
+                </ul>
+                
+                <h2>O Que Influencia no Preço da Montagem?</h2>
+                
+                <p>Muitas pessoas acreditam que o preço da montagem depende apenas do tamanho do móvel. Na prática, diversos fatores são considerados:</p>
+                
+                <ul>
+                    <li><strong>Marca e fabricante:</strong> Cada fabricante possui um sistema de encaixe diferente. Móveis da Madesa, MadeiraMadeira, Magazine Luiza e Casas Bahia têm particularidades que um montador experiente conhece.</li>
+                    <li><strong>Quantidade de peças e volumes:</strong> Um guarda-roupa de 6 portas pode vir em 3 ou 8 volumes, dependendo da marca.</li>
+                    <li><strong>Ferragens e acessórios:</strong> Corrediças telescópicas, dobradiças com amortecedor e puxadores especiais exigem mais cuidado.</li>
+                    <li><strong>Ambiente de instalação:</strong> Pisos desnivelados, paredes fora de esquadro e espaços reduzidos aumentam a complexidade.</li>
+                    <li><strong>Deslocamento:</strong> Atendimentos em cidades do Entorno do DF como Jardim Ingá, Cidade Ocidental, Luziânia, Novo Gama e Gama podem ter custo adicional de transporte.</li>
+                </ul>
                 
                 <h2>Perguntas Frequentes</h2>
+                
                 <h3>O simulador mostra o preço exato?</h3>
-                <p>Não. Ele fornece uma <strong>estimativa baseada nas informações fornecidas</strong>. O orçamento definitivo depende da análise do móvel.</p>
+                <p>Não. Ele fornece uma <strong>estimativa baseada nas informações fornecidas</strong>. O orçamento definitivo depende da análise presencial ou de fotos do móvel. Use a estimativa como referência inicial.</p>
                 
-                <h3>Preciso pagar para usar?</h3>
-                <p>Não. A ferramenta é <strong>totalmente gratuita</strong> e não exige cadastro.</p>
+                <h3>Preciso pagar ou me cadastrar para usar o simulador?</h3>
+                <p>Não. A ferramenta é <strong>totalmente gratuita</strong> e não exige cadastro, e-mail ou qualquer dado pessoal.</p>
                 
-                <h3>Como contratar após a simulação?</h3>
-                <p>No final, há um botão para <strong>chamar no WhatsApp</strong> com todas as informações preenchidas.</p>
+                <h3>Como faço para contratar após a simulação?</h3>
+                <p>No final da simulação, há um botão para <strong>chamar no WhatsApp</strong> com todas as informações preenchidas automaticamente. É só enviar a mensagem que nossa equipe responde em minutos.</p>
+                
+                <h3>Os preços valem para qualquer cidade?</h3>
+                <p>Os valores são referências para <strong>Valparaíso de Goiás e Entorno do DF</strong>. Para outras localidades, entre em contato diretamente pelo WhatsApp para um orçamento personalizado.</p>
+                
+                <h3>Quanto tempo leva para receber o orçamento real?</h3>
+                <p>Após enviar as informações pelo WhatsApp, nossa equipe costuma responder em <strong>até 15 minutos</strong> durante o horário comercial.</p>
                 
             </div>
         </section>
@@ -102,8 +166,8 @@
     
     <script src="../js/componentes.js" defer></script>
     <script src="../js/metrics.js" defer></script>
-    <script src="js/precos.js" defer></script>
-    <script src="js/logica.js" defer></script>
+    <script src="js/precos.js"></script>
+    <script src="js/logica.js"></script>
     
 </body>
 </html>
