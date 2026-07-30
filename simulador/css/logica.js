@@ -334,4 +334,83 @@
         
         // Localização
         precoMin = Math.round(precoMin * local.multiplicador);
-        precoMax = Math.round(precoMax * local.multi
+        precoMax = Math.round(precoMax * local.multiplicador);
+        
+        // Complexidade visual
+        var compVisual = '';
+        if (complexidade === 'baixa') compVisual = '🟢 Baixa';
+        if (complexidade === 'media') compVisual = '🟡 Média';
+        if (complexidade === 'alta') compVisual = '🔴 Alta';
+        
+        // Formatar tempo
+        function formatarTempo(min) {
+            if (min < 60) return min + ' min';
+            var h = Math.floor(min / 60);
+            var m = min % 60;
+            if (m === 0) return h + 'h';
+            return h + 'h' + m + 'min';
+        }
+        
+        // Construir resultado
+        var html = '';
+        html += '<div class="resultado-header">';
+        html += '<h2>Estimativa de Montagem</h2>';
+        html += '<p class="resultado-movel">' + movel.nome + '</p>';
+        html += '</div>';
+        html += '<div class="resultado-body">';
+        
+        html += '<div class="resultado-item">';
+        html += '<span class="resultado-label">Complexidade</span>';
+        html += '<span class="resultado-valor">' + compVisual + '</span>';
+        html += '</div>';
+        
+        html += '<div class="resultado-item">';
+        html += '<span class="resultado-label">Tempo estimado</span>';
+        html += '<span class="resultado-valor">Entre ' + formatarTempo(tempoMin) + ' e ' + formatarTempo(tempoMax) + '</span>';
+        html += '</div>';
+        
+        html += '<div class="resultado-item">';
+        html += '<span class="resultado-label">Faixa média de investimento</span>';
+        html += '<span class="resultado-valor" style="font-size:1.3em;color:var(--verde);">R$ ' + precoMin + ' a R$ ' + precoMax + '</span>';
+        html += '</div>';
+        
+        html += '<div class="resultado-aviso">';
+        html += '⚠️ <strong>Importante:</strong> Estimativa baseada nas informações fornecidas. O orçamento definitivo depende da análise do móvel e das condições do ambiente.';
+        html += '</div>';
+        
+        if (observacoes.length > 0) {
+            html += '<div class="resultado-observacoes">';
+            html += '<h4>📝 Observações:</h4>';
+            html += '<ul style="padding-left:18px;">';
+            observacoes.forEach(function(obs) {
+                html += '<li style="margin-bottom:5px;">' + obs + '</li>';
+            });
+            html += '</ul></div>';
+        }
+        
+        // Mensagem WhatsApp
+        var msg = 'Olá!%0A%0AUtilizei o Simulador de Preço da MontaTech.%0A%0A';
+        msg += 'Móvel: ' + movel.nome + '%0A';
+        msg += 'Condição: ' + (dados.condicao === 'novo' ? 'Novo' : 'Usado') + '%0A';
+        msg += 'Desmontagem: ' + (dados.desmontagem === 'sim' ? 'Sim' : 'Não') + '%0A';
+        msg += 'Remontagem: ' + (dados.remontagem === 'sim' ? 'Sim' : 'Não') + '%0A';
+        msg += 'Fixação: ' + (dados.fixacao === 'sim' ? 'Sim' : dados.fixacao === 'nao' ? 'Não' : 'Não sei') + '%0A';
+        msg += 'Cidade: ' + local.descricao + '%0A';
+        msg += 'Estimativa: R$ ' + precoMin + ' a R$ ' + precoMax + '%0A%0A';
+        msg += 'Gostaria de solicitar um orçamento.';
+        
+        html += '<div class="resultado-cta">';
+        html += '<a href="https://api.whatsapp.com/send/?phone=5561998865417&text=' + msg + '&type=phone_number&app_absent=0" class="btn-whatsapp" target="_blank" rel="noopener">📱 Solicitar Orçamento pelo WhatsApp</a>';
+        html += '<br>';
+        html += '<button class="btn-reiniciar" onclick="location.reload();">🔄 Fazer Nova Simulação</button>';
+        html += '</div>';
+        
+        html += '</div>';
+        
+        resultadoCard.innerHTML = html;
+        simuladorWizard.style.display = 'none';
+        simuladorResultado.style.display = 'block';
+        simuladorResultado.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    
+})();
