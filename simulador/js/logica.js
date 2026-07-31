@@ -1,12 +1,10 @@
 var dadosSimulador = null;
 var dados = {
-    moveis: [],
+    moveis: {},
     condicao: null,
     tipoServico: null,
     cidade: null,
     cidadeDiferente: false,
-    cidadeDesmontagem: null,
-    cidadeRemontagem: null,
     adicionais: [],
     recortes: [],
     recortesChapa: false,
@@ -45,17 +43,11 @@ function voltarEtapa() {
 function avancarEtapa() {
     if (!validarEtapa()) return;
     if (etapaAtual === 2 && dados.condicao === 'usado') {
-        if (etapasAtivas.indexOf(3) === -1) {
-            etapasAtivas.splice(2, 0, 3);
-            totalEtapas = 7;
-        }
+        if (etapasAtivas.indexOf(3) === -1) { etapasAtivas.splice(2, 0, 3); totalEtapas = 7; }
     }
     if (etapaAtual === 2 && dados.condicao === 'novo') {
         var idx3 = etapasAtivas.indexOf(3);
-        if (idx3 !== -1) {
-            etapasAtivas.splice(idx3, 1);
-            totalEtapas = 6;
-        }
+        if (idx3 !== -1) { etapasAtivas.splice(idx3, 1); totalEtapas = 6; }
     }
     var idx = etapasAtivas.indexOf(etapaAtual);
     if (idx < etapasAtivas.length - 1) renderizarEtapa(etapasAtivas[idx + 1]);
@@ -64,6 +56,12 @@ function avancarEtapa() {
 function calcularEstimativa() {
     if (!validarEtapa()) return;
     exibirResultado();
+}
+
+function totalMoveis() {
+    var t = 0;
+    for (var k in dados.moveis) t += dados.moveis[k];
+    return t;
 }
 
 function renderizarEtapa(numero) {
@@ -88,31 +86,40 @@ function renderizarEtapa(numero) {
 function etapa1HTML() {
     var moveis = dadosSimulador.moveis;
     var h = '<h2>Quais móveis deseja montar?</h2>';
-    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Selecione todos os móveis do seu projeto.</p>';
+    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Clique para adicionar. Use + e - para ajustar a quantidade.</p>';
     h += '<div class="opcoes-grid">';
     for (var k in moveis) {
-        var sel = dados.moveis.indexOf(k) !== -1 ? ' selecionado' : '';
-        h += '<div class="opcao-item' + sel + '" data-valor="' + k + '" tabindex="0" onclick="toggleMovel(this, \'' + k + '\')">';
+        var qtd = dados.moveis[k] || 0;
+        var sel = qtd > 0 ? ' selecionado' : '';
+        h += '<div class="opcao-item' + sel + '" data-valor="' + k + '" tabindex="0">';
         h += '<span class="opcao-icone">' + moveis[k].icone + '</span>';
-        h += '<span class="opcao-nome">' + moveis[k].nome + '</span></div>';
+        h += '<span class="opcao-nome">' + moveis[k].nome + '</span>';
+        if (qtd > 0) {
+            h += '<div class="qtd-controle" style="display:flex;align-items:center;gap:8px;margin-top:8px;">';
+            h += '<button class="qtd-btn" onclick="event.stopPropagation();alterarQtd(\'' + k + '\', -1)" style="width:28px;height:28px;border-radius:50%;border:2px solid var(--verde);background:white;color:var(--verde);font-weight:bold;cursor:pointer;font-size:16px;">−</button>';
+            h += '<span class="qtd-num" style="font-weight:700;color:var(--azul-escuro);min-width:20px;text-align:center;">' + qtd + '</span>';
+            h += '<button class="qtd-btn" onclick="event.stopPropagation();alterarQtd(\'' + k + '\', 1)" style="width:28px;height:28px;border-radius:50%;border:2px solid var(--verde);background:white;color:var(--verde);font-weight:bold;cursor:pointer;font-size:16px;">+</button>';
+            h += '</div>';
+        }
+        h += '</div>';
     }
     h += '</div>';
     h += '<p style="text-align:center;margin-top:15px;font-weight:600;color:var(--azul-escuro);">';
-    h += '<span id="contadorMoveis">' + dados.moveis.length + '</span> móvel(is) selecionado(s)</p>';
+    h += '<span id="contadorMoveis">' + totalMoveis() + '</span> móvel(is) selecionado(s)</p>';
     return h;
 }
 
-function toggleMovel(el, key) {
+function alterarQtd(key, delta) {
     if (dadosSimulador.moveis[key] && dadosSimulador.moveis[key].linkWhatsApp) {
         var url = document.querySelector('.whatsapp-button') ? document.querySelector('.whatsapp-button').href : 'https://api.whatsapp.com/send/?phone=5561998865417&text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+para+cozinha+planejada';
         window.open(url, '_blank');
         return;
     }
-    var idx = dados.moveis.indexOf(key);
-    if (idx === -1) { dados.moveis.push(key); el.classList.add('selecionado'); }
-    else { dados.moveis.splice(idx, 1); el.classList.remove('selecionado'); }
-    var c = document.getElementById('contadorMoveis');
-    if (c) c.textContent = dados.moveis.length;
+    if (!dados.moveis[key]) dados.moveis[key] = 0;
+    dados.moveis[key] += delta;
+    if (dados.moveis[key] < 0) dados.moveis[key] = 0;
+    if (dados.moveis[key] === 0) delete dados.moveis[key];
+    renderizarEtapa(1);
 }
 
 function etapa2HTML() {
@@ -189,7 +196,7 @@ function selecionarMesmaCidade(el) {
 
 function etapa5HTML() {
     var h = '<h2>Adicionais do móvel</h2>';
-    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Selecione as características especiais dos seus móveis:</p>';
+    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Selecione as características especiais:</p>';
     h += '<div class="opcoes-checkbox" style="flex-direction:column;align-items:center;">';
     h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('portasCorrer') !== -1 ? ' selecionado' : '') + '" data-valor="portasCorrer" tabindex="0" onclick="toggleAdicional(this)">🚪 Portas de Correr (+20%)</div>';
     h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('espelhosGrandes') !== -1 ? ' selecionado' : '') + '" data-valor="espelhosGrandes" tabindex="0" onclick="toggleAdicional(this)">🪞 Espelhos Grandes (+25%)</div>';
@@ -208,14 +215,12 @@ function toggleAdicional(el) {
 
 function toggleLED(el) {
     dados.iluminacaoLED = !dados.iluminacaoLED;
-    if (dados.iluminacaoLED) el.classList.add('selecionado');
-    else el.classList.remove('selecionado');
+    if (dados.iluminacaoLED) el.classList.add('selecionado'); else el.classList.remove('selecionado');
 }
 
 function toggleBalcaoSuspenso(el) {
     dados.balcaoSuspenso = !dados.balcaoSuspenso;
-    if (dados.balcaoSuspenso) el.classList.add('selecionado');
-    else el.classList.remove('selecionado');
+    if (dados.balcaoSuspenso) el.classList.add('selecionado'); else el.classList.remove('selecionado');
 }
 
 function etapa6HTML() {
@@ -243,14 +248,15 @@ function toggleRecorte(el) {
 
 function toggleRecorteChapa(el) {
     dados.recortesChapa = !dados.recortesChapa;
-    if (dados.recortesChapa) el.classList.add('selecionado');
-    else el.classList.remove('selecionado');
+    if (dados.recortesChapa) el.classList.add('selecionado'); else el.classList.remove('selecionado');
 }
 
 function etapa7HTML() {
     var h = '<h2>Confira as informações</h2><ul style="list-style:none;padding:0;">';
     h += '<li style="padding:8px 0;"><strong>Móveis:</strong><br>';
-    dados.moveis.forEach(function(k) { h += '• ' + dadosSimulador.moveis[k].nome + '<br>'; });
+    for (var k in dados.moveis) {
+        h += '• ' + dados.moveis[k] + 'x ' + dadosSimulador.moveis[k].nome + '<br>';
+    }
     h += '</li>';
     h += '<li style="padding:8px 0;"><strong>Condição:</strong> ' + (dados.condicao === 'novo' ? 'Novo(s)' : 'Usado(s)') + '</li>';
     if (dados.condicao === 'usado') h += '<li style="padding:8px 0;"><strong>Serviço:</strong> ' + dados.tipoServico + '</li>';
@@ -261,7 +267,7 @@ function etapa7HTML() {
 }
 
 function validarEtapa() {
-    if (etapaAtual === 1 && dados.moveis.length === 0) { alert('Selecione pelo menos um móvel.'); return false; }
+    if (etapaAtual === 1 && totalMoveis() === 0) { alert('Selecione pelo menos um móvel.'); return false; }
     if (etapaAtual === 2 && !dados.condicao) { alert('Informe se o móvel é novo ou usado.'); return false; }
     if (etapaAtual === 3 && !dados.tipoServico) { alert('Selecione o tipo de serviço.'); return false; }
     if (etapaAtual === 4 && !dados.cidade) { alert('Selecione sua cidade.'); return false; }
@@ -291,38 +297,31 @@ function exibirResultado() {
     var mData = dadosSimulador.moveis, add = dadosSimulador.adicionais, loc = dadosSimulador.localizacao;
     var preco = 0, obs = [], nomes = [];
     
-    dados.moveis.forEach(function(k) {
-        var m = mData[k];
-        nomes.push(m.nome);
-        if (dados.condicao === 'novo') preco += m.precos.novo;
-        if (dados.condicao === 'usado') {
-            if (dados.tipoServico === 'montagem') preco += m.precos.usado;
-            if (dados.tipoServico === 'desmontagem') preco += m.precos.desmontagem;
-            if (dados.tipoServico === 'remontagem') preco += m.precos.remontagem;
-            if (dados.tipoServico === 'desmontagem_montagem') preco += m.precos.desmontagem + m.precos.usado;
+    for (var k in dados.moveis) {
+        var m = mData[k], qtd = dados.moveis[k];
+        nomes.push(qtd + 'x ' + m.nome);
+        for (var i = 0; i < qtd; i++) {
+            if (dados.condicao === 'novo') preco += m.precos.novo;
+            if (dados.condicao === 'usado') {
+                if (dados.tipoServico === 'montagem') preco += m.precos.usado;
+                if (dados.tipoServico === 'desmontagem') preco += m.precos.desmontagem;
+                if (dados.tipoServico === 'remontagem') preco += m.precos.remontagem;
+                if (dados.tipoServico === 'desmontagem_montagem') preco += m.precos.desmontagem + m.precos.usado;
+            }
+            if (dados.adicionais.indexOf('portasCorrer') !== -1 && m.adicionais.portasCorrer) preco += Math.round(m.precos.novo * m.adicionais.portasCorrer / 100);
+            if (dados.adicionais.indexOf('espelhosGrandes') !== -1 && m.adicionais.espelhosGrandes) preco += Math.round(m.precos.novo * m.adicionais.espelhosGrandes / 100);
         }
-        if (dados.adicionais.indexOf('portasCorrer') !== -1 && m.adicionais.portasCorrer) {
-            preco += Math.round(m.precos.novo * m.adicionais.portasCorrer / 100);
-            obs.push('Portas de correr (+' + m.adicionais.portasCorrer + '%)');
-        }
-        if (dados.adicionais.indexOf('espelhosGrandes') !== -1 && m.adicionais.espelhosGrandes) {
-            preco += Math.round(m.precos.novo * m.adicionais.espelhosGrandes / 100);
-            obs.push('Espelhos grandes (+' + m.adicionais.espelhosGrandes + '%)');
-        }
-    });
+    }
     
     if (dados.iluminacaoLED) { preco += add.iluminacaoLED.preco; obs.push(add.iluminacaoLED.descricao); }
     if (dados.balcaoSuspenso) { preco += add.balcaoSuspenso.preco; obs.push(add.balcaoSuspenso.descricao); }
-    if (dados.recortes.length > 0) {
-        preco += dados.recortes.length * add.recortePorModulo.preco;
-        obs.push(dados.recortes.length + ' recorte(s) (R$ ' + add.recortePorModulo.preco + ' cada)');
-    }
+    if (dados.recortes.length > 0) { preco += dados.recortes.length * add.recortePorModulo.preco; obs.push(dados.recortes.length + ' recorte(s) (R$ ' + add.recortePorModulo.preco + ' cada)'); }
     if (dados.recortesChapa) { preco += add.recorteChapa.preco; obs.push(add.recorteChapa.descricao); }
     
     var taxa = loc[dados.cidade] ? loc[dados.cidade].fator : 60;
     preco += taxa;
     
-    if (dados.moveis.length >= add.descontoMultiplos.minimo) {
+    if (totalMoveis() >= add.descontoMultiplos.minimo) {
         var desc = Math.round(preco * add.descontoMultiplos.percentual / 100);
         preco -= desc;
         obs.push(add.descontoMultiplos.descricao + ' (-R$ ' + desc + ')');
