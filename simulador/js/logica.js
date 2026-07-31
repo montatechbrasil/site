@@ -86,12 +86,12 @@ function renderizarEtapa(numero) {
 function etapa1HTML() {
     var moveis = dadosSimulador.moveis;
     var h = '<h2>Quais móveis deseja montar?</h2>';
-    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Clique para adicionar. Use + e - para ajustar a quantidade.</p>';
+    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Clique no móvel para adicionar. Use + e − para ajustar a quantidade.</p>';
     h += '<div class="opcoes-grid">';
     for (var k in moveis) {
         var qtd = dados.moveis[k] || 0;
         var sel = qtd > 0 ? ' selecionado' : '';
-        h += '<div class="opcao-item' + sel + '" data-valor="' + k + '" tabindex="0">';
+        h += '<div class="opcao-item' + sel + '" data-valor="' + k + '" tabindex="0" onclick="adicionarMovel(\'' + k + '\')">';
         h += '<span class="opcao-icone">' + moveis[k].icone + '</span>';
         h += '<span class="opcao-nome">' + moveis[k].nome + '</span>';
         if (qtd > 0) {
@@ -109,12 +109,21 @@ function etapa1HTML() {
     return h;
 }
 
-function alterarQtd(key, delta) {
+function adicionarMovel(key) {
     if (dadosSimulador.moveis[key] && dadosSimulador.moveis[key].linkWhatsApp) {
         var url = document.querySelector('.whatsapp-button') ? document.querySelector('.whatsapp-button').href : 'https://api.whatsapp.com/send/?phone=5561998865417&text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+para+cozinha+planejada';
         window.open(url, '_blank');
         return;
     }
+    if (!dados.moveis[key]) {
+        dados.moveis[key] = 1;
+    } else {
+        dados.moveis[key] += 1;
+    }
+    renderizarEtapa(1);
+}
+
+function alterarQtd(key, delta) {
     if (!dados.moveis[key]) dados.moveis[key] = 0;
     dados.moveis[key] += delta;
     if (dados.moveis[key] < 0) dados.moveis[key] = 0;
