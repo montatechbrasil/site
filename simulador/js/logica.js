@@ -1,0 +1,358 @@
+var dadosSimulador = null;
+var dados = {
+    moveis: [],
+    condicao: null,
+    tipoServico: null,
+    cidade: null,
+    cidadeDiferente: false,
+    cidadeDesmontagem: null,
+    cidadeRemontagem: null,
+    adicionais: [],
+    recortes: [],
+    recortesChapa: false,
+    iluminacaoLED: false,
+    balcaoSuspenso: false
+};
+var etapaAtual = 1;
+var totalEtapas = 7;
+var etapasAtivas = [1, 2, 4, 5, 6, 7];
+
+function carregarDados() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'js/dados.json', true);
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            dadosSimulador = JSON.parse(xhr.responseText);
+            configurarBotoes();
+        }
+    };
+    xhr.send();
+}
+
+function iniciarSimulador() {
+    document.getElementById('simuladorHero').style.display = 'none';
+    document.getElementById('simuladorWizard').style.display = 'block';
+    var seo = document.getElementById('simuladorSeo');
+    if (seo) seo.style.display = 'none';
+    renderizarEtapa(1);
+}
+
+function voltarEtapa() {
+    var idx = etapasAtivas.indexOf(etapaAtual);
+    if (idx > 0) renderizarEtapa(etapasAtivas[idx - 1]);
+}
+
+function avancarEtapa() {
+    if (!validarEtapa()) return;
+    if (etapaAtual === 2 && dados.condicao === 'usado') {
+        if (etapasAtivas.indexOf(3) === -1) {
+            etapasAtivas.splice(2, 0, 3);
+            totalEtapas = 7;
+        }
+    }
+    if (etapaAtual === 2 && dados.condicao === 'novo') {
+        var idx3 = etapasAtivas.indexOf(3);
+        if (idx3 !== -1) {
+            etapasAtivas.splice(idx3, 1);
+            totalEtapas = 6;
+        }
+    }
+    var idx = etapasAtivas.indexOf(etapaAtual);
+    if (idx < etapasAtivas.length - 1) renderizarEtapa(etapasAtivas[idx + 1]);
+}
+
+function calcularEstimativa() {
+    if (!validarEtapa()) return;
+    exibirResultado();
+}
+
+function renderizarEtapa(numero) {
+    etapaAtual = numero;
+    var idx = etapasAtivas.indexOf(numero) + 1;
+    var total = etapasAtivas.length;
+    document.getElementById('progressoFill').style.width = Math.round((idx / total) * 100) + '%';
+    document.getElementById('progressoTexto').textContent = 'Etapa ' + idx + ' de ' + total;
+    var html = '';
+    if (numero === 1) html = etapa1HTML();
+    if (numero === 2) html = etapa2HTML();
+    if (numero === 3) html = etapa3HTML();
+    if (numero === 4) html = etapa4HTML();
+    if (numero === 5) html = etapa5HTML();
+    if (numero === 6) html = etapa6HTML();
+    if (numero === 7) html = etapa7HTML();
+    document.getElementById('etapaContainer').innerHTML = html;
+    atualizarBotoes();
+    document.getElementById('etapaContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function etapa1HTML() {
+    var moveis = dadosSimulador.moveis;
+    var h = '<h2>Quais móveis deseja montar?</h2>';
+    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Selecione todos os móveis do seu projeto.</p>';
+    h += '<div class="opcoes-grid">';
+    for (var k in moveis) {
+        var sel = dados.moveis.indexOf(k) !== -1 ? ' selecionado' : '';
+        h += '<div class="opcao-item' + sel + '" data-valor="' + k + '" tabindex="0" onclick="toggleMovel(this, \'' + k + '\')">';
+        h += '<span class="opcao-icone">' + moveis[k].icone + '</span>';
+        h += '<span class="opcao-nome">' + moveis[k].nome + '</span></div>';
+    }
+    h += '</div>';
+    h += '<p style="text-align:center;margin-top:15px;font-weight:600;color:var(--azul-escuro);">';
+    h += '<span id="contadorMoveis">' + dados.moveis.length + '</span> móvel(is) selecionado(s)</p>';
+    return h;
+}
+
+function toggleMovel(el, key) {
+    if (dadosSimulador.moveis[key] && dadosSimulador.moveis[key].linkWhatsApp) {
+        var url = document.querySelector('.whatsapp-button') ? document.querySelector('.whatsapp-button').href : 'https://api.whatsapp.com/send/?phone=5561998865417&text=Ol%C3%A1%2C+quero+um+or%C3%A7amento+para+cozinha+planejada';
+        window.open(url, '_blank');
+        return;
+    }
+    var idx = dados.moveis.indexOf(key);
+    if (idx === -1) { dados.moveis.push(key); el.classList.add('selecionado'); }
+    else { dados.moveis.splice(idx, 1); el.classList.remove('selecionado'); }
+    var c = document.getElementById('contadorMoveis');
+    if (c) c.textContent = dados.moveis.length;
+}
+
+function etapa2HTML() {
+    var h = '<h2>O(s) móvel(is) é(são):</h2><div class="opcoes-simples">';
+    h += '<div class="opcao-simples' + (dados.condicao === 'novo' ? ' selecionado' : '') + '" data-valor="novo" tabindex="0" onclick="selecionarCondicao(this)">🆕 Novo(s)</div>';
+    h += '<div class="opcao-simples' + (dados.condicao === 'usado' ? ' selecionado' : '') + '" data-valor="usado" tabindex="0" onclick="selecionarCondicao(this)">🔄 Usado(s)</div>';
+    return h + '</div>';
+}
+
+function selecionarCondicao(el) {
+    var parent = el.parentElement;
+    parent.querySelectorAll('.opcao-simples').forEach(function(i) { i.classList.remove('selecionado'); });
+    el.classList.add('selecionado');
+    dados.condicao = el.getAttribute('data-valor');
+}
+
+function etapa3HTML() {
+    var h = '<h2>Qual serviço você precisa?</h2><div class="opcoes-simples" style="flex-direction:column;">';
+    h += '<div class="opcao-simples' + (dados.tipoServico === 'montagem' ? ' selecionado' : '') + '" data-valor="montagem" tabindex="0" onclick="selecionarTipoServico(this)">🔧 Montagem</div>';
+    h += '<div class="opcao-simples' + (dados.tipoServico === 'desmontagem' ? ' selecionado' : '') + '" data-valor="desmontagem" tabindex="0" onclick="selecionarTipoServico(this)">🔨 Desmontagem</div>';
+    h += '<div class="opcao-simples' + (dados.tipoServico === 'remontagem' ? ' selecionado' : '') + '" data-valor="remontagem" tabindex="0" onclick="selecionarTipoServico(this)">🔄 Remontagem</div>';
+    h += '<div class="opcao-simples' + (dados.tipoServico === 'desmontagem_montagem' ? ' selecionado' : '') + '" data-valor="desmontagem_montagem" tabindex="0" onclick="selecionarTipoServico(this)">🔨🔧 Desmontagem + Montagem</div>';
+    return h + '</div>';
+}
+
+function selecionarTipoServico(el) {
+    var parent = el.parentElement;
+    parent.querySelectorAll('.opcao-simples').forEach(function(i) { i.classList.remove('selecionado'); });
+    el.classList.add('selecionado');
+    dados.tipoServico = el.getAttribute('data-valor');
+}
+
+function etapa4HTML() {
+    var cidades = [
+        { v: 'valparaiso', n: 'Valparaíso de Goiás' },
+        { v: 'jardim-inga', n: 'Jardim Ingá' },
+        { v: 'ocidental', n: 'Cidade Ocidental' },
+        { v: 'novo-gama', n: 'Novo Gama' },
+        { v: 'pedregal', n: 'Pedregal' },
+        { v: 'ceu-azul', n: 'Céu Azul' },
+        { v: 'luziania', n: 'Luziânia' },
+        { v: 'santa-maria', n: 'Santa Maria' },
+        { v: 'gama', n: 'Gama DF' },
+        { v: 'outro', n: 'Outra localidade' }
+    ];
+    var h = '<h2>Qual a sua cidade?</h2><div class="opcoes-grid">';
+    cidades.forEach(function(c) {
+        var sel = dados.cidade === c.v ? ' selecionado' : '';
+        h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" tabindex="0" onclick="selecionarCidade(this)"><span class="opcao-nome">' + c.n + '</span></div>';
+    });
+    h += '</div>';
+    h += '<div style="margin-top:20px;text-align:center;">';
+    h += '<p style="margin-bottom:10px;font-weight:600;">A desmontagem e remontagem serão na mesma cidade?</p>';
+    h += '<div class="opcoes-simples">';
+    h += '<div class="opcao-simples' + (dados.cidadeDiferente === false ? ' selecionado' : '') + '" data-valor="nao" tabindex="0" onclick="selecionarMesmaCidade(this)">Sim, mesma cidade</div>';
+    h += '<div class="opcao-simples' + (dados.cidadeDiferente === true ? ' selecionado' : '') + '" data-valor="sim" tabindex="0" onclick="selecionarMesmaCidade(this)">Não, cidades diferentes</div>';
+    h += '</div></div>';
+    return h;
+}
+
+function selecionarCidade(el) {
+    var parent = el.parentElement;
+    parent.querySelectorAll('.opcao-item').forEach(function(i) { i.classList.remove('selecionado'); });
+    el.classList.add('selecionado');
+    dados.cidade = el.getAttribute('data-valor');
+}
+
+function selecionarMesmaCidade(el) {
+    var parent = el.parentElement;
+    parent.querySelectorAll('.opcao-simples').forEach(function(i) { i.classList.remove('selecionado'); });
+    el.classList.add('selecionado');
+    dados.cidadeDiferente = el.getAttribute('data-valor') === 'sim';
+}
+
+function etapa5HTML() {
+    var h = '<h2>Adicionais do móvel</h2>';
+    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Selecione as características especiais dos seus móveis:</p>';
+    h += '<div class="opcoes-checkbox" style="flex-direction:column;align-items:center;">';
+    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('portasCorrer') !== -1 ? ' selecionado' : '') + '" data-valor="portasCorrer" tabindex="0" onclick="toggleAdicional(this)">🚪 Portas de Correr (+20%)</div>';
+    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('espelhosGrandes') !== -1 ? ' selecionado' : '') + '" data-valor="espelhosGrandes" tabindex="0" onclick="toggleAdicional(this)">🪞 Espelhos Grandes (+25%)</div>';
+    h += '<div class="opcao-checkbox' + (dados.iluminacaoLED ? ' selecionado' : '') + '" data-valor="iluminacaoLED" tabindex="0" onclick="toggleLED(this)">💡 Iluminação LED (+R$ 50)</div>';
+    h += '<div class="opcao-checkbox' + (dados.balcaoSuspenso ? ' selecionado' : '') + '" data-valor="balcaoSuspenso" tabindex="0" onclick="toggleBalcaoSuspenso(this)">📌 Balcão Suspenso (+R$ 30)</div>';
+    h += '</div>';
+    return h;
+}
+
+function toggleAdicional(el) {
+    var v = el.getAttribute('data-valor');
+    var idx = dados.adicionais.indexOf(v);
+    if (idx === -1) { dados.adicionais.push(v); el.classList.add('selecionado'); }
+    else { dados.adicionais.splice(idx, 1); el.classList.remove('selecionado'); }
+}
+
+function toggleLED(el) {
+    dados.iluminacaoLED = !dados.iluminacaoLED;
+    if (dados.iluminacaoLED) el.classList.add('selecionado');
+    else el.classList.remove('selecionado');
+}
+
+function toggleBalcaoSuspenso(el) {
+    dados.balcaoSuspenso = !dados.balcaoSuspenso;
+    if (dados.balcaoSuspenso) el.classList.add('selecionado');
+    else el.classList.remove('selecionado');
+}
+
+function etapa6HTML() {
+    var h = '<h2>Recortes e adaptações</h2>';
+    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Comum em cozinhas, balcões e painéis</p>';
+    var recs = ['Pia/Cuba', 'Cooktop', 'Forno', 'Sifão', 'Tomada', 'Rodapé'];
+    h += '<div class="opcoes-checkbox">';
+    recs.forEach(function(r) {
+        var sel = dados.recortes.indexOf(r) !== -1 ? ' selecionado' : '';
+        h += '<div class="opcao-checkbox' + sel + '" data-valor="' + r + '" tabindex="0" onclick="toggleRecorte(this)">' + r + '</div>';
+    });
+    h += '</div>';
+    h += '<div style="margin-top:15px;text-align:center;">';
+    h += '<div class="opcao-checkbox' + (dados.recortesChapa ? ' selecionado' : '') + '" data-valor="chapa" tabindex="0" onclick="toggleRecorteChapa(this)" style="display:inline-block;">🪚 Recortes em chapas de madeira (+R$ 60)</div>';
+    h += '</div>';
+    return h;
+}
+
+function toggleRecorte(el) {
+    var v = el.getAttribute('data-valor');
+    var idx = dados.recortes.indexOf(v);
+    if (idx === -1) { dados.recortes.push(v); el.classList.add('selecionado'); }
+    else { dados.recortes.splice(idx, 1); el.classList.remove('selecionado'); }
+}
+
+function toggleRecorteChapa(el) {
+    dados.recortesChapa = !dados.recortesChapa;
+    if (dados.recortesChapa) el.classList.add('selecionado');
+    else el.classList.remove('selecionado');
+}
+
+function etapa7HTML() {
+    var h = '<h2>Confira as informações</h2><ul style="list-style:none;padding:0;">';
+    h += '<li style="padding:8px 0;"><strong>Móveis:</strong><br>';
+    dados.moveis.forEach(function(k) { h += '• ' + dadosSimulador.moveis[k].nome + '<br>'; });
+    h += '</li>';
+    h += '<li style="padding:8px 0;"><strong>Condição:</strong> ' + (dados.condicao === 'novo' ? 'Novo(s)' : 'Usado(s)') + '</li>';
+    if (dados.condicao === 'usado') h += '<li style="padding:8px 0;"><strong>Serviço:</strong> ' + dados.tipoServico + '</li>';
+    h += '<li style="padding:8px 0;"><strong>Cidade:</strong> ' + (dadosSimulador.localizacao[dados.cidade] ? dadosSimulador.localizacao[dados.cidade].descricao : dados.cidade) + '</li>';
+    h += '</ul>';
+    h += '<p style="text-align:center;color:#888;margin-top:15px;">Clique em <strong>Calcular Estimativa</strong>.</p>';
+    return h;
+}
+
+function validarEtapa() {
+    if (etapaAtual === 1 && dados.moveis.length === 0) { alert('Selecione pelo menos um móvel.'); return false; }
+    if (etapaAtual === 2 && !dados.condicao) { alert('Informe se o móvel é novo ou usado.'); return false; }
+    if (etapaAtual === 3 && !dados.tipoServico) { alert('Selecione o tipo de serviço.'); return false; }
+    if (etapaAtual === 4 && !dados.cidade) { alert('Selecione sua cidade.'); return false; }
+    return true;
+}
+
+function atualizarBotoes() {
+    var idx = etapasAtivas.indexOf(etapaAtual);
+    document.getElementById('btnVoltar').style.display = idx > 0 ? 'inline-block' : 'none';
+    if (idx === etapasAtivas.length - 1) {
+        document.getElementById('btnAvancar').style.display = 'none';
+        document.getElementById('btnCalcular').style.display = 'inline-block';
+    } else {
+        document.getElementById('btnAvancar').style.display = 'inline-block';
+        document.getElementById('btnCalcular').style.display = 'none';
+    }
+}
+
+function formatarTempo(min) {
+    if (min < 60) return min + ' min';
+    var h = Math.floor(min / 60), m = min % 60;
+    if (m === 0) return h + 'h';
+    return h + 'h' + m + 'min';
+}
+
+function exibirResultado() {
+    var mData = dadosSimulador.moveis, add = dadosSimulador.adicionais, loc = dadosSimulador.localizacao;
+    var preco = 0, obs = [], nomes = [];
+    
+    dados.moveis.forEach(function(k) {
+        var m = mData[k];
+        nomes.push(m.nome);
+        if (dados.condicao === 'novo') preco += m.precos.novo;
+        if (dados.condicao === 'usado') {
+            if (dados.tipoServico === 'montagem') preco += m.precos.usado;
+            if (dados.tipoServico === 'desmontagem') preco += m.precos.desmontagem;
+            if (dados.tipoServico === 'remontagem') preco += m.precos.remontagem;
+            if (dados.tipoServico === 'desmontagem_montagem') preco += m.precos.desmontagem + m.precos.usado;
+        }
+        if (dados.adicionais.indexOf('portasCorrer') !== -1 && m.adicionais.portasCorrer) {
+            preco += Math.round(m.precos.novo * m.adicionais.portasCorrer / 100);
+            obs.push('Portas de correr (+' + m.adicionais.portasCorrer + '%)');
+        }
+        if (dados.adicionais.indexOf('espelhosGrandes') !== -1 && m.adicionais.espelhosGrandes) {
+            preco += Math.round(m.precos.novo * m.adicionais.espelhosGrandes / 100);
+            obs.push('Espelhos grandes (+' + m.adicionais.espelhosGrandes + '%)');
+        }
+    });
+    
+    if (dados.iluminacaoLED) { preco += add.iluminacaoLED.preco; obs.push(add.iluminacaoLED.descricao); }
+    if (dados.balcaoSuspenso) { preco += add.balcaoSuspenso.preco; obs.push(add.balcaoSuspenso.descricao); }
+    if (dados.recortes.length > 0) {
+        preco += dados.recortes.length * add.recortePorModulo.preco;
+        obs.push(dados.recortes.length + ' recorte(s) (R$ ' + add.recortePorModulo.preco + ' cada)');
+    }
+    if (dados.recortesChapa) { preco += add.recorteChapa.preco; obs.push(add.recorteChapa.descricao); }
+    
+    var taxa = loc[dados.cidade] ? loc[dados.cidade].fator : 60;
+    preco += taxa;
+    
+    if (dados.moveis.length >= add.descontoMultiplos.minimo) {
+        var desc = Math.round(preco * add.descontoMultiplos.percentual / 100);
+        preco -= desc;
+        obs.push(add.descontoMultiplos.descricao + ' (-R$ ' + desc + ')');
+    }
+    
+    var msg = 'Olá!%0A%0AUtilizei o Simulador da MontaTech.%0A%0A' +
+        'Móveis: ' + nomes.join(', ') + '%0A' +
+        'Condição: ' + (dados.condicao === 'novo' ? 'Novo' : 'Usado') + '%0A' +
+        'Cidade: ' + loc[dados.cidade].descricao + '%0A' +
+        'Estimativa: em torno de R$ ' + preco + '%0A%0AGostaria de solicitar um orçamento.';
+    
+    var h = '<div class="resultado-header"><h2>Estimativa de Montagem</h2><p class="resultado-movel">' + nomes.join(' + ') + '</p></div>';
+    h += '<div class="resultado-body">';
+    h += '<div class="resultado-item"><span class="resultado-label">💰 Investimento estimado</span><span class="resultado-valor" style="font-size:1.3em;color:var(--verde);">em torno de R$ ' + preco + '</span></div>';
+    h += '<div class="resultado-aviso">⚠️ <strong>Importante:</strong> Esta é uma simulação baseada nas informações fornecidas. O orçamento definitivo depende da análise dos móveis e das condições do ambiente. Solicite o valor real pelo WhatsApp.</div>';
+    if (obs.length > 0) { h += '<div class="resultado-observacoes"><h4>📝 O que está incluído:</h4><ul style="padding-left:18px;">'; obs.forEach(function(o) { h += '<li style="margin-bottom:5px;">' + o + '</li>'; }); h += '</ul></div>'; }
+    h += '<div class="resultado-cta"><a href="https://api.whatsapp.com/send/?phone=5561998865417&text=' + msg + '&type=phone_number&app_absent=0" class="btn-whatsapp" target="_blank" rel="noopener">📱 Solicitar Orçamento Real pelo WhatsApp</a><br>';
+    h += '<button class="btn-reiniciar" onclick="location.reload();">🔄 Fazer Nova Simulação</button></div></div>';
+    
+    document.getElementById('resultadoCard').innerHTML = h;
+    document.getElementById('simuladorWizard').style.display = 'none';
+    document.getElementById('simuladorResultado').style.display = 'block';
+    document.getElementById('simuladorResultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function configurarBotoes() {
+    document.getElementById('btnIniciar').onclick = iniciarSimulador;
+    document.getElementById('btnVoltar').onclick = voltarEtapa;
+    document.getElementById('btnAvancar').onclick = avancarEtapa;
+    document.getElementById('btnCalcular').onclick = calcularEstimativa;
+}
+
+carregarDados();
