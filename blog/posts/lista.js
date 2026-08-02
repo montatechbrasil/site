@@ -4,22 +4,22 @@ var todosPosts = [
         id: 1,
         titulo: "Como Escolher um Montador de Móveis em Valparaíso Sem Correr Riscos",
         categoria: "Contratação",
-        resumo: "Descubra 8 critérios essenciais para escolher um montador profissional em Valparaíso de Goiás. Evite dores de cabeça e prejuízos.",
+        resumo: "Descubra os critérios essenciais para escolher um montador profissional em Valparaíso de Goiás. Evite dores de cabeça e prejuízos.",
         imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785351276/Generated_Image_July_29_2026_-_3_39PM_bkzuv9.png",
         data: "12 Abr 2026",
         link: "posts/como-escolher-montador-profissional.html",
-        tempoLeitura: "3 min"
+        tempoLeitura: "8 min"
     },
     // ID 2
     {
         id: 2,
-        titulo: "Quanto Custa um Montador de Móveis em Valparaíso? Guia de Preços 2026",
+        titulo: "Quanto Custa um Montador de Móveis em Valparaíso? Guia de Preços Médios",
         categoria: "Orçamento",
-        resumo: "Descubra o preço real de montagem de guarda-roupa, cozinhas planejada, painel de TV e mais. Orçamento transparente e sem surpresas.",
+        resumo: "Descubra como encontrar o preço ideal de montagem de guarda-roupa, cozinhas planejada, painel de TV e mais. Orçamento transparente e sem surpresas.",
         imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785370733/imagens_posts_blog_2_tzzdip.png",
         data: "29 Jul 2026",
         link: "posts/quanto-custa-montador-moveis-valparaiso.html",
-        tempoLeitura: "2 min"
+        tempoLeitura: "10 min"
     },
   // ID 3
     {
@@ -30,7 +30,7 @@ var todosPosts = [
         imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785373342/montagem_de_moveis_valparaiso_go__prictb.png",
         data: "3 Mai 2026",
         link: "posts/vale-a-pena-desmontar-guardaroupa-mudanca.html",
-        tempoLeitura: "5 min"
+        tempoLeitura: "7 min"
     },
     // COMMENTS
 
