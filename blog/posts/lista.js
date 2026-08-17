@@ -8,7 +8,7 @@ var todosPosts = [
         imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785370733/imagens_posts_blog_2_tzzdip.png",
         data: "17 Ago 2026",
         link: "posts/desmontagem-remontagem-guarda-roupa-total-ville-villa-suica.html",
-        tempoLeitura: "6 min"
+        tempoLeitura: "3 min"
     },
     
     // ID 1
