@@ -70,7 +70,6 @@
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594410/painel-tv-instalado_led_valparaiso-go_chdgu7.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594408/montagem-guarda-roupas-planejado_tgiaxw.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem_guarda_roupas_valparaiso-ocidental_nvowi1.jpg',
-            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787011517/montagem-de-mesas-de-jantar-montatechbrasil-valparaiso-go_qtrxz3.jpg'
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem-cozinha-aereos-valparaiso-go_qqmnq9.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594412/cozinha-planejada-montada-valparaiso_befqgr.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594413/desmontagem-mudanca-cidade-ocidental_afxyre.jpg',
@@ -80,10 +79,6 @@
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594408/montagem-guarda-roupa-valparaiso-goias_xybseu.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/mesa-planejada-escritorio_k40rjt.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem-guarda-roupas-novo-ocidental-valparaiso_k2kkrh.jpg'
-            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787011518/desmontagem-treliche-mdf-total-ville-santa-maria_rx6hp1.jpg'
-            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787011518/desmontagem-preparacao-portas-com-espelho-para-mudanca_u97zoz.jpg'
-            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787011518/montador-de-moveis-condominio-villa-suica-valparaiso_ihv2d8.jpg'
-                   
         ];
         
         // Limpar galeria
