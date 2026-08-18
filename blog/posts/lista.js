@@ -4,7 +4,7 @@ var todosPosts = [
         id: 4,
         titulo: "Desmontagem e Remontagem de Guarda-Roupa com Espelho: Do Total Ville para o Villa Suíça",
         categoria: "Diário de Campo",
-        resumo: "Veja como preparamos e remontamos um guarda-roupa pesado em MDF, com portas de correr e espelhos. Dicas de segurança e nivelamento no Entorno do DF.",
+        resumo: "Veja como preparamos e remontamos um guarda-roupa pesado em MDF, com portas de correr e espelhos. Dicas de segurança e nivelamento.",
         imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787007790/remontagem-guarda-roupa-porta-de-correr-villa-suica_qa48sq.jpg",
         data: "17 Ago 2026",
         link: "posts/desmontagem-remontagem-guarda-roupa-total-ville-villa-suica.html",
