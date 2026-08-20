@@ -176,4 +176,247 @@ function etapa3HTML() {
     h += '<div class="opcoes-simples" style="flex-direction:column;">';
     h += '<div class="opcao-simples' + (dados.embalagem === 'embalar' ? ' selecionado' : '') + '" data-valor="embalar" tabindex="0" onclick="selecionarEmbalagem(this)">📦 Embalar</div>';
     h += '<div class="opcao-simples' + (dados.embalagem === 'desembalar' ? ' selecionado' : '') + '" data-valor="desembalar" tabindex="0" onclick="selecionarEmbalagem(this)">📤 Desembalar</div>';
-    h += '<
+    h += '<div class="opcao-simples' + (dados.embalagem === 'embalar_desembalar' ? ' selecionado' : '') + '" data-valor="embalar_desembalar" tabindex="0" onclick="selecionarEmbalagem(this)">📦📤 Embalar + Desembalar</div>';
+    h += '<div class="opcao-simples' + (dados.embalagem === 'nao' ? ' selecionado' : '') + '" data-valor="nao" tabindex="0" onclick="selecionarEmbalagem(this)">❌ Não preciso</div>';
+    h += '</div>';
+    return h;
+}
+
+function selecionarTipoServico(el) {
+    var parent = el.parentElement;
+    parent.querySelectorAll('.opcao-simples').forEach(function(i) { i.classList.remove('selecionado'); });
+    el.classList.add('selecionado');
+    dados.tipoServico = el.getAttribute('data-valor');
+}
+
+function selecionarEmbalagem(el) {
+    var parent = el.parentElement;
+    parent.querySelectorAll('.opcao-simples').forEach(function(i) { i.classList.remove('selecionado'); });
+    el.classList.add('selecionado');
+    dados.embalagem = el.getAttribute('data-valor');
+}
+
+function etapa4HTML() {
+    var cidades = [
+        { v: 'valparaiso', n: 'Valparaíso de Goiás' },
+        { v: 'jardim-inga', n: 'Jardim Ingá' },
+        { v: 'ocidental', n: 'Cidade Ocidental' },
+        { v: 'novo-gama', n: 'Novo Gama' },
+        { v: 'pedregal', n: 'Pedregal' },
+        { v: 'ceu-azul', n: 'Céu Azul' },
+        { v: 'luziania', n: 'Luziânia' },
+        { v: 'santa-maria', n: 'Santa Maria' },
+        { v: 'gama', n: 'Gama DF' },
+        { v: 'outro', n: 'Outra localidade' }
+    ];
+    var h = '<h2>Qual a sua cidade?</h2><div class="opcoes-grid">';
+    cidades.forEach(function(c) {
+        var sel = dados.cidade === c.v ? ' selecionado' : '';
+        h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" tabindex="0" onclick="selecionarCidade(this)"><span class="opcao-nome">' + c.n + '</span></div>';
+    });
+    h += '</div>';
+    return h;
+}
+
+function selecionarCidade(el) {
+    var parent = el.parentElement;
+    parent.querySelectorAll('.opcao-item').forEach(function(i) { i.classList.remove('selecionado'); });
+    el.classList.add('selecionado');
+    dados.cidade = el.getAttribute('data-valor');
+}
+
+function etapa5HTML() {
+    var h = '<h2>Adicionais do móvel</h2>';
+    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Selecione as características especiais:</p>';
+    h += '<div class="opcoes-checkbox" style="flex-direction:column;align-items:center;">';
+    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('portasCorrer') !== -1 ? ' selecionado' : '') + '" data-valor="portasCorrer" tabindex="0" onclick="toggleAdicional(this)">🚪 Portas de Correr (+20%)</div>';
+    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('espelhosGrandes') !== -1 ? ' selecionado' : '') + '" data-valor="espelhosGrandes" tabindex="0" onclick="toggleAdicional(this)">🪞 Espelhos Grandes (+25%)</div>';
+    h += '<div class="opcao-checkbox' + (dados.iluminacaoLED ? ' selecionado' : '') + '" data-valor="iluminacaoLED" tabindex="0" onclick="toggleLED(this)">💡 Iluminação LED (+R$ 50)</div>';
+    h += '<div class="opcao-checkbox' + (dados.balcaoSuspenso ? ' selecionado' : '') + '" data-valor="balcaoSuspenso" tabindex="0" onclick="toggleBalcaoSuspenso(this)">📌 Balcão Suspenso (+R$ 30)</div>';
+    h += '</div>';
+    return h;
+}
+
+function toggleAdicional(el) {
+    var v = el.getAttribute('data-valor');
+    var idx = dados.adicionais.indexOf(v);
+    if (idx === -1) { dados.adicionais.push(v); el.classList.add('selecionado'); }
+    else { dados.adicionais.splice(idx, 1); el.classList.remove('selecionado'); }
+}
+
+function toggleLED(el) {
+    dados.iluminacaoLED = !dados.iluminacaoLED;
+    if (dados.iluminacaoLED) el.classList.add('selecionado'); else el.classList.remove('selecionado');
+}
+
+function toggleBalcaoSuspenso(el) {
+    dados.balcaoSuspenso = !dados.balcaoSuspenso;
+    if (dados.balcaoSuspenso) el.classList.add('selecionado'); else el.classList.remove('selecionado');
+}
+
+function etapa6HTML() {
+    var h = '<h2>Recortes e adaptações</h2>';
+    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Comum em cozinhas, balcões e painéis</p>';
+    var recs = ['Pia/Cuba', 'Cooktop', 'Forno', 'Sifão', 'Tomada', 'Rodapé'];
+    h += '<div class="opcoes-checkbox">';
+    recs.forEach(function(r) {
+        var sel = dados.recortes.indexOf(r) !== -1 ? ' selecionado' : '';
+        h += '<div class="opcao-checkbox' + sel + '" data-valor="' + r + '" tabindex="0" onclick="toggleRecorte(this)">' + r + '</div>';
+    });
+    h += '</div>';
+    h += '<div style="margin-top:15px;text-align:center;">';
+    h += '<div class="opcao-checkbox' + (dados.recortesChapa ? ' selecionado' : '') + '" data-valor="chapa" tabindex="0" onclick="toggleRecorteChapa(this)" style="display:inline-block;">🪚 Recortes em chapas de madeira (+R$ 60)</div>';
+    h += '</div>';
+    return h;
+}
+
+function toggleRecorte(el) {
+    var v = el.getAttribute('data-valor');
+    var idx = dados.recortes.indexOf(v);
+    if (idx === -1) { dados.recortes.push(v); el.classList.add('selecionado'); }
+    else { dados.recortes.splice(idx, 1); el.classList.remove('selecionado'); }
+}
+
+function toggleRecorteChapa(el) {
+    dados.recortesChapa = !dados.recortesChapa;
+    if (dados.recortesChapa) el.classList.add('selecionado'); else el.classList.remove('selecionado');
+}
+
+function etapa7HTML() {
+    var h = '<h2>Confira as informações</h2><ul style="list-style:none;padding:0;">';
+    h += '<li style="padding:8px 0;"><strong>Móveis:</strong><br>';
+    for (var k in dados.moveis) {
+        h += '• ' + dados.moveis[k] + 'x ' + dadosSimulador.moveis[k].nome + '<br>';
+    }
+    h += '</li>';
+    h += '<li style="padding:8px 0;"><strong>Condição:</strong> ' + (dados.condicao === 'novo' ? 'Novo(s)' : 'Usado(s)') + '</li>';
+    if (dados.condicao === 'usado') h += '<li style="padding:8px 0;"><strong>Serviço:</strong> ' + dados.tipoServico + '</li>';
+    if (dados.embalagem) h += '<li style="padding:8px 0;"><strong>Embalagem:</strong> ' + dados.embalagem + '</li>';
+    h += '<li style="padding:8px 0;"><strong>Cidade:</strong> ' + (dadosSimulador.localizacao[dados.cidade] ? dadosSimulador.localizacao[dados.cidade].descricao : dados.cidade) + '</li>';
+    h += '</ul>';
+    h += '<p style="text-align:center;color:#888;margin-top:15px;">Clique em <strong>Calcular Estimativa</strong>.</p>';
+    return h;
+}
+
+function etapa8HTML() {
+    return etapa7HTML();
+}
+
+function validarEtapa() {
+    if (etapaAtual === 1 && totalMoveis() === 0) { alert('Selecione pelo menos um móvel.'); return false; }
+    if (etapaAtual === 2 && !dados.condicao) { alert('Informe se o móvel é novo ou usado.'); return false; }
+    if (etapaAtual === 3 && !dados.tipoServico) { alert('Selecione o tipo de serviço.'); return false; }
+    if (etapaAtual === 4 && !dados.cidade) { alert('Selecione sua cidade.'); return false; }
+    return true;
+}
+
+function atualizarBotoes() {
+    var idx = etapasAtivas.indexOf(etapaAtual);
+    document.getElementById('btnVoltar').style.display = idx > 0 ? 'inline-block' : 'none';
+    if (idx === etapasAtivas.length - 1) {
+        document.getElementById('btnAvancar').style.display = 'none';
+        document.getElementById('btnCalcular').style.display = 'inline-block';
+    } else {
+        document.getElementById('btnAvancar').style.display = 'inline-block';
+        document.getElementById('btnCalcular').style.display = 'none';
+    }
+}
+
+function formatarTempo(min) {
+    if (min < 60) return min + ' min';
+    var h = Math.floor(min / 60), m = min % 60;
+    if (m === 0) return h + 'h';
+    return h + 'h' + m + 'min';
+}
+
+function exibirResultado() {
+    var mData = dadosSimulador.moveis, add = dadosSimulador.adicionais, loc = dadosSimulador.localizacao;
+    var precoMaoObra = 0, precoMateriaisMin = 0, precoMateriaisMax = 0, obs = [], nomes = [];
+    
+    for (var k in dados.moveis) {
+        var m = mData[k], qtd = dados.moveis[k];
+        nomes.push(qtd + 'x ' + m.nome);
+        for (var i = 0; i < qtd; i++) {
+            if (dados.condicao === 'novo') precoMaoObra += m.precos.novo;
+            if (dados.condicao === 'usado') {
+                if (dados.tipoServico === 'montagem') precoMaoObra += m.precos.usado;
+                if (dados.tipoServico === 'desmontagem') precoMaoObra += m.precos.desmontagem;
+                if (dados.tipoServico === 'remontagem') precoMaoObra += m.precos.remontagem;
+                if (dados.tipoServico === 'desmontagem_montagem') precoMaoObra += m.precos.desmontagem + m.precos.usado;
+            }
+            if (dados.adicionais.indexOf('portasCorrer') !== -1 && m.adicionais.portasCorrer) precoMaoObra += Math.round(m.precos.novo * m.adicionais.portasCorrer / 100);
+            if (dados.adicionais.indexOf('espelhosGrandes') !== -1 && m.adicionais.espelhosGrandes) precoMaoObra += Math.round(m.precos.novo * m.adicionais.espelhosGrandes / 100);
+            
+            // Embalagem (usando nível de cada móvel)
+            if (dados.embalagem && dados.embalagem !== 'nao') {
+                var nivel = m.nivelEmbalagem || 'medio';
+                var mat = dadosMateriais[nivel];
+                if (dados.embalagem === 'embalar') {
+                    precoMaoObra += m.precos.remontagem;
+                    precoMateriaisMin += mat.faixaMin;
+                    precoMateriaisMax += mat.faixaMax;
+                }
+                if (dados.embalagem === 'desembalar') {
+                    precoMaoObra += m.precos.desmontagem;
+                    precoMateriaisMin += mat.faixaMin;
+                    precoMateriaisMax += mat.faixaMax;
+                }
+                if (dados.embalagem === 'embalar_desembalar') {
+                    precoMaoObra += m.precos.remontagem + m.precos.desmontagem;
+                    precoMateriaisMin += mat.faixaMin * 2;
+                    precoMateriaisMax += mat.faixaMax * 2;
+                }
+            }
+        }
+    }
+    
+    if (dados.iluminacaoLED) { precoMaoObra += add.iluminacaoLED.preco; obs.push(add.iluminacaoLED.descricao); }
+    if (dados.balcaoSuspenso) { precoMaoObra += add.balcaoSuspenso.preco; obs.push(add.balcaoSuspenso.descricao); }
+    if (dados.recortes.length > 0) { precoMaoObra += dados.recortes.length * add.recortePorModulo.preco; obs.push(dados.recortes.length + ' recorte(s)'); }
+    if (dados.recortesChapa) { precoMaoObra += add.recorteChapa.preco; obs.push(add.recorteChapa.descricao); }
+    
+    var taxa = loc[dados.cidade] ? loc[dados.cidade].fator : 60;
+    precoMaoObra += taxa;
+    
+    if (totalMoveis() >= add.descontoMultiplos.minimo) {
+        var desc = Math.round(precoMaoObra * add.descontoMultiplos.percentual / 100);
+        precoMaoObra -= desc;
+        obs.push(add.descontoMultiplos.descricao + ' (-R$ ' + desc + ')');
+    }
+    
+    var totalMin = precoMaoObra + precoMateriaisMin;
+    var totalMax = precoMaoObra + precoMateriaisMax;
+    
+    var msg = 'Olá!%0A%0AUtilizei a Calculadora da MontaTech.%0A%0A' +
+        'Móveis: ' + nomes.join(', ') + '%0A' +
+        'Condição: ' + (dados.condicao === 'novo' ? 'Novo' : 'Usado') + '%0A' +
+        'Cidade: ' + loc[dados.cidade].descricao + '%0A' +
+        'Mão de obra: R$ ' + precoMaoObra + '%0A' +
+        'Materiais (estimativa): R$ ' + precoMateriaisMin + ' a R$ ' + precoMateriaisMax + '%0A%0AGostaria de solicitar um orçamento real.';
+    
+    var h = '<div class="resultado-header"><h2>Estimativa de Montagem</h2><p class="resultado-movel">' + nomes.join(' + ') + '</p></div>';
+    h += '<div class="resultado-body">';
+    h += '<div class="resultado-item"><span class="resultado-label">🔧 Mão de obra MontaTech</span><span class="resultado-valor" style="font-size:1.2em;color:var(--verde);">R$ ' + precoMaoObra + '</span></div>';
+    if (precoMateriaisMin > 0) {
+        h += '<div class="resultado-item"><span class="resultado-label">📦 Materiais (estimativa por fora)</span><span class="resultado-valor">R$ ' + precoMateriaisMin + ' – R$ ' + precoMateriaisMax + '</span></div>';
+        h += '<div class="resultado-item"><span class="resultado-label">💰 Total estimado</span><span class="resultado-valor" style="font-size:1.3em;color:var(--verde);">R$ ' + totalMin + ' – R$ ' + totalMax + '</span></div>';
+    }
+    h += '<div class="resultado-aviso">⚠️ <strong>Importante:</strong> Materiais de embalagem são estimados e podem ser adquiridos pelo cliente ou fornecidos mediante validação no WhatsApp. O orçamento final depende da análise dos móveis.</div>';
+    if (obs.length > 0) { h += '<div class="resultado-observacoes"><h4>📝 O que está incluído:</h4><ul style="padding-left:18px;">'; obs.forEach(function(o) { h += '<li style="margin-bottom:5px;">' + o + '</li>'; }); h += '</ul></div>'; }
+    h += '<div class="resultado-cta"><a href="https://api.whatsapp.com/send/?phone=5561998865417&text=' + msg + '&type=phone_number&app_absent=0" class="btn-whatsapp" target="_blank" rel="noopener">📱 Solicitar Orçamento Real pelo WhatsApp</a><br>';
+    h += '<button class="btn-reiniciar" onclick="location.reload();">🔄 Fazer Novo Cálculo</button></div></div>';
+    
+    document.getElementById('resultadoCard').innerHTML = h;
+    document.getElementById('simuladorWizard').style.display = 'none';
+    document.getElementById('simuladorResultado').style.display = 'block';
+    document.getElementById('simuladorResultado').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function configurarBotoes() {
+    document.getElementById('btnIniciar').onclick = iniciarCalculadora;
+    document.getElementById('btnVoltar').onclick = voltarEtapa;
+    document.getElementById('btnAvancar').onclick = avancarEtapa;
+    document.getElementById('btnCalcular').onclick = calcularEstimativa;
+}
+
+carregarDados();
