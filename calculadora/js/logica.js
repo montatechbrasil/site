@@ -16,7 +16,7 @@ var dados = {
     balcaoSuspenso: false
 };
 var etapaAtual = 1;
-var etapasAtivas = [1, 2, 3, 4, 5, 6, 7, 8];
+var etapasAtivas = [1, 2, 3, 4, 5, 6, 7];
 
 function carregarDados() {
     var xhrDados = new XMLHttpRequest();
