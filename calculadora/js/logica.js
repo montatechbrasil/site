@@ -50,11 +50,6 @@ function iniciarCalculadora() {
     renderizarEtapa(1);
 }
 
-function voltarEtapa() {
-    var idx = etapasAtivas.indexOf(etapaAtual);
-    if (idx > 0) renderizarEtapa(etapasAtivas[idx - 1]);
-}
-
 function avancarEtapa() {
     if (!validarEtapa()) return;
     var idx = etapasAtivas.indexOf(etapaAtual);
@@ -86,7 +81,6 @@ function renderizarEtapa(numero) {
     if (numero === 5) html = etapa5HTML();
     if (numero === 6) html = etapa6HTML();
     if (numero === 7) html = etapa7HTML();
-    if (numero === 8) html = etapa7HTML();
     document.getElementById('etapaContainer').innerHTML = html;
     atualizarBotoes();
     if (numero !== 1) {
