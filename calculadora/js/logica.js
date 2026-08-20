@@ -50,6 +50,11 @@ function iniciarCalculadora() {
     renderizarEtapa(1);
 }
 
+function voltarEtapa() {
+    var idx = etapasAtivas.indexOf(etapaAtual);
+    if (idx > 0) renderizarEtapa(etapasAtivas[idx - 1]);
+}
+
 function avancarEtapa() {
     if (!validarEtapa()) return;
     var idx = etapasAtivas.indexOf(etapaAtual);
@@ -392,21 +397,25 @@ function exibirResultado() {
             if (dados.adicionais.indexOf('portasCorrer') !== -1 && m.adicionais.portasCorrer) precoMaoObra += Math.round(m.precos.novo * m.adicionais.portasCorrer / 100);
             if (dados.adicionais.indexOf('espelhosGrandes') !== -1 && m.adicionais.espelhosGrandes) precoMaoObra += Math.round(m.precos.novo * m.adicionais.espelhosGrandes / 100);
             
+            // EMBALAGEM (novo cálculo)
             if (dados.embalagem && dados.embalagem !== 'nao') {
                 var nivel = m.nivelEmbalagem || 'medio';
                 var mat = dadosMateriais[nivel];
+                var valorEmbalagem = m.precos.desmontagem;
+                var valorDesembalagem = Math.round(valorEmbalagem * 0.5);
+                
                 if (dados.embalagem === 'embalar') {
-                    precoMaoObra += m.precos.remontagem;
+                    precoMaoObra += valorEmbalagem;
                     precoMateriaisMin += mat.faixaMin;
                     precoMateriaisMax += mat.faixaMax;
                 }
                 if (dados.embalagem === 'desembalar') {
-                    precoMaoObra += m.precos.desmontagem;
+                    precoMaoObra += valorDesembalagem;
                     precoMateriaisMin += mat.faixaMin;
                     precoMateriaisMax += mat.faixaMax;
                 }
                 if (dados.embalagem === 'embalar_desembalar') {
-                    precoMaoObra += m.precos.remontagem + m.precos.desmontagem;
+                    precoMaoObra += valorEmbalagem + valorDesembalagem;
                     precoMateriaisMin += mat.faixaMin * 2;
                     precoMateriaisMax += mat.faixaMax * 2;
                 }
