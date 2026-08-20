@@ -78,6 +78,7 @@
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594411/comoda-montada-quarto-valparaiso_tgacyz.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594408/montagem-guarda-roupa-valparaiso-goias_xybseu.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/mesa-planejada-escritorio_k40rjt.jpg',
+            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem_guarda_roupas_valparaiso-ocidental_nvowi1.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem-guarda-roupas-novo-ocidental-valparaiso_k2kkrh.jpg'
         ];
         
