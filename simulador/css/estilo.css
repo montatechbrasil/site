@@ -1,5 +1,5 @@
 /* ============================================
-   MONTATECH BRASIL - SIMULADOR DE PREÇOS
+   MONTATECH BRASIL - CALCULADORA DE PREÇOS
    CSS exclusivo do wizard
    ============================================ */
 
@@ -22,6 +22,15 @@
     max-width: 650px;
     margin: 0 auto 30px;
     line-height: 1.6;
+}
+
+.calc-hero-img {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .btn-iniciar {
@@ -473,6 +482,11 @@
     
     .simulador-subtitulo {
         font-size: 1em;
+    }
+    
+    .calc-hero-img {
+        max-width: 100%;
+        border-radius: 10px;
     }
     
     .etapa-container {
