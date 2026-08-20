@@ -72,10 +72,11 @@
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787261983/cozinhas_planejadas_para_apartamentos_btu4rf.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem-cozinha-aereos-valparaiso-go_qqmnq9.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594412/cozinha-planejada-montada-valparaiso_befqgr.jpg',
+            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787011517/montagem-de-mesas-de-jantar-montatechbrasil-valparaiso-go_qtrxz3.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594413/desmontagem-mudanca-cidade-ocidental_afxyre.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594410/rack-montado-sala-estar-valparaiso_kr09xn.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594410/cadeiras-montagem-profissional_sqkk6e.jpg',
-            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594411/comoda-montada-quarto-valparaiso_tgacyz.jpg',
+            
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594408/montagem-guarda-roupa-valparaiso-goias_xybseu.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/mesa-planejada-escritorio_k40rjt.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem_guarda_roupas_valparaiso-ocidental_nvowi1.jpg',
