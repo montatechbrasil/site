@@ -76,10 +76,12 @@
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594413/desmontagem-mudanca-cidade-ocidental_afxyre.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594410/rack-montado-sala-estar-valparaiso_kr09xn.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594410/cadeiras-montagem-profissional_sqkk6e.jpg',
-            
+            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594411/comoda-montada-quarto-valparaiso_tgacyz.jpg',
+            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787011518/desmontagem-preparacao-portas-com-espelho-para-mudanca_u97zoz.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594408/montagem-guarda-roupa-valparaiso-goias_xybseu.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/mesa-planejada-escritorio_k40rjt.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem_guarda_roupas_valparaiso-ocidental_nvowi1.jpg',
+            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787011518/montador-de-moveis-condominio-villa-suica-valparaiso_ihv2d8.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem-guarda-roupas-novo-ocidental-valparaiso_k2kkrh.jpg'
         ];
         
