@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Calculadora de Preços de Montagem de Móveis | MontaTech Brasil</title>
+    <meta name="description" content="Calcule o preço de montagem, desmontagem e embalagem de móveis em Valparaíso de Goiás e Entorno do DF. Ferramenta gratuita da MontaTech Brasil.">
+    
+    <link rel="icon" href="/img/favicon2.png" type="image/png">
+    
+    <link rel="preload" href="/css/cores.css" as="style">
+    <link rel="stylesheet" href="/css/cores.css">
+    
+    <link rel="preload" href="css/estilo.css" as="style">
+    <link rel="stylesheet" href="css/estilo.css">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Preços de Montagem de Móveis",
+        "url": "https://montatechbrasil.com.br/calculadora/",
+        "description": "Ferramenta gratuita para estimar preço de montagem, desmontagem e embalagem de móveis em Valparaíso de Goiás.",
+        "applicationCategory": "BusinessApplication",
+        "author": {
+            "@type": "LocalBusiness",
+            "name": "MontaTech Brasil",
+            "telephone": "+5561998865417"
+        }
+    }
+    </script>
+    
+    <meta property="og:title" content="Calculadora de Preços de Montagem de Móveis | MontaTech Brasil">
+    <meta property="og:description" content="Calcule o preço de montagem, desmontagem e embalagem de móveis em Valparaíso e Entorno.">
+    <meta property="og:url" content="https://montatechbrasil.com.br/calculadora/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785370733/imagens_posts_blog_2_tzzdip.png">
+</head>
+<body>
+    
+    <div id="menu-container"></div>
+    
+    <main>
+        
+        <!-- Hero da Calculadora -->
+        <section class="simulador-hero" id="simuladorHero">
+            <div class="container">
+                <img src="https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785370733/imagens_posts_blog_2_tzzdip.png" 
+                     alt="Montador profissional embalando móvel com filme stretch para mudança em Valparaíso de Goiás" 
+                     class="calc-hero-img" 
+                     loading="lazy">
+                <h1>Calculadora de Preços de Montagem de Móveis</h1>
+                <p class="simulador-subtitulo">Descubra em poucos segundos uma estimativa de mão de obra e materiais para montagem, desmontagem e embalagem.</p>
+                <button class="btn-iniciar" id="btnIniciar" aria-label="Começar cálculo">Começar Cálculo</button>
+            </div>
+        </section>
+        
+        <!-- Wizard -->
+        <section class="simulador-wizard" id="simuladorWizard" style="display:none;">
+            <div class="container">
+                <div class="progresso-bar"><div class="progresso-preenchimento" id="progressoFill"></div></div>
+                <p class="progresso-texto" id="progressoTexto">Etapa 1 de 8</p>
+                <div class="etapa-container" id="etapaContainer"></div>
+                <div class="etapa-botoes">
+                    <button class="btn-voltar" id="btnVoltar" style="display:none;">← Voltar</button>
+                    <button class="btn-avancar" id="btnAvancar">Continuar →</button>
+                    <button class="btn-calcular" id="btnCalcular" style="display:none;">Calcular Estimativa</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resultado -->
+        <section class="simulador-resultado" id="simuladorResultado" style="display:none;">
+            <div class="container">
+                <div class="resultado-card" id="resultadoCard"></div>
+            </div>
+        </section>
+        
+        <!-- Conteúdo SEO -->
+        <section class="simulador-seo" id="simuladorSeo">
+            <div class="container">
+                
+                <h2>Quanto Custa Montar Móveis em Valparaíso de Goiás?</h2>
+                
+                <p>O preço de montagem de móveis varia conforme o tipo, tamanho, complexidade e localização. Em <strong>Valparaíso de Goiás e Entorno do DF</strong>, os valores costumam seguir faixas médias de mercado, que servem como referência inicial. Abaixo, confira uma tabela com estimativas baseadas em serviços realizados na região:</p>
+                
+                <div class="tabela-responsiva">
+                    <table class="tabela-precos">
+                        <thead>
+                            <tr><th>Móvel</th><th>Faixa Média</th><th>Tempo Médio</th><th>Complexidade</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Guarda-Roupa Grande 8 Portas</td><td>R$ 200 – R$ 250</td><td>2 a 5 horas</td><td>🔴 Alta</td></tr>
+                            <tr><td>Guarda-Roupa Grande 6 Portas</td><td>R$ 200 – R$ 250</td><td>2 a 5 horas</td><td>🔴 Alta</td></tr>
+                            <tr><td>Guarda-Roupa Médio 6 Portas</td><td>R$ 160 – R$ 200</td><td>2 a 4 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Guarda-Roupa Pequeno</td><td>R$ 130 – R$ 150</td><td>1 a 3 horas</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Cozinha Modulada Grande</td><td>R$ 250 – R$ 350</td><td>5 a 8 horas</td><td>🔴 Alta</td></tr>
+                            <tr><td>Cozinha Modulada Média</td><td>R$ 200 – R$ 250</td><td>4 a 6 horas</td><td>🔴 Alta</td></tr>
+                            <tr><td>Cozinha Modulada Pequena</td><td>R$ 160 – R$ 200</td><td>3 a 5 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Balcão de Cozinha</td><td>R$ 35 – R$ 90</td><td>40 min a 1h30</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Armário Aéreo</td><td>R$ 35 – R$ 60</td><td>30 min a 1h</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Cômoda até 6 Gavetas</td><td>R$ 20 – R$ 120</td><td>1 a 2 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Painel de TV Simples</td><td>R$ 80 – R$ 150</td><td>1 a 2 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Painel de TV Ripado Médio</td><td>R$ 120 – R$ 250</td><td>2 a 4 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Painel de TV Ripado Grande</td><td>R$ 250 – R$ 350</td><td>3 a 5 horas</td><td>🔴 Alta</td></tr>
+                            <tr><td>Rack para TV</td><td>R$ 100 – R$ 140</td><td>40 min a 1h30</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Escrivaninha Tradicional</td><td>R$ 90 – R$ 120</td><td>40 min a 1h30</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Aparador / Cristaleira</td><td>R$ 90 – R$ 120</td><td>1 a 2 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Cristaleira Portas de Vidro</td><td>R$ 120 – R$ 160</td><td>2 a 4 horas</td><td>🔴 Alta</td></tr>
+                            <tr><td>Sapateira</td><td>R$ 100 – R$ 120</td><td>30 min a 1h</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Escrivaninha Simples</td><td>R$ 100 – R$ 120</td><td>30 min a 1h</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Mesa de Jantar 4 Lugares</td><td>R$ 100 – R$ 120</td><td>30 min a 1h</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Mesa de Jantar 6 Lugares</td><td>R$ 120 – R$ 150</td><td>1 a 2 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Mesa de Jantar 8 Lugares</td><td>R$ 160 – R$ 200</td><td>1h30 a 3 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Cadeira Secretária</td><td>R$ 40 – R$ 50</td><td>15 a 30 min</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Cadeira Diretoria</td><td>R$ 50 – R$ 80</td><td>20 a 40 min</td><td>🟡 Média</td></tr>
+                            <tr><td>Cama Solteiro/Casal</td><td>R$ 75 – R$ 90</td><td>30 min a 1h</td><td>🟢 Baixa</td></tr>
+                            <tr><td>Cama Box com Baú</td><td>R$ 120 – R$ 140</td><td>1 a 2 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Beliche</td><td>R$ 120 – R$ 150</td><td>1 a 2 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Treliche</td><td>R$ 120 – R$ 150</td><td>1 a 2 horas</td><td>🟡 Média</td></tr>
+                            <tr><td>Berço Infantil</td><td>R$ 100 – R$ 120</td><td>40 min a 1h30</td><td>🟡 Média</td></tr>
+                            <tr><td>Cabeceira de Cama</td><td>R$ 60 – R$ 80</td><td>20 a 40 min</td><td>🟢 Baixa</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p><strong>Importante:</strong> Os valores acima representam médias de mercado e servem apenas como referência. O orçamento definitivo depende da análise do móvel e das condições do ambiente.</p>
+                
+                <h2>Como Funciona a Calculadora?</h2>
+                <p>Nossa ferramenta faz perguntas simples sobre seu móvel e calcula uma estimativa de preço considerando mão de obra, deslocamento e materiais de embalagem. O processo leva menos de 1 minuto.</p>
+                
+                <h2>Perguntas Frequentes</h2>
+                <h3>A calculadora mostra o preço exato?</h3>
+                <p>Não. Ela fornece uma <strong>estimativa baseada nas informações fornecidas</strong>. O orçamento definitivo depende da análise presencial ou de fotos do móvel.</p>
+                <h3>Os materiais de embalagem estão inclusos?</h3>
+                <p>Os materiais de embalagem são <strong>estimados à parte</strong> e podem ser adquiridos pelo cliente ou fornecidos mediante validação no WhatsApp.</p>
+                <h3>Como contratar após o cálculo?</h3>
+                <p>No final, há um botão para <strong>chamar no WhatsApp</strong> com todas as informações preenchidas automaticamente.</p>
+                
+            </div>
+        </section>
+        
+    </main>
+    
+    <div id="footer-container"></div>
+    
+    <script src="/js/componentes.js" defer></script>
+    <script src="/js/metrics.js" defer></script>
+    <script src="js/dados.json"></script>
+    <script src="js/materiais.json"></script>
+    <script src="js/logica.js"></script>
+    
+</body>
+</html>
