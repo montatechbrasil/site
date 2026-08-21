@@ -16,7 +16,7 @@ var dados = {
     balcaoSuspenso: false
 };
 var etapaAtual = 1;
-var etapasAtivas = [1, 2, 3, 4, 5, 6];
+var etapasAtivas = [1, 2, 3, 4, 5, 6, 7];
 
 function carregarDados() {
     var xhrDados = new XMLHttpRequest();
@@ -44,9 +44,9 @@ function carregarMateriais() {
 
 function definirEtapas() {
     if (dados.condicao === 'novo') {
-        etapasAtivas = [1, 2, 4, 5, 6];
+        etapasAtivas = [1, 2, 4, 5, 6, 7];
     } else {
-        etapasAtivas = [1, 2, 3, 4, 5, 6];
+        etapasAtivas = [1, 2, 3, 4, 5, 6, 7];
     }
 }
 
@@ -94,6 +94,7 @@ function renderizarEtapa(numero) {
     if (numero === 4) html = etapa4HTML();
     if (numero === 5) html = etapa5HTML();
     if (numero === 6) html = etapa6HTML();
+    if (numero === 7) html = etapaResumoHTML();
     document.getElementById('etapaContainer').innerHTML = html;
     atualizarBotoes();
     var wizardTop = document.getElementById('simuladorWizard').getBoundingClientRect().top + window.scrollY - 20;
@@ -252,7 +253,6 @@ function etapa4HTML() {
         return h;
     }
     
-    // Móvel novo ou só montagem → cidade única
     var h = '<h2>Qual a sua cidade?</h2><div class="opcoes-grid">';
     cidades.forEach(function(c) {
         var sel = dados.cidade === c.v ? ' selecionado' : '';
@@ -349,6 +349,30 @@ function toggleRecorteChapa(el) {
     if (dados.recortesChapa) el.classList.add('selecionado'); else el.classList.remove('selecionado');
 }
 
+function etapaResumoHTML() {
+    var loc = dadosSimulador.localizacao;
+    var h = '<h2>Confira as informações</h2><ul style="list-style:none;padding:0;">';
+    h += '<li style="padding:8px 0;"><strong>Móveis:</strong><br>';
+    for (var k in dados.moveis) {
+        h += '• ' + dados.moveis[k] + 'x ' + dadosSimulador.moveis[k].nome + '<br>';
+    }
+    h += '</li>';
+    h += '<li style="padding:8px 0;"><strong>Condição:</strong> ' + (dados.condicao === 'novo' ? 'Novo(s)' : 'Usado(s)') + '</li>';
+    if (dados.condicao === 'usado') {
+        h += '<li style="padding:8px 0;"><strong>Serviço:</strong> ' + dados.tipoServico + '</li>';
+        if (dados.embalagem && dados.embalagem !== 'nao') h += '<li style="padding:8px 0;"><strong>Embalagem:</strong> ' + dados.embalagem + '</li>';
+    }
+    if (dados.cidadeDiferente) {
+        h += '<li style="padding:8px 0;"><strong>🏠 Origem:</strong> ' + (loc[dados.cidadeOrigem] ? loc[dados.cidadeOrigem].descricao : '—') + '</li>';
+        h += '<li style="padding:8px 0;"><strong>🏡 Destino:</strong> ' + (loc[dados.cidadeDestino] ? loc[dados.cidadeDestino].descricao : '—') + '</li>';
+    } else {
+        h += '<li style="padding:8px 0;"><strong>Cidade:</strong> ' + (loc[dados.cidade] ? loc[dados.cidade].descricao : '—') + '</li>';
+    }
+    h += '</ul>';
+    h += '<p style="text-align:center;color:#888;margin-top:15px;">Clique em <strong>Calcular Estimativa</strong>.</p>';
+    return h;
+}
+
 function validarEtapa() {
     if (etapaAtual === 1 && totalMoveis() === 0) { alert('Selecione pelo menos um móvel.'); return false; }
     if (etapaAtual === 2 && !dados.condicao) { alert('Informe se o móvel é novo ou usado.'); return false; }
@@ -379,7 +403,7 @@ function atualizarBotoes() {
 
 function exibirResultado() {
     var mData = dadosSimulador.moveis, add = dadosSimulador.adicionais, loc = dadosSimulador.localizacao;
-    var precoMaoObra = 0, precoMateriaisMin = 0, precoMateriaisMax = 0, obs = [], nomes = [];
+    var precoMaoObra = 0, precoMateriaisMin = 0, precoMateriaisMax = 0, nomes = [];
     
     for (var k in dados.moveis) {
         var m = mData[k], qtd = dados.moveis[k];
@@ -457,6 +481,18 @@ function exibirResultado() {
     
     var h = '<div class="resultado-header"><h2>Estimativa de Montagem</h2><p class="resultado-movel">' + nomes.join(' + ') + '</p></div>';
     h += '<div class="resultado-body">';
+    
+    // Resumo das escolhas
+    h += '<div style="background:#f0f7ff;border-radius:8px;padding:15px;margin-bottom:20px;font-size:0.9em;">';
+    h += '<strong>📋 Resumo:</strong><br>';
+    h += '• Condição: ' + (dados.condicao === 'novo' ? 'Novo(s)' : 'Usado(s)') + '<br>';
+    if (dados.condicao === 'usado') {
+        h += '• Serviço: ' + dados.tipoServico + '<br>';
+        if (dados.embalagem && dados.embalagem !== 'nao') h += '• Embalagem: ' + dados.embalagem + '<br>';
+    }
+    h += '• Cidade: ' + cidadeMsg + '<br>';
+    h += '</div>';
+    
     h += '<div class="resultado-item"><span class="resultado-label">🔧 Mão de obra MontaTech</span><span class="resultado-valor" style="font-size:1.2em;color:var(--verde);">R$ ' + precoMaoObra + '</span></div>';
     if (precoMateriaisMin > 0) {
         h += '<div class="resultado-item"><span class="resultado-label">📦 Materiais (estimativa por fora)</span><span class="resultado-valor">R$ ' + precoMateriaisMin + ' – R$ ' + precoMateriaisMax + '</span></div>';
