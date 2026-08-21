@@ -11,7 +11,6 @@ var dados = {
     cidadeDestino: null,
     adicionais: [],
     recortes: [],
-    recortesChapa: false,
     iluminacaoLED: false,
     balcaoSuspenso: false
 };
@@ -42,6 +41,14 @@ function carregarMateriais() {
     xhrMat.send();
 }
 
+function definirEtapas() {
+    if (dados.condicao === 'novo') {
+        etapasAtivas = [1, 2, 4, 5, 6, 7];
+    } else {
+        etapasAtivas = [1, 2, 3, 4, 5, 6, 7];
+    }
+}
+
 function iniciarCalculadora() {
     document.getElementById('simuladorHero').style.display = 'none';
     document.getElementById('simuladorWizard').style.display = 'block';
@@ -57,6 +64,7 @@ function voltarEtapa() {
 
 function avancarEtapa() {
     if (!validarEtapa()) return;
+    if (etapaAtual === 2 && dados.condicao) definirEtapas();
     var idx = etapasAtivas.indexOf(etapaAtual);
     if (idx < etapasAtivas.length - 1) renderizarEtapa(etapasAtivas[idx + 1]);
 }
@@ -85,12 +93,11 @@ function renderizarEtapa(numero) {
     if (numero === 4) html = etapa4HTML();
     if (numero === 5) html = etapa5HTML();
     if (numero === 6) html = etapa6HTML();
-    if (numero === 7) html = etapa7HTML();
+    if (numero === 7) html = etapaResumoHTML();
     document.getElementById('etapaContainer').innerHTML = html;
     atualizarBotoes();
-    if (numero !== 1) {
-        document.getElementById('etapaContainer').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    var wizardTop = document.getElementById('simuladorWizard').getBoundingClientRect().top + window.scrollY - 20;
+    window.scrollTo({ top: wizardTop, behavior: 'smooth' });
 }
 
 function atualizarEtapa1Suave() {
@@ -154,6 +161,17 @@ function selecionarCondicao(el) {
     parent.querySelectorAll('.opcao-simples').forEach(function(i) { i.classList.remove('selecionado'); });
     el.classList.add('selecionado');
     dados.condicao = el.getAttribute('data-valor');
+    if (dados.condicao === 'novo') {
+        dados.tipoServico = 'montagem';
+        dados.embalagem = 'nao';
+        dados.cidadeDiferente = false;
+        dados.cidadeOrigem = null;
+        dados.cidadeDestino = null;
+    } else {
+        dados.tipoServico = null;
+        dados.embalagem = null;
+    }
+    definirEtapas();
 }
 
 function etapa3HTML() {
@@ -201,44 +219,45 @@ function etapa4HTML() {
         { v: 'outro', n: 'Outra localidade' }
     ];
     
-    var h = '<h2>Localização do serviço</h2>';
-    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">A desmontagem e remontagem serão na mesma cidade?</p>';
-    h += '<div class="opcoes-simples" style="margin-bottom:25px;">';
-    h += '<div class="opcao-simples' + (dados.cidadeDiferente === false ? ' selecionado' : '') + '" data-valor="nao" tabindex="0" onclick="selecionarMesmaCidade(this)">Sim, mesma cidade</div>';
-    h += '<div class="opcao-simples' + (dados.cidadeDiferente === true ? ' selecionado' : '') + '" data-valor="sim" tabindex="0" onclick="selecionarMesmaCidade(this)">Não, cidades diferentes</div>';
-    h += '</div>';
-    
-    if (dados.cidadeDiferente) {
-        h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;">';
-        h += '<div>';
-        h += '<h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">🏠 Cidade de Origem</h3>';
-        h += '<p style="text-align:center;color:#888;font-size:0.85em;margin-bottom:10px;">Onde o móvel está agora (desmontagem)</p>';
-        h += '<div class="opcoes-grid" style="grid-template-columns:1fr;">';
-        cidades.forEach(function(c) {
-            var sel = dados.cidadeOrigem === c.v ? ' selecionado' : '';
-            h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" data-tipo="origem" tabindex="0" onclick="selecionarCidadeEspecifica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
-        });
-        h += '</div></div>';
-        h += '<div>';
-        h += '<h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">🏡 Cidade de Destino</h3>';
-        h += '<p style="text-align:center;color:#888;font-size:0.85em;margin-bottom:10px;">Para onde o móvel vai (remontagem)</p>';
-        h += '<div class="opcoes-grid" style="grid-template-columns:1fr;">';
-        cidades.forEach(function(c) {
-            var sel = dados.cidadeDestino === c.v ? ' selecionado' : '';
-            h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" data-tipo="destino" tabindex="0" onclick="selecionarCidadeEspecifica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
-        });
-        h += '</div></div>';
+    if (dados.condicao === 'usado' && dados.tipoServico && dados.tipoServico.indexOf('desmontagem') !== -1) {
+        var h = '<h2>Localização do serviço</h2>';
+        h += '<p style="text-align:center;color:#888;margin-bottom:20px;">A desmontagem e remontagem serão na mesma cidade?</p>';
+        h += '<div class="opcoes-simples" style="margin-bottom:25px;">';
+        h += '<div class="opcao-simples' + (dados.cidadeDiferente === false ? ' selecionado' : '') + '" data-valor="nao" tabindex="0" onclick="selecionarMesmaCidade(this)">Sim, mesma cidade</div>';
+        h += '<div class="opcao-simples' + (dados.cidadeDiferente === true ? ' selecionado' : '') + '" data-valor="sim" tabindex="0" onclick="selecionarMesmaCidade(this)">Não, cidades diferentes</div>';
         h += '</div>';
-    } else {
-        h += '<h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">Selecione sua cidade:</h3>';
-        h += '<div class="opcoes-grid">';
-        cidades.forEach(function(c) {
-            var sel = dados.cidade === c.v ? ' selecionado' : '';
-            h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" tabindex="0" onclick="selecionarCidadeUnica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
-        });
-        h += '</div>';
+        
+        if (dados.cidadeDiferente) {
+            h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;">';
+            h += '<div><h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">🏠 Cidade de Origem</h3><div class="opcoes-grid" style="grid-template-columns:1fr;">';
+            cidades.forEach(function(c) {
+                var sel = dados.cidadeOrigem === c.v ? ' selecionado' : '';
+                h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" data-tipo="origem" tabindex="0" onclick="selecionarCidadeEspecifica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
+            });
+            h += '</div></div>';
+            h += '<div><h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">🏡 Cidade de Destino</h3><div class="opcoes-grid" style="grid-template-columns:1fr;">';
+            cidades.forEach(function(c) {
+                var sel = dados.cidadeDestino === c.v ? ' selecionado' : '';
+                h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" data-tipo="destino" tabindex="0" onclick="selecionarCidadeEspecifica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
+            });
+            h += '</div></div></div>';
+        } else {
+            h += '<h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">Selecione sua cidade:</h3><div class="opcoes-grid">';
+            cidades.forEach(function(c) {
+                var sel = dados.cidade === c.v ? ' selecionado' : '';
+                h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" tabindex="0" onclick="selecionarCidadeUnica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
+            });
+            h += '</div>';
+        }
+        return h;
     }
     
+    var h = '<h2>Qual a sua cidade?</h2><div class="opcoes-grid">';
+    cidades.forEach(function(c) {
+        var sel = dados.cidade === c.v ? ' selecionado' : '';
+        h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" tabindex="0" onclick="selecionarCidadeUnica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
+    });
+    h += '</div>';
     return h;
 }
 
@@ -276,10 +295,10 @@ function etapa5HTML() {
     var h = '<h2>Adicionais do móvel</h2>';
     h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Selecione as características especiais:</p>';
     h += '<div class="opcoes-checkbox" style="flex-direction:column;align-items:center;">';
-    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('portasCorrer') !== -1 ? ' selecionado' : '') + '" data-valor="portasCorrer" tabindex="0" onclick="toggleAdicional(this)">🚪 Portas de Correr (+20%)</div>';
-    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('espelhosGrandes') !== -1 ? ' selecionado' : '') + '" data-valor="espelhosGrandes" tabindex="0" onclick="toggleAdicional(this)">🪞 Espelhos Grandes (+25%)</div>';
-    h += '<div class="opcao-checkbox' + (dados.iluminacaoLED ? ' selecionado' : '') + '" data-valor="iluminacaoLED" tabindex="0" onclick="toggleLED(this)">💡 Iluminação LED (+R$ 50)</div>';
-    h += '<div class="opcao-checkbox' + (dados.balcaoSuspenso ? ' selecionado' : '') + '" data-valor="balcaoSuspenso" tabindex="0" onclick="toggleBalcaoSuspenso(this)">📌 Balcão Suspenso (+R$ 30)</div>';
+    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('Portas de Correr') !== -1 ? ' selecionado' : '') + '" data-valor="Portas de Correr" tabindex="0" onclick="toggleAdicional(this)">🚪 Portas de Correr</div>';
+    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('Espelhos Grandes') !== -1 ? ' selecionado' : '') + '" data-valor="Espelhos Grandes" tabindex="0" onclick="toggleAdicional(this)">🪞 Espelhos Grandes</div>';
+    h += '<div class="opcao-checkbox' + (dados.iluminacaoLED ? ' selecionado' : '') + '" data-valor="Iluminação LED" tabindex="0" onclick="toggleLED(this)">💡 Iluminação LED</div>';
+    h += '<div class="opcao-checkbox' + (dados.balcaoSuspenso ? ' selecionado' : '') + '" data-valor="Balcão Suspenso" tabindex="0" onclick="toggleBalcaoSuspenso(this)">📌 Balcão Suspenso</div>';
     h += '</div>';
     return h;
 }
@@ -293,12 +312,12 @@ function toggleAdicional(el) {
 
 function toggleLED(el) {
     dados.iluminacaoLED = !dados.iluminacaoLED;
-    if (dados.iluminacaoLED) el.classList.add('selecionado'); else el.classList.remove('selecionado');
+    if (dados.iluminacaoLED) { el.classList.add('selecionado'); } else { el.classList.remove('selecionado'); }
 }
 
 function toggleBalcaoSuspenso(el) {
     dados.balcaoSuspenso = !dados.balcaoSuspenso;
-    if (dados.balcaoSuspenso) el.classList.add('selecionado'); else el.classList.remove('selecionado');
+    if (dados.balcaoSuspenso) { el.classList.add('selecionado'); } else { el.classList.remove('selecionado'); }
 }
 
 function etapa6HTML() {
@@ -311,9 +330,7 @@ function etapa6HTML() {
         h += '<div class="opcao-checkbox' + sel + '" data-valor="' + r + '" tabindex="0" onclick="toggleRecorte(this)">' + r + '</div>';
     });
     h += '</div>';
-    h += '<div style="margin-top:15px;text-align:center;">';
-    h += '<div class="opcao-checkbox' + (dados.recortesChapa ? ' selecionado' : '') + '" data-valor="chapa" tabindex="0" onclick="toggleRecorteChapa(this)" style="display:inline-block;">🪚 Recortes em chapas de madeira (+R$ 60)</div>';
-    h += '</div>';
+    h += '<p style="text-align:center;color:#888;margin-top:20px;font-size:0.9em;">Recortes e adaptações em chapas de madeira, comuns em balcões de cozinhas e painéis de TV.</p>';
     return h;
 }
 
@@ -324,12 +341,7 @@ function toggleRecorte(el) {
     else { dados.recortes.splice(idx, 1); el.classList.remove('selecionado'); }
 }
 
-function toggleRecorteChapa(el) {
-    dados.recortesChapa = !dados.recortesChapa;
-    if (dados.recortesChapa) el.classList.add('selecionado'); else el.classList.remove('selecionado');
-}
-
-function etapa7HTML() {
+function etapaResumoHTML() {
     var loc = dadosSimulador.localizacao;
     var h = '<h2>Confira as informações</h2><ul style="list-style:none;padding:0;">';
     h += '<li style="padding:8px 0;"><strong>Móveis:</strong><br>';
@@ -338,8 +350,19 @@ function etapa7HTML() {
     }
     h += '</li>';
     h += '<li style="padding:8px 0;"><strong>Condição:</strong> ' + (dados.condicao === 'novo' ? 'Novo(s)' : 'Usado(s)') + '</li>';
-    if (dados.condicao === 'usado') h += '<li style="padding:8px 0;"><strong>Serviço:</strong> ' + dados.tipoServico + '</li>';
-    if (dados.embalagem && dados.embalagem !== 'nao') h += '<li style="padding:8px 0;"><strong>Embalagem:</strong> ' + dados.embalagem + '</li>';
+    if (dados.condicao === 'usado') {
+        h += '<li style="padding:8px 0;"><strong>Serviço:</strong> ' + dados.tipoServico + '</li>';
+        if (dados.embalagem && dados.embalagem !== 'nao') h += '<li style="padding:8px 0;"><strong>Embalagem:</strong> ' + dados.embalagem + '</li>';
+    }
+    var todosAdicionais = dados.adicionais.slice();
+    if (dados.iluminacaoLED) todosAdicionais.push('Iluminação LED');
+    if (dados.balcaoSuspenso) todosAdicionais.push('Balcão Suspenso');
+    if (todosAdicionais.length > 0) {
+        h += '<li style="padding:8px 0;"><strong>Adicionais:</strong> ' + todosAdicionais.join(', ') + '</li>';
+    }
+    if (dados.recortes.length > 0) {
+        h += '<li style="padding:8px 0;"><strong>Recortes:</strong> ' + dados.recortes.join(', ') + '</li>';
+    }
     if (dados.cidadeDiferente) {
         h += '<li style="padding:8px 0;"><strong>🏠 Origem:</strong> ' + (loc[dados.cidadeOrigem] ? loc[dados.cidadeOrigem].descricao : '—') + '</li>';
         h += '<li style="padding:8px 0;"><strong>🏡 Destino:</strong> ' + (loc[dados.cidadeDestino] ? loc[dados.cidadeDestino].descricao : '—') + '</li>';
@@ -381,7 +404,7 @@ function atualizarBotoes() {
 
 function exibirResultado() {
     var mData = dadosSimulador.moveis, add = dadosSimulador.adicionais, loc = dadosSimulador.localizacao;
-    var precoMaoObra = 0, precoMateriaisMin = 0, precoMateriaisMax = 0, obs = [], nomes = [];
+    var precoMaoObra = 0, precoMateriaisMin = 0, precoMateriaisMax = 0, nomes = [];
     
     for (var k in dados.moveis) {
         var m = mData[k], qtd = dados.moveis[k];
@@ -394,11 +417,15 @@ function exibirResultado() {
                 if (dados.tipoServico === 'remontagem') precoMaoObra += m.precos.remontagem;
                 if (dados.tipoServico === 'desmontagem_montagem') precoMaoObra += m.precos.desmontagem + m.precos.usado;
             }
-            if (dados.adicionais.indexOf('portasCorrer') !== -1 && m.adicionais.portasCorrer) precoMaoObra += Math.round(m.precos.novo * m.adicionais.portasCorrer / 100);
-            if (dados.adicionais.indexOf('espelhosGrandes') !== -1 && m.adicionais.espelhosGrandes) precoMaoObra += Math.round(m.precos.novo * m.adicionais.espelhosGrandes / 100);
             
-            // EMBALAGEM (novo cálculo)
-            if (dados.embalagem && dados.embalagem !== 'nao') {
+            var totalAdicionais = dados.adicionais.length;
+            if (dados.iluminacaoLED) totalAdicionais += 1;
+            if (dados.balcaoSuspenso) totalAdicionais += 1;
+            if (totalAdicionais > 0) {
+                precoMaoObra += Math.round(precoMaoObra * 0.1 * totalAdicionais);
+            }
+            
+            if (dados.condicao === 'usado' && dados.embalagem && dados.embalagem !== 'nao') {
                 var nivel = m.nivelEmbalagem || 'medio';
                 var mat = dadosMateriais[nivel];
                 var valorEmbalagem = m.precos.desmontagem;
@@ -423,16 +450,13 @@ function exibirResultado() {
         }
     }
     
-    if (dados.iluminacaoLED) { precoMaoObra += add.iluminacaoLED.preco; obs.push(add.iluminacaoLED.descricao); }
-    if (dados.balcaoSuspenso) { precoMaoObra += add.balcaoSuspenso.preco; obs.push(add.balcaoSuspenso.descricao); }
-    if (dados.recortes.length > 0) { precoMaoObra += dados.recortes.length * add.recortePorModulo.preco; obs.push(dados.recortes.length + ' recorte(s)'); }
-    if (dados.recortesChapa) { precoMaoObra += add.recorteChapa.preco; obs.push(add.recorteChapa.descricao); }
+    var totalRecortes = dados.recortes.length;
+    if (totalRecortes > 0) precoMaoObra += totalRecortes * 35;
     
     if (dados.cidadeDiferente) {
         var taxaOrigem = loc[dados.cidadeOrigem] ? loc[dados.cidadeOrigem].fator : 60;
         var taxaDestino = loc[dados.cidadeDestino] ? loc[dados.cidadeDestino].fator : 60;
         precoMaoObra += taxaOrigem + taxaDestino;
-        obs.push('Deslocamento: ' + loc[dados.cidadeOrigem].descricao + ' → ' + loc[dados.cidadeDestino].descricao + ' (R$ ' + (taxaOrigem + taxaDestino) + ')');
     } else {
         var taxa = loc[dados.cidade] ? loc[dados.cidade].fator : 60;
         precoMaoObra += taxa;
@@ -441,7 +465,6 @@ function exibirResultado() {
     if (totalMoveis() >= add.descontoMultiplos.minimo) {
         var desc = Math.round(precoMaoObra * add.descontoMultiplos.percentual / 100);
         precoMaoObra -= desc;
-        obs.push(add.descontoMultiplos.descricao + ' (-R$ ' + desc + ')');
     }
     
     var totalMin = precoMaoObra + precoMateriaisMin;
@@ -458,18 +481,36 @@ function exibirResultado() {
         'Móveis: ' + nomes.join(', ') + '%0A' +
         'Condição: ' + (dados.condicao === 'novo' ? 'Novo' : 'Usado') + '%0A' +
         'Cidade: ' + cidadeMsg + '%0A' +
-        'Mão de obra: R$ ' + precoMaoObra + '%0A' +
-        'Materiais (estimativa): R$ ' + precoMateriaisMin + ' a R$ ' + precoMateriaisMax + '%0A%0AGostaria de solicitar um orçamento real.';
+        'Estimativa: R$ ' + precoMaoObra + '%0A%0AGostaria de solicitar um orçamento real.';
     
     var h = '<div class="resultado-header"><h2>Estimativa de Montagem</h2><p class="resultado-movel">' + nomes.join(' + ') + '</p></div>';
     h += '<div class="resultado-body">';
+    
+    h += '<div style="background:#f0f7ff;border-radius:8px;padding:15px;margin-bottom:20px;font-size:0.9em;">';
+    h += '<strong>📋 Resumo:</strong><br>';
+    h += '• Condição: ' + (dados.condicao === 'novo' ? 'Novo(s)' : 'Usado(s)') + '<br>';
+    if (dados.condicao === 'usado') {
+        h += '• Serviço: ' + dados.tipoServico + '<br>';
+        if (dados.embalagem && dados.embalagem !== 'nao') h += '• Embalagem: ' + dados.embalagem + '<br>';
+    }
+    var todosAdicionaisResumo = dados.adicionais.slice();
+    if (dados.iluminacaoLED) todosAdicionaisResumo.push('Iluminação LED');
+    if (dados.balcaoSuspenso) todosAdicionaisResumo.push('Balcão Suspenso');
+    if (todosAdicionaisResumo.length > 0) h += '• Adicionais: ' + todosAdicionaisResumo.join(', ') + '<br>';
+    if (dados.recortes.length > 0) h += '• Recortes: ' + dados.recortes.join(', ') + '<br>';
+    h += '• Cidade: ' + cidadeMsg + '<br>';
+    h += '</div>';
+    
     h += '<div class="resultado-item"><span class="resultado-label">🔧 Mão de obra MontaTech</span><span class="resultado-valor" style="font-size:1.2em;color:var(--verde);">R$ ' + precoMaoObra + '</span></div>';
     if (precoMateriaisMin > 0) {
         h += '<div class="resultado-item"><span class="resultado-label">📦 Materiais (estimativa por fora)</span><span class="resultado-valor">R$ ' + precoMateriaisMin + ' – R$ ' + precoMateriaisMax + '</span></div>';
         h += '<div class="resultado-item"><span class="resultado-label">💰 Total estimado</span><span class="resultado-valor" style="font-size:1.3em;color:var(--verde);">R$ ' + totalMin + ' – R$ ' + totalMax + '</span></div>';
     }
-    h += '<div class="resultado-aviso">⚠️ <strong>Importante:</strong> Materiais de embalagem são estimados e podem ser adquiridos pelo cliente ou fornecidos mediante validação no WhatsApp. O orçamento final depende da análise dos móveis.</div>';
-    if (obs.length > 0) { h += '<div class="resultado-observacoes"><h4>📝 O que está incluído:</h4><ul style="padding-left:18px;">'; obs.forEach(function(o) { h += '<li style="margin-bottom:5px;">' + o + '</li>'; }); h += '</ul></div>'; }
+    h += '<div class="resultado-aviso">⚠️ <strong>Importante:</strong> ';
+    if (precoMateriaisMin > 0) {
+        h += 'Materiais de embalagem são estimados e podem ser adquiridos pelo cliente ou fornecidos mediante validação no WhatsApp. ';
+    }
+    h += 'O orçamento final depende da análise dos móveis.</div>';
     h += '<div class="resultado-cta"><a href="https://api.whatsapp.com/send/?phone=5561998865417&text=' + msg + '&type=phone_number&app_absent=0" class="btn-whatsapp" target="_blank" rel="noopener">📱 Solicitar Orçamento Real pelo WhatsApp</a><br>';
     h += '<button class="btn-reiniciar" onclick="location.reload();">🔄 Fazer Novo Cálculo</button></div></div>';
     
