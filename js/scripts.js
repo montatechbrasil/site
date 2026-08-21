@@ -67,9 +67,9 @@
         
         // Lista de imagens
         const galleryImages = [
-            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594410/painel-tv-instalado_led_valparaiso-go_chdgu7.jpg',
-            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594408/montagem-guarda-roupas-planejado_tgiaxw.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787261983/cozinhas_planejadas_para_apartamentos_btu4rf.jpg',
+            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594408/montagem-guarda-roupas-planejado_tgiaxw.jpg',
+            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594410/painel-tv-instalado_led_valparaiso-go_chdgu7.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem-cozinha-aereos-valparaiso-go_qqmnq9.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594412/cozinha-planejada-montada-valparaiso_befqgr.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787011517/montagem-de-mesas-de-jantar-montatechbrasil-valparaiso-go_qtrxz3.jpg',
