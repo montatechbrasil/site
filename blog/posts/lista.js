@@ -5,7 +5,7 @@ var todosPosts = [
         categoria: "Cozinhas",
         resumo: "Descubra as diferenças práticas, desafios técnicos e dicas de instalação para cozinhas pequenas em apartamentos.",
         imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787350372/cozinhas-pequenas-planejadas-valparaiso-go_dkkuic.jpg",
-        data: "21 Ago 2026",
+        data: "12 Set 2026",
         link: "posts/cozinha-modulada-ou-planejada-para-apartamento.html",
         tempoLeitura: "9 min"
     },
