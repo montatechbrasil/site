@@ -382,7 +382,7 @@
     "descontoMultiplos": { "minimo": 3, "percentual": 15, "descricao": "Desconto de 15% para 3 ou mais móveis" }
   },
   "localizacao": {
-    "valparaiso": { "fator": 0, "descricao": "Valparaíso de Goiás (sem taxa)" },
+    "valparaiso": { "fator": 0, "descricao": "Valparaíso de Goiás" },
     "jardim-inga": { "fator": 50, "descricao": "Jardim Ingá" },
     "ocidental": { "fator": 40, "descricao": "Cidade Ocidental" },
     "novo-gama": { "fator": 40, "descricao": "Novo Gama" },
