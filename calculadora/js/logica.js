@@ -11,7 +11,6 @@ var dados = {
     cidadeDestino: null,
     adicionais: [],
     recortes: [],
-    recortesChapa: false,
     iluminacaoLED: false,
     balcaoSuspenso: false
 };
@@ -322,7 +321,6 @@ function toggleBalcaoSuspenso(el) {
 }
 
 function etapa6HTML() {
-   function etapa6HTML() {
     var h = '<h2>Recortes e adaptações</h2>';
     h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Comum em cozinhas, balcões e painéis</p>';
     var recs = ['Pia/Cuba', 'Cooktop', 'Forno', 'Sifão', 'Tomada', 'Rodapé'];
@@ -341,11 +339,6 @@ function toggleRecorte(el) {
     var idx = dados.recortes.indexOf(v);
     if (idx === -1) { dados.recortes.push(v); el.classList.add('selecionado'); }
     else { dados.recortes.splice(idx, 1); el.classList.remove('selecionado'); }
-}
-
-function toggleRecorteChapa(el) {
-    dados.recortesChapa = !dados.recortesChapa;
-    if (dados.recortesChapa) el.classList.add('selecionado'); else el.classList.remove('selecionado');
 }
 
 function etapaResumoHTML() {
@@ -367,10 +360,8 @@ function etapaResumoHTML() {
     if (todosAdicionais.length > 0) {
         h += '<li style="padding:8px 0;"><strong>Adicionais:</strong> ' + todosAdicionais.join(', ') + '</li>';
     }
-    if (dados.recortes.length > 0 || dados.recortesChapa) {
-        var recs = dados.recortes.slice();
-       
-        h += '<li style="padding:8px 0;"><strong>Recortes:</strong> ' + recs.join(', ') + '</li>';
+    if (dados.recortes.length > 0) {
+        h += '<li style="padding:8px 0;"><strong>Recortes:</strong> ' + dados.recortes.join(', ') + '</li>';
     }
     if (dados.cidadeDiferente) {
         h += '<li style="padding:8px 0;"><strong>🏠 Origem:</strong> ' + (loc[dados.cidadeOrigem] ? loc[dados.cidadeOrigem].descricao : '—') + '</li>';
@@ -460,7 +451,6 @@ function exibirResultado() {
     }
     
     var totalRecortes = dados.recortes.length;
-
     if (totalRecortes > 0) precoMaoObra += totalRecortes * 35;
     
     if (dados.cidadeDiferente) {
@@ -507,11 +497,7 @@ function exibirResultado() {
     if (dados.iluminacaoLED) todosAdicionaisResumo.push('Iluminação LED');
     if (dados.balcaoSuspenso) todosAdicionaisResumo.push('Balcão Suspenso');
     if (todosAdicionaisResumo.length > 0) h += '• Adicionais: ' + todosAdicionaisResumo.join(', ') + '<br>';
-    if (dados.recortes.length > 0 || dados.recortesChapa) {
-        var recsResumo = dados.recortes.slice();
-        if (dados.recortesChapa) recsResumo.push('Chapas de madeira');
-        h += '• Recortes: ' + recsResumo.join(', ') + '<br>';
-    }
+    if (dados.recortes.length > 0) h += '• Recortes: ' + dados.recortes.join(', ') + '<br>';
     h += '• Cidade: ' + cidadeMsg + '<br>';
     h += '</div>';
     
