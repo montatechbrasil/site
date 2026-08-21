@@ -362,6 +362,14 @@ function etapaResumoHTML() {
         h += '<li style="padding:8px 0;"><strong>Serviço:</strong> ' + dados.tipoServico + '</li>';
         if (dados.embalagem && dados.embalagem !== 'nao') h += '<li style="padding:8px 0;"><strong>Embalagem:</strong> ' + dados.embalagem + '</li>';
     }
+    if (dados.adicionais.length > 0) {
+        h += '<li style="padding:8px 0;"><strong>Adicionais:</strong> ' + dados.adicionais.join(', ') + '</li>';
+    }
+    if (dados.recortes.length > 0 || dados.recortesChapa) {
+        var recs = dados.recortes.slice();
+        if (dados.recortesChapa) recs.push('Chapas de madeira');
+        h += '<li style="padding:8px 0;"><strong>Recortes:</strong> ' + recs.join(', ') + '</li>';
+    }
     if (dados.cidadeDiferente) {
         h += '<li style="padding:8px 0;"><strong>🏠 Origem:</strong> ' + (loc[dados.cidadeOrigem] ? loc[dados.cidadeOrigem].descricao : '—') + '</li>';
         h += '<li style="padding:8px 0;"><strong>🏡 Destino:</strong> ' + (loc[dados.cidadeDestino] ? loc[dados.cidadeDestino].descricao : '—') + '</li>';
@@ -416,8 +424,15 @@ function exibirResultado() {
                 if (dados.tipoServico === 'remontagem') precoMaoObra += m.precos.remontagem;
                 if (dados.tipoServico === 'desmontagem_montagem') precoMaoObra += m.precos.desmontagem + m.precos.usado;
             }
-            if (dados.adicionais.indexOf('portasCorrer') !== -1 && m.adicionais.portasCorrer) precoMaoObra += Math.round(m.precos.novo * m.adicionais.portasCorrer / 100);
-            if (dados.adicionais.indexOf('espelhosGrandes') !== -1 && m.adicionais.espelhosGrandes) precoMaoObra += Math.round(m.precos.novo * m.adicionais.espelhosGrandes / 100);
+            
+            // Adicionais: +10% cada
+            var totalAdicionais = 0;
+            if (dados.adicionais.length > 0) totalAdicionais += dados.adicionais.length;
+            if (dados.iluminacaoLED) totalAdicionais += 1;
+            if (dados.balcaoSuspenso) totalAdicionais += 1;
+            if (totalAdicionais > 0) {
+                precoMaoObra += Math.round(precoMaoObra * 0.1 * totalAdicionais);
+            }
             
             if (dados.condicao === 'usado' && dados.embalagem && dados.embalagem !== 'nao') {
                 var nivel = m.nivelEmbalagem || 'medio';
@@ -444,10 +459,10 @@ function exibirResultado() {
         }
     }
     
-    if (dados.iluminacaoLED) precoMaoObra += add.iluminacaoLED.preco;
-    if (dados.balcaoSuspenso) precoMaoObra += add.balcaoSuspenso.preco;
-    if (dados.recortes.length > 0) precoMaoObra += dados.recortes.length * add.recortePorModulo.preco;
-    if (dados.recortesChapa) precoMaoObra += add.recorteChapa.preco;
+    // Recortes: R$ 35 cada
+    var totalRecortes = dados.recortes.length;
+    if (dados.recortesChapa) totalRecortes += 1;
+    if (totalRecortes > 0) precoMaoObra += totalRecortes * 35;
     
     if (dados.cidadeDiferente) {
         var taxaOrigem = loc[dados.cidadeOrigem] ? loc[dados.cidadeOrigem].fator : 60;
@@ -482,13 +497,19 @@ function exibirResultado() {
     var h = '<div class="resultado-header"><h2>Estimativa de Montagem</h2><p class="resultado-movel">' + nomes.join(' + ') + '</p></div>';
     h += '<div class="resultado-body">';
     
-    // Resumo das escolhas
+    // Resumo
     h += '<div style="background:#f0f7ff;border-radius:8px;padding:15px;margin-bottom:20px;font-size:0.9em;">';
     h += '<strong>📋 Resumo:</strong><br>';
     h += '• Condição: ' + (dados.condicao === 'novo' ? 'Novo(s)' : 'Usado(s)') + '<br>';
     if (dados.condicao === 'usado') {
         h += '• Serviço: ' + dados.tipoServico + '<br>';
         if (dados.embalagem && dados.embalagem !== 'nao') h += '• Embalagem: ' + dados.embalagem + '<br>';
+    }
+    if (dados.adicionais.length > 0) h += '• Adicionais: ' + dados.adicionais.join(', ') + '<br>';
+    if (dados.recortes.length > 0 || dados.recortesChapa) {
+        var recs = dados.recortes.slice();
+        if (dados.recortesChapa) recs.push('Chapas de madeira');
+        h += '• Recortes: ' + recs.join(', ') + '<br>';
     }
     h += '• Cidade: ' + cidadeMsg + '<br>';
     h += '</div>';
