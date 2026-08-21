@@ -296,10 +296,10 @@ function etapa5HTML() {
     var h = '<h2>Adicionais do móvel</h2>';
     h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Selecione as características especiais:</p>';
     h += '<div class="opcoes-checkbox" style="flex-direction:column;align-items:center;">';
-    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('portasCorrer') !== -1 ? ' selecionado' : '') + '" data-valor="portasCorrer" tabindex="0" onclick="toggleAdicional(this)">🚪 Portas de Correr</div>';
-    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('espelhosGrandes') !== -1 ? ' selecionado' : '') + '" data-valor="espelhosGrandes" tabindex="0" onclick="toggleAdicional(this)">🪞 Espelhos Grandes</div>';
-    h += '<div class="opcao-checkbox' + (dados.iluminacaoLED ? ' selecionado' : '') + '" data-valor="iluminacaoLED" tabindex="0" onclick="toggleLED(this)">💡 Iluminação LED</div>';
-    h += '<div class="opcao-checkbox' + (dados.balcaoSuspenso ? ' selecionado' : '') + '" data-valor="balcaoSuspenso" tabindex="0" onclick="toggleBalcaoSuspenso(this)">📌 Balcão Suspenso</div>';
+    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('Portas de Correr') !== -1 ? ' selecionado' : '') + '" data-valor="Portas de Correr" tabindex="0" onclick="toggleAdicional(this)">🚪 Portas de Correr</div>';
+    h += '<div class="opcao-checkbox' + (dados.adicionais.indexOf('Espelhos Grandes') !== -1 ? ' selecionado' : '') + '" data-valor="Espelhos Grandes" tabindex="0" onclick="toggleAdicional(this)">🪞 Espelhos Grandes</div>';
+    h += '<div class="opcao-checkbox' + (dados.iluminacaoLED ? ' selecionado' : '') + '" data-valor="Iluminação LED" tabindex="0" onclick="toggleLED(this)">💡 Iluminação LED</div>';
+    h += '<div class="opcao-checkbox' + (dados.balcaoSuspenso ? ' selecionado' : '') + '" data-valor="Balcão Suspenso" tabindex="0" onclick="toggleBalcaoSuspenso(this)">📌 Balcão Suspenso</div>';
     h += '</div>';
     return h;
 }
@@ -313,12 +313,12 @@ function toggleAdicional(el) {
 
 function toggleLED(el) {
     dados.iluminacaoLED = !dados.iluminacaoLED;
-    if (dados.iluminacaoLED) el.classList.add('selecionado'); else el.classList.remove('selecionado');
+    if (dados.iluminacaoLED) { el.classList.add('selecionado'); } else { el.classList.remove('selecionado'); }
 }
 
 function toggleBalcaoSuspenso(el) {
     dados.balcaoSuspenso = !dados.balcaoSuspenso;
-    if (dados.balcaoSuspenso) el.classList.add('selecionado'); else el.classList.remove('selecionado');
+    if (dados.balcaoSuspenso) { el.classList.add('selecionado'); } else { el.classList.remove('selecionado'); }
 }
 
 function etapa6HTML() {
@@ -362,8 +362,11 @@ function etapaResumoHTML() {
         h += '<li style="padding:8px 0;"><strong>Serviço:</strong> ' + dados.tipoServico + '</li>';
         if (dados.embalagem && dados.embalagem !== 'nao') h += '<li style="padding:8px 0;"><strong>Embalagem:</strong> ' + dados.embalagem + '</li>';
     }
-    if (dados.adicionais.length > 0) {
-        h += '<li style="padding:8px 0;"><strong>Adicionais:</strong> ' + dados.adicionais.join(', ') + '</li>';
+    var todosAdicionais = dados.adicionais.slice();
+    if (dados.iluminacaoLED) todosAdicionais.push('Iluminação LED');
+    if (dados.balcaoSuspenso) todosAdicionais.push('Balcão Suspenso');
+    if (todosAdicionais.length > 0) {
+        h += '<li style="padding:8px 0;"><strong>Adicionais:</strong> ' + todosAdicionais.join(', ') + '</li>';
     }
     if (dados.recortes.length > 0 || dados.recortesChapa) {
         var recs = dados.recortes.slice();
@@ -425,9 +428,7 @@ function exibirResultado() {
                 if (dados.tipoServico === 'desmontagem_montagem') precoMaoObra += m.precos.desmontagem + m.precos.usado;
             }
             
-            // Adicionais: +10% cada
-            var totalAdicionais = 0;
-            if (dados.adicionais.length > 0) totalAdicionais += dados.adicionais.length;
+            var totalAdicionais = dados.adicionais.length;
             if (dados.iluminacaoLED) totalAdicionais += 1;
             if (dados.balcaoSuspenso) totalAdicionais += 1;
             if (totalAdicionais > 0) {
@@ -459,7 +460,6 @@ function exibirResultado() {
         }
     }
     
-    // Recortes: R$ 35 cada
     var totalRecortes = dados.recortes.length;
     if (dados.recortesChapa) totalRecortes += 1;
     if (totalRecortes > 0) precoMaoObra += totalRecortes * 35;
@@ -497,7 +497,6 @@ function exibirResultado() {
     var h = '<div class="resultado-header"><h2>Estimativa de Montagem</h2><p class="resultado-movel">' + nomes.join(' + ') + '</p></div>';
     h += '<div class="resultado-body">';
     
-    // Resumo
     h += '<div style="background:#f0f7ff;border-radius:8px;padding:15px;margin-bottom:20px;font-size:0.9em;">';
     h += '<strong>📋 Resumo:</strong><br>';
     h += '• Condição: ' + (dados.condicao === 'novo' ? 'Novo(s)' : 'Usado(s)') + '<br>';
@@ -505,11 +504,14 @@ function exibirResultado() {
         h += '• Serviço: ' + dados.tipoServico + '<br>';
         if (dados.embalagem && dados.embalagem !== 'nao') h += '• Embalagem: ' + dados.embalagem + '<br>';
     }
-    if (dados.adicionais.length > 0) h += '• Adicionais: ' + dados.adicionais.join(', ') + '<br>';
+    var todosAdicionaisResumo = dados.adicionais.slice();
+    if (dados.iluminacaoLED) todosAdicionaisResumo.push('Iluminação LED');
+    if (dados.balcaoSuspenso) todosAdicionaisResumo.push('Balcão Suspenso');
+    if (todosAdicionaisResumo.length > 0) h += '• Adicionais: ' + todosAdicionaisResumo.join(', ') + '<br>';
     if (dados.recortes.length > 0 || dados.recortesChapa) {
-        var recs = dados.recortes.slice();
-        if (dados.recortesChapa) recs.push('Chapas de madeira');
-        h += '• Recortes: ' + recs.join(', ') + '<br>';
+        var recsResumo = dados.recortes.slice();
+        if (dados.recortesChapa) recsResumo.push('Chapas de madeira');
+        h += '• Recortes: ' + recsResumo.join(', ') + '<br>';
     }
     h += '• Cidade: ' + cidadeMsg + '<br>';
     h += '</div>';
