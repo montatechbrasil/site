@@ -322,6 +322,7 @@ function toggleBalcaoSuspenso(el) {
 }
 
 function etapa6HTML() {
+   function etapa6HTML() {
     var h = '<h2>Recortes e adaptações</h2>';
     h += '<p style="text-align:center;color:#888;margin-bottom:20px;">Comum em cozinhas, balcões e painéis</p>';
     var recs = ['Pia/Cuba', 'Cooktop', 'Forno', 'Sifão', 'Tomada', 'Rodapé'];
@@ -331,9 +332,7 @@ function etapa6HTML() {
         h += '<div class="opcao-checkbox' + sel + '" data-valor="' + r + '" tabindex="0" onclick="toggleRecorte(this)">' + r + '</div>';
     });
     h += '</div>';
-    h += '<div style="margin-top:15px;text-align:center;">';
-    h += '<div class="opcao-checkbox' + (dados.recortesChapa ? ' selecionado' : '') + '" data-valor="chapa" tabindex="0" onclick="toggleRecorteChapa(this)" style="display:inline-block;">🪚 Recortes em chapas de madeira</div>';
-    h += '</div>';
+    h += '<p style="text-align:center;color:#888;margin-top:20px;font-size:0.9em;">Recortes e adaptações em chapas de madeira, comuns em balcões de cozinhas e painéis de TV.</p>';
     return h;
 }
 
