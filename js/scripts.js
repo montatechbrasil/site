@@ -66,6 +66,7 @@
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594412/cozinha-planejada-montada-valparaiso_befqgr.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787011517/montagem-de-mesas-de-jantar-montatechbrasil-valparaiso-go_qtrxz3.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594413/desmontagem-mudanca-cidade-ocidental_afxyre.jpg',
+            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785706371/montador-de-guarda-roupoas-ocidental-valparaiso-gama-santa-maria-DF_cbeatr.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594410/rack-montado-sala-estar-valparaiso_kr09xn.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594410/cadeiras-montagem-profissional_sqkk6e.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594411/comoda-montada-quarto-valparaiso_tgacyz.jpg',
@@ -74,6 +75,7 @@
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/mesa-planejada-escritorio_k40rjt.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem_guarda_roupas_valparaiso-ocidental_nvowi1.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787011518/montador-de-moveis-condominio-villa-suica-valparaiso_ihv2d8.jpg',
+            'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787350371/instalaco-cozinha-modulada-para-apartamento-valparaiso-go_cvmei6.jpg',
             'https://res.cloudinary.com/dxqm3lwrk/image/upload/v1785594407/montagem-guarda-roupas-novo-ocidental-valparaiso_k2kkrh.jpg'
         ];
         
