@@ -1,4 +1,16 @@
 var todosPosts = [
+
+    {
+        id: 5,
+        titulo: "Como Embalar Móveis para Mudança: O Guia Definitivo para Proteger Seu Patrimônio",
+        categoria: "Mudanças",
+        resumo: "Descubra como embalar seus móveis desmontados corretamente para evitar arranhões, quinas amassadas e espelhos trincados.",
+        imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/materiais-embalagem-moveis-mudanca-valparaiso.webp",
+        data: "21 Ago 2026",
+        link: "posts/como-embalar-moveis-para-mudanca.html",
+        tempoLeitura: "7 min"
+    },
+    
     // ID 4 - NOVO POST
     {
         id: 4,
