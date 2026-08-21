@@ -16,7 +16,7 @@ var dados = {
     balcaoSuspenso: false
 };
 var etapaAtual = 1;
-var etapasAtivas = [1, 2, 3, 4, 5, 6, 7];
+var etapasAtivas = [1, 2, 3, 4, 5, 6];
 
 function carregarDados() {
     var xhrDados = new XMLHttpRequest();
@@ -44,9 +44,9 @@ function carregarMateriais() {
 
 function definirEtapas() {
     if (dados.condicao === 'novo') {
-        etapasAtivas = [1, 2, 4, 5, 6, 7];
+        etapasAtivas = [1, 2, 4, 5, 6];
     } else {
-        etapasAtivas = [1, 2, 3, 4, 5, 6, 7];
+        etapasAtivas = [1, 2, 3, 4, 5, 6];
     }
 }
 
@@ -94,10 +94,8 @@ function renderizarEtapa(numero) {
     if (numero === 4) html = etapa4HTML();
     if (numero === 5) html = etapa5HTML();
     if (numero === 6) html = etapa6HTML();
-    if (numero === 7) html = etapa7HTML();
     document.getElementById('etapaContainer').innerHTML = html;
     atualizarBotoes();
-    // Scroll suave apenas para o topo do wizard
     var wizardTop = document.getElementById('simuladorWizard').getBoundingClientRect().top + window.scrollY - 20;
     window.scrollTo({ top: wizardTop, behavior: 'smooth' });
 }
@@ -166,6 +164,9 @@ function selecionarCondicao(el) {
     if (dados.condicao === 'novo') {
         dados.tipoServico = 'montagem';
         dados.embalagem = 'nao';
+        dados.cidadeDiferente = false;
+        dados.cidadeOrigem = null;
+        dados.cidadeDestino = null;
     } else {
         dados.tipoServico = null;
         dados.embalagem = null;
@@ -218,44 +219,46 @@ function etapa4HTML() {
         { v: 'outro', n: 'Outra localidade' }
     ];
     
-    var h = '<h2>Localização do serviço</h2>';
-    h += '<p style="text-align:center;color:#888;margin-bottom:20px;">A desmontagem e remontagem serão na mesma cidade?</p>';
-    h += '<div class="opcoes-simples" style="margin-bottom:25px;">';
-    h += '<div class="opcao-simples' + (dados.cidadeDiferente === false ? ' selecionado' : '') + '" data-valor="nao" tabindex="0" onclick="selecionarMesmaCidade(this)">Sim, mesma cidade</div>';
-    h += '<div class="opcao-simples' + (dados.cidadeDiferente === true ? ' selecionado' : '') + '" data-valor="sim" tabindex="0" onclick="selecionarMesmaCidade(this)">Não, cidades diferentes</div>';
-    h += '</div>';
-    
-    if (dados.cidadeDiferente) {
-        h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;">';
-        h += '<div>';
-        h += '<h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">🏠 Cidade de Origem</h3>';
-        h += '<p style="text-align:center;color:#888;font-size:0.85em;margin-bottom:10px;">Onde o móvel está agora (desmontagem)</p>';
-        h += '<div class="opcoes-grid" style="grid-template-columns:1fr;">';
-        cidades.forEach(function(c) {
-            var sel = dados.cidadeOrigem === c.v ? ' selecionado' : '';
-            h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" data-tipo="origem" tabindex="0" onclick="selecionarCidadeEspecifica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
-        });
-        h += '</div></div>';
-        h += '<div>';
-        h += '<h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">🏡 Cidade de Destino</h3>';
-        h += '<p style="text-align:center;color:#888;font-size:0.85em;margin-bottom:10px;">Para onde o móvel vai (remontagem)</p>';
-        h += '<div class="opcoes-grid" style="grid-template-columns:1fr;">';
-        cidades.forEach(function(c) {
-            var sel = dados.cidadeDestino === c.v ? ' selecionado' : '';
-            h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" data-tipo="destino" tabindex="0" onclick="selecionarCidadeEspecifica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
-        });
-        h += '</div></div>';
+    if (dados.condicao === 'usado' && dados.tipoServico && dados.tipoServico.indexOf('desmontagem') !== -1) {
+        var h = '<h2>Localização do serviço</h2>';
+        h += '<p style="text-align:center;color:#888;margin-bottom:20px;">A desmontagem e remontagem serão na mesma cidade?</p>';
+        h += '<div class="opcoes-simples" style="margin-bottom:25px;">';
+        h += '<div class="opcao-simples' + (dados.cidadeDiferente === false ? ' selecionado' : '') + '" data-valor="nao" tabindex="0" onclick="selecionarMesmaCidade(this)">Sim, mesma cidade</div>';
+        h += '<div class="opcao-simples' + (dados.cidadeDiferente === true ? ' selecionado' : '') + '" data-valor="sim" tabindex="0" onclick="selecionarMesmaCidade(this)">Não, cidades diferentes</div>';
         h += '</div>';
-    } else {
-        h += '<h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">Selecione sua cidade:</h3>';
-        h += '<div class="opcoes-grid">';
-        cidades.forEach(function(c) {
-            var sel = dados.cidade === c.v ? ' selecionado' : '';
-            h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" tabindex="0" onclick="selecionarCidadeUnica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
-        });
-        h += '</div>';
+        
+        if (dados.cidadeDiferente) {
+            h += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:25px;">';
+            h += '<div><h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">🏠 Cidade de Origem</h3><div class="opcoes-grid" style="grid-template-columns:1fr;">';
+            cidades.forEach(function(c) {
+                var sel = dados.cidadeOrigem === c.v ? ' selecionado' : '';
+                h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" data-tipo="origem" tabindex="0" onclick="selecionarCidadeEspecifica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
+            });
+            h += '</div></div>';
+            h += '<div><h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">🏡 Cidade de Destino</h3><div class="opcoes-grid" style="grid-template-columns:1fr;">';
+            cidades.forEach(function(c) {
+                var sel = dados.cidadeDestino === c.v ? ' selecionado' : '';
+                h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" data-tipo="destino" tabindex="0" onclick="selecionarCidadeEspecifica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
+            });
+            h += '</div></div></div>';
+        } else {
+            h += '<h3 style="text-align:center;color:var(--azul-escuro);margin-bottom:12px;">Selecione sua cidade:</h3><div class="opcoes-grid">';
+            cidades.forEach(function(c) {
+                var sel = dados.cidade === c.v ? ' selecionado' : '';
+                h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" tabindex="0" onclick="selecionarCidadeUnica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
+            });
+            h += '</div>';
+        }
+        return h;
     }
     
+    // Móvel novo ou só montagem → cidade única
+    var h = '<h2>Qual a sua cidade?</h2><div class="opcoes-grid">';
+    cidades.forEach(function(c) {
+        var sel = dados.cidade === c.v ? ' selecionado' : '';
+        h += '<div class="opcao-item' + sel + '" data-valor="' + c.v + '" tabindex="0" onclick="selecionarCidadeUnica(this)"><span class="opcao-nome">' + c.n + '</span></div>';
+    });
+    h += '</div>';
     return h;
 }
 
@@ -346,30 +349,6 @@ function toggleRecorteChapa(el) {
     if (dados.recortesChapa) el.classList.add('selecionado'); else el.classList.remove('selecionado');
 }
 
-function etapa7HTML() {
-    var loc = dadosSimulador.localizacao;
-    var h = '<h2>Confira as informações</h2><ul style="list-style:none;padding:0;">';
-    h += '<li style="padding:8px 0;"><strong>Móveis:</strong><br>';
-    for (var k in dados.moveis) {
-        h += '• ' + dados.moveis[k] + 'x ' + dadosSimulador.moveis[k].nome + '<br>';
-    }
-    h += '</li>';
-    h += '<li style="padding:8px 0;"><strong>Condição:</strong> ' + (dados.condicao === 'novo' ? 'Novo(s)' : 'Usado(s)') + '</li>';
-    if (dados.condicao === 'usado') {
-        h += '<li style="padding:8px 0;"><strong>Serviço:</strong> ' + dados.tipoServico + '</li>';
-        if (dados.embalagem && dados.embalagem !== 'nao') h += '<li style="padding:8px 0;"><strong>Embalagem:</strong> ' + dados.embalagem + '</li>';
-    }
-    if (dados.cidadeDiferente) {
-        h += '<li style="padding:8px 0;"><strong>🏠 Origem:</strong> ' + (loc[dados.cidadeOrigem] ? loc[dados.cidadeOrigem].descricao : '—') + '</li>';
-        h += '<li style="padding:8px 0;"><strong>🏡 Destino:</strong> ' + (loc[dados.cidadeDestino] ? loc[dados.cidadeDestino].descricao : '—') + '</li>';
-    } else {
-        h += '<li style="padding:8px 0;"><strong>Cidade:</strong> ' + (loc[dados.cidade] ? loc[dados.cidade].descricao : '—') + '</li>';
-    }
-    h += '</ul>';
-    h += '<p style="text-align:center;color:#888;margin-top:15px;">Clique em <strong>Calcular Estimativa</strong>.</p>';
-    return h;
-}
-
 function validarEtapa() {
     if (etapaAtual === 1 && totalMoveis() === 0) { alert('Selecione pelo menos um móvel.'); return false; }
     if (etapaAtual === 2 && !dados.condicao) { alert('Informe se o móvel é novo ou usado.'); return false; }
@@ -441,16 +420,15 @@ function exibirResultado() {
         }
     }
     
-    if (dados.iluminacaoLED) { precoMaoObra += add.iluminacaoLED.preco; obs.push(add.iluminacaoLED.descricao); }
-    if (dados.balcaoSuspenso) { precoMaoObra += add.balcaoSuspenso.preco; obs.push(add.balcaoSuspenso.descricao); }
-    if (dados.recortes.length > 0) { precoMaoObra += dados.recortes.length * add.recortePorModulo.preco; obs.push(dados.recortes.length + ' recorte(s)'); }
-    if (dados.recortesChapa) { precoMaoObra += add.recorteChapa.preco; obs.push(add.recorteChapa.descricao); }
+    if (dados.iluminacaoLED) precoMaoObra += add.iluminacaoLED.preco;
+    if (dados.balcaoSuspenso) precoMaoObra += add.balcaoSuspenso.preco;
+    if (dados.recortes.length > 0) precoMaoObra += dados.recortes.length * add.recortePorModulo.preco;
+    if (dados.recortesChapa) precoMaoObra += add.recorteChapa.preco;
     
     if (dados.cidadeDiferente) {
         var taxaOrigem = loc[dados.cidadeOrigem] ? loc[dados.cidadeOrigem].fator : 60;
         var taxaDestino = loc[dados.cidadeDestino] ? loc[dados.cidadeDestino].fator : 60;
         precoMaoObra += taxaOrigem + taxaDestino;
-        obs.push('Deslocamento: ' + loc[dados.cidadeOrigem].descricao + ' → ' + loc[dados.cidadeDestino].descricao + ' (R$ ' + (taxaOrigem + taxaDestino) + ')');
     } else {
         var taxa = loc[dados.cidade] ? loc[dados.cidade].fator : 60;
         precoMaoObra += taxa;
@@ -459,7 +437,6 @@ function exibirResultado() {
     if (totalMoveis() >= add.descontoMultiplos.minimo) {
         var desc = Math.round(precoMaoObra * add.descontoMultiplos.percentual / 100);
         precoMaoObra -= desc;
-        obs.push(add.descontoMultiplos.descricao + ' (-R$ ' + desc + ')');
     }
     
     var totalMin = precoMaoObra + precoMateriaisMin;
@@ -476,11 +453,7 @@ function exibirResultado() {
         'Móveis: ' + nomes.join(', ') + '%0A' +
         'Condição: ' + (dados.condicao === 'novo' ? 'Novo' : 'Usado') + '%0A' +
         'Cidade: ' + cidadeMsg + '%0A' +
-        'Mão de obra: R$ ' + precoMaoObra + '%0A';
-    if (precoMateriaisMin > 0) {
-        msg += 'Materiais (estimativa): R$ ' + precoMateriaisMin + ' a R$ ' + precoMateriaisMax + '%0A';
-    }
-    msg += '%0AGostaria de solicitar um orçamento real.';
+        'Estimativa: R$ ' + precoMaoObra + '%0A%0AGostaria de solicitar um orçamento real.';
     
     var h = '<div class="resultado-header"><h2>Estimativa de Montagem</h2><p class="resultado-movel">' + nomes.join(' + ') + '</p></div>';
     h += '<div class="resultado-body">';
@@ -494,7 +467,6 @@ function exibirResultado() {
         h += 'Materiais de embalagem são estimados e podem ser adquiridos pelo cliente ou fornecidos mediante validação no WhatsApp. ';
     }
     h += 'O orçamento final depende da análise dos móveis.</div>';
-    if (obs.length > 0) { h += '<div class="resultado-observacoes"><h4>📝 O que está incluído:</h4><ul style="padding-left:18px;">'; obs.forEach(function(o) { h += '<li style="margin-bottom:5px;">' + o + '</li>'; }); h += '</ul></div>'; }
     h += '<div class="resultado-cta"><a href="https://api.whatsapp.com/send/?phone=5561998865417&text=' + msg + '&type=phone_number&app_absent=0" class="btn-whatsapp" target="_blank" rel="noopener">📱 Solicitar Orçamento Real pelo WhatsApp</a><br>';
     h += '<button class="btn-reiniciar" onclick="location.reload();">🔄 Fazer Novo Cálculo</button></div></div>';
     
