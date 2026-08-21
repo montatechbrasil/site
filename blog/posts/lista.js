@@ -1,5 +1,16 @@
 var todosPosts = [
+    {
+        id: 6,
+        titulo: "Cozinha Modulada ou Planejada para Apartamento Pequeno? Como Ter um Acabamento Perfeito",
+        categoria: "Cozinhas",
+        resumo: "Descubra as diferenças práticas, desafios técnicos e dicas de instalação para cozinhas pequenas em apartamentos.",
+        imagem: "https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787350372/cozinhas-pequenas-planejadas-valparaiso-go_dkkuic.jpg",
+        data: "21 Ago 2026",
+        link: "posts/cozinha-modulada-ou-planejada-para-apartamento.html",
+        tempoLeitura: "9 min"
+    },
 
+    
     {
         id: 5,
         titulo: "Como Embalar Móveis para Mudança: Guia básico para Proteger Seu Patrimônio",
