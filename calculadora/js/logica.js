@@ -370,7 +370,7 @@ function etapaResumoHTML() {
     }
     if (dados.recortes.length > 0 || dados.recortesChapa) {
         var recs = dados.recortes.slice();
-        if (dados.recortesChapa) recs.push('Chapas de madeira');
+       
         h += '<li style="padding:8px 0;"><strong>Recortes:</strong> ' + recs.join(', ') + '</li>';
     }
     if (dados.cidadeDiferente) {
@@ -461,7 +461,7 @@ function exibirResultado() {
     }
     
     var totalRecortes = dados.recortes.length;
-    if (dados.recortesChapa) totalRecortes += 1;
+
     if (totalRecortes > 0) precoMaoObra += totalRecortes * 35;
     
     if (dados.cidadeDiferente) {
