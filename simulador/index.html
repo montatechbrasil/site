@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="icon" href="../img/favicon2.png" type="image/png">
+    <title>Simulador de Preço de Montagem de Móveis | MontaTech Brasil</title>
+    <meta name="description" content="Simule o preço de montagem do seu móvel em segundos. Ferramenta inteligente da MontaTech Brasil em Valparaíso de Goiás. Orçamento rápido e sem compromisso.">
+    
+    <link rel="preload" href="../css/cores.css" as="style">
+    <link rel="stylesheet" href="../css/cores.css">
+    
+    <link rel="preload" href="css/estilo.css" as="style">
+    <link rel="stylesheet" href="css/estilo.css">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Simulador de Preço de Montagem de Móveis",
+        "url": "https://montatechbrasil.com.br/simulador/",
+        "description": "Ferramenta inteligente para estimar o preço de montagem de móveis em Valparaíso de Goiás.",
+        "applicationCategory": "BusinessApplication",
+        "author": {
+            "@type": "LocalBusiness",
+            "name": "MontaTech Brasil",
+            "telephone": "+5561998865417"
+        }
+    }
+    </script>
+    
+    <meta property="og:title" content="Simulador de Preço de Montagem de Móveis | MontaTech Brasil">
+    <meta property="og:description" content="Simule o preço de montagem do seu móvel em segundos.">
+    <meta property="og:url" content="https://montatechbrasil.com.br/simulador/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://res.cloudinary.com/dxqm3lwrk/image/upload/v1774999808/montagem-profissional-valparaiso-06_ztmhmi.png">
+</head>
+<body>
+    
+    <div id="menu-container"></div>
+    
+    <main>
+        
+        <!-- Hero -->
+        <section class="simulador-hero" id="simuladorHero">
+            <div class="container">
+                <h1>Simulador de Preço de Montagem de Móveis</h1>
+                <p class="simulador-subtitulo">Descubra uma estimativa em poucos segundos e entenda quais fatores influenciam o orçamento.</p>
+                <button class="btn-iniciar" id="btnIniciar" aria-label="Começar simulação">Começar Planejamento</button>
+            </div>
+        </section>
+        
+        <!-- Wizard -->
+        <section class="simulador-wizard" id="simuladorWizard" style="display:none;">
+            <div class="container">
+                <div class="progresso-bar"><div class="progresso-preenchimento" id="progressoFill"></div></div>
+                <p class="progresso-texto" id="progressoTexto">Etapa 1 de 8</p>
+                <div class="etapa-container" id="etapaContainer"></div>
+                <div class="etapa-botoes">
+                    <button class="btn-voltar" id="btnVoltar" style="display:none;">← Voltar</button>
+                    <button class="btn-avancar" id="btnAvancar">Continuar →</button>
+                    <button class="btn-calcular" id="btnCalcular" style="display:none;">Calcular Estimativa</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Resultado -->
+        <section class="simulador-resultado" id="simuladorResultado" style="display:none;">
+            <div class="container">
+                <div class="resultado-card" id="resultadoCard"></div>
+            </div>
+        </section>
+        
+        <!-- Conteúdo SEO -->
+        <section class="simulador-seo" id="simuladorSeo">
+            <div class="container">
+                
+<h2>Como Funciona o Simulador de Preço?</h2>                
+              
+                <p>O preço de montagem de móveis varia conforme o tipo, tamanho, complexidade e localização. Em <strong>Valparaíso de Goiás e Entorno do DF</strong>, os valores costumam seguir faixas médias de mercado, que servem como referência inicial. Abaixo, confira uma tabela com estimativas baseadas em serviços realizados na região:</p>
+                               
+                <p><strong>Importante:</strong> Os valores acima representam médias de mercado e servem apenas como referência. O orçamento definitivo depende da análise do móvel e das condições do ambiente.</p>
+                
+                <h2>Como Funciona o Simulador de Preço?</h2>
+                
+                <p>Nossa ferramenta faz perguntas simples sobre seu móvel e, com base nas suas respostas, calcula uma estimativa de preço em tempo real. O processo leva menos de 1 minuto e ajuda você a entender melhor os fatores que influenciam no valor final da montagem.</p>
+                
+                <p>O simulador considera:</p>
+                
+                <ul>
+                    <li><strong>Tipo de móvel:</strong> Guarda-roupas e cozinhas exigem mais tempo que mesas e criados.</li>
+                    <li><strong>Estado do móvel:</strong> Móveis usados podem precisar de ajustes extras.</li>
+                    <li><strong>Desmontagem e remontagem:</strong> Se o móvel precisar ser desmontado antes, o tempo aumenta.</li>
+                    <li><strong>Fixação na parede:</strong> Alguns móveis exigem fixação para segurança.</li>
+                    <li><strong>Recortes e adaptações:</strong> Ajustes para pia, tomadas ou rodapés influenciam no valor.</li>
+                    <li><strong>Localização:</strong> O deslocamento até bairros mais distantes de Valparaíso ou cidades do Entorno pode influenciar.</li>
+                </ul>
+                
+                <h2>O Que Influencia no Preço da Montagem?</h2>
+                
+                <p>Muitas pessoas acreditam que o preço da montagem depende apenas do tamanho do móvel. Na prática, diversos fatores são considerados:</p>
+                
+                <ul>
+                    <li><strong>Marca e fabricante:</strong> Cada fabricante possui um sistema de encaixe diferente. Móveis da Madesa, MadeiraMadeira, Magazine Luiza e Casas Bahia têm particularidades que um montador experiente conhece.</li>
+                    <li><strong>Quantidade de peças e volumes:</strong> Um guarda-roupa de 6 portas pode vir em 3 ou 8 volumes, dependendo da marca.</li>
+                    <li><strong>Ferragens e acessórios:</strong> Corrediças telescópicas, dobradiças com amortecedor e puxadores especiais exigem mais cuidado.</li>
+                    <li><strong>Ambiente de instalação:</strong> Pisos desnivelados, paredes fora de esquadro e espaços reduzidos aumentam a complexidade.</li>
+                    <li><strong>Deslocamento:</strong> Atendimentos em cidades do Entorno do DF como Jardim Ingá, Cidade Ocidental, Luziânia, Novo Gama e Gama podem ter custo adicional de transporte.</li>
+                </ul>
+                
+                <h2>Perguntas Frequentes</h2>
+                
+                <h3>O simulador mostra o preço exato?</h3>
+                <p>Não. Ele fornece uma <strong>estimativa baseada nas informações fornecidas</strong>. O orçamento definitivo depende da análise presencial ou de fotos do móvel. Use a estimativa como referência inicial.</p>
+                
+                <h3>Preciso pagar ou me cadastrar para usar o simulador?</h3>
+                <p>Não. A ferramenta é <strong>totalmente gratuita</strong> e não exige cadastro, e-mail ou qualquer dado pessoal.</p>
+                
+                <h3>Como faço para contratar após a simulação?</h3>
+                <p>No final da simulação, há um botão para <strong>chamar no WhatsApp</strong> com todas as informações preenchidas automaticamente. É só enviar a mensagem que nossa equipe responde em minutos.</p>
+                
+                <h3>Os preços valem para qualquer cidade?</h3>
+                <p>Os valores são referências para <strong>Valparaíso de Goiás e Entorno do DF</strong>. Para outras localidades, entre em contato diretamente pelo WhatsApp para um orçamento personalizado.</p>
+                
+                <h3>Quanto tempo leva para receber o orçamento real?</h3>
+                <p>Após enviar as informações pelo WhatsApp, nossa equipe costuma responder em <strong>até 15 minutos</strong> durante o horário comercial.</p>
+                
+                           <!-- CTA Final -->
+                <div style="text-align:center;margin-top:35px;padding:25px;background:linear-gradient(135deg, var(--verde) 0%, #2d9e50 100%);border-radius:12px;color:var(--branco);">
+                    <h3 style="color:var(--branco);font-size:1.3em;margin-bottom:8px;">Pronto para simular seu orçamento?</h3>
+                    <p style="color:var(--branco);opacity:0.95;margin-bottom:18px;">Use o Planejador Inteligente agora mesmo. É rápido, gratuito e sem compromisso!</p>
+                   <a href="#simuladorWizard" onclick="document.getElementById('simuladorHero').style.display='none';document.getElementById('simuladorWizard').style.display='block';document.getElementById('btnIniciar').click();" class="cta-button" style="...">📱 Simular Orçamento</a>
+                
+                </div>
+                
+            </div>
+        </section>
+        
+    </main>
+    
+    <div id="footer-container"></div>
+    
+    <script src="../js/componentes.js" defer></script>
+    <script src="../js/metrics.js" defer></script>
+        <script src="js/logica.js"></script>
+    
+</body>
+</html>
