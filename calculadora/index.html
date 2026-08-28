@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Calculadora de Preços de Montagem de Móveis | MontaTech Brasil</title>
+    <meta name="description" content="Calcule o preço de montagem, desmontagem e embalagem de móveis em Valparaíso de Goiás e Entorno do DF. Ferramenta gratuita da MontaTech Brasil.">
+    
+    <link rel="icon" href="/img/favicon2.png" type="image/png">
+    
+    <link rel="preconnect" href="https://res.cloudinary.com">
+    
+    <link rel="preload" href="/css/cores.css" as="style">
+    <link rel="stylesheet" href="/css/cores.css">
+    
+    <link rel="preload" href="css/estilo.css" as="style">
+    <link rel="stylesheet" href="css/estilo.css">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculadora de Preços de Montagem de Móveis",
+        "url": "https://montatechbrasil.com.br/calculadora/",
+        "description": "Ferramenta gratuita para estimar preço de montagem, desmontagem e embalagem de móveis em Valparaíso de Goiás.",
+        "applicationCategory": "BusinessApplication",
+        "author": {
+            "@type": "LocalBusiness",
+            "name": "MontaTech Brasil",
+            "telephone": "+5561998865417"
+        }
+    }
+    </script>
+    
+    <meta property="og:title" content="Calculadora de Preços de Montagem de Móveis | MontaTech Brasil">
+    <meta property="og:description" content="Calcule o preço de montagem, desmontagem e embalagem de móveis em Valparaíso e Entorno.">
+    <meta property="og:url" content="https://montatechbrasil.com.br/calculadora/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787259234/embalagem_de_moveis_mudancas_uynxke.png">
+</head>
+<body>
+    
+    <div id="menu-container"></div>
+    
+    <main>
+        
+        <section class="simulador-hero" id="simuladorHero">
+            <div class="container">
+                <h1>Calculadora de Preços de Montagem de Móveis</h1>
+                <p class="simulador-subtitulo">Descubra em poucos segundos uma estimativa de mão de obra e materiais para montagem, desmontagem e embalagem.</p>
+                <img src="https://res.cloudinary.com/dxqm3lwrk/image/upload/v1787259234/embalagem_de_moveis_mudancas_uynxke.png" 
+                     alt="Montador profissional embalando móvel com filme stretch para mudança em Valparaíso de Goiás" 
+                     class="calc-hero-img" 
+                     loading="lazy">
+                <button class="btn-iniciar" id="btnIniciar" aria-label="Começar cálculo">Começar Cálculo</button>
+            </div>
+        </section>
+        
+        <section class="simulador-wizard" id="simuladorWizard" style="display:none;">
+            <div class="container">
+                <div class="progresso-bar"><div class="progresso-preenchimento" id="progressoFill"></div></div>
+                <p class="progresso-texto" id="progressoTexto">Etapa 1 de 8</p>
+                <div class="etapa-container" id="etapaContainer"></div>
+                <div class="etapa-botoes">
+                    <button class="btn-voltar" id="btnVoltar" style="display:none;">← Voltar</button>
+                    <button class="btn-avancar" id="btnAvancar">Continuar →</button>
+                    <button class="btn-calcular" id="btnCalcular" style="display:none;">Calcular Estimativa</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="simulador-resultado" id="simuladorResultado" style="display:none;">
+            <div class="container">
+                <div class="resultado-card" id="resultadoCard"></div>
+            </div>
+        </section>
+        
+        <section class="simulador-seo" id="simuladorSeo">
+            <div class="container">
+                
+                <h2>Como Funciona a Calculadora?</h2>                
+                <p>O preço de montagem de móveis varia conforme o tipo, tamanho, complexidade e localização. Em <strong>Valparaíso de Goiás e Entorno do DF</strong>, os valores costumam seguir faixas médias de mercado, que servem como referência inicial. Abaixo, confira uma tabela com estimativas baseadas em serviços realizados na região:</p>
+                
+               
+                <p>Nossa ferramenta faz perguntas simples sobre seu móvel e calcula uma estimativa de preço considerando mão de obra, deslocamento e materiais de embalagem. O processo leva menos de 1 minuto.</p>
+                
+                <h2>O Que Influencia no Preço da Montagem?</h2>
+                
+                <ul>
+                    <li><strong>Tipo de móvel:</strong> Guarda-roupas e cozinhas exigem mais tempo que mesas e criados.</li>
+                    <li><strong>Estado do móvel:</strong> Móveis usados podem precisar de ajustes extras ou substituição de ferragens.</li>
+                    <li><strong>Desmontagem e remontagem:</strong> Cada etapa adicional agrega tempo e cuidado ao serviço.</li>
+                    <li><strong>Embalagem:</strong> Proteção com filme stretch, plástico-bolha, papelão e espuma para transporte seguro.</li>
+                    <li><strong>Localização:</strong> O deslocamento até bairros mais distantes ou cidades do Entorno pode influenciar.</li>
+                    <li><strong>Adicionais:</strong> Portas de correr, espelhos grandes e iluminação LED exigem atenção especial.</li>
+                </ul>
+                
+                <h2>Perguntas Frequentes</h2>
+                
+                <h3>A calculadora mostra o preço exato?</h3>
+                <p>Não. Ela fornece uma <strong>estimativa baseada nas informações fornecidas</strong>. O orçamento definitivo depende da análise presencial ou de fotos do móvel.</p>
+                
+                <h3>Os materiais de embalagem estão inclusos?</h3>
+                <p>Os materiais de embalagem são <strong>estimados à parte</strong> e podem ser adquiridos pelo cliente ou fornecidos mediante validação no WhatsApp.</p>
+                
+                <h3>Como contratar após o cálculo?</h3>
+                <p>No final, há um botão para <strong>chamar no WhatsApp</strong> com todas as informações preenchidas automaticamente.</p>
+                
+                <h3>A calculadora funciona para qualquer cidade?</h3>
+                <p>Sim! Ela inclui taxas de deslocamento para <strong>Valparaíso de Goiás, Santa Maria, Gama DF, Cidade Ocidental, Novo Gama, Jardim Ingá, Luziânia.</strong> e outras localidades.</p>
+                
+                <h3>Preciso pagar para usar?</h3>
+                <p>Não. A ferramenta é <strong>totalmente gratuita</strong> e não exige cadastro.</p>
+                
+            </div>
+
+                            <!-- CTA Final -->
+                <div style="text-align:center;margin-top:40px;padding:0;">
+                    <h3 style="color:var(--azul-escuro);font-size:1.3em;margin-bottom:8px;">Pronto para calcular seu orçamento?</h3>
+                    <p style="color:var(--cinza-texto);margin-bottom:20px;font-size:1.05em;max-width:600px;margin-left:auto;margin-right:auto;">Use a calculadora gratuita e descubra o valor em menos de 1 minuto!</p>
+                    <button onclick="iniciarCalculadora()" class="btn-iniciar" style="display:inline-block;">📱 Simular Meu Orçamento</button>
+                </div>
+
+        </section>
+        
+    </main>
+    
+    <div id="footer-container"></div>
+    
+    <script src="/js/componentes.js" defer></script>
+    <script src="/js/metrics.js" defer></script>
+    <script src="js/dados.json"></script>
+    <script src="js/materiais.json"></script>
+    <script src="js/logica.js"></script>
+    
+</body>
+</html>
